@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IDUM | International Dialogue on Underwater Munitions</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  :root {
+    --navy: #0a1628;
+    --deep-blue: #0d2545;
+    --ocean: #1a4a7a;
+    --teal: #0e7c7b;
+    --teal-light: #15a8a6;
+    --gold: #c8952a;
+    --gold-light: #e8b84b;
+    --cream: #f5f0e8;
+    --white: #ffffff;
+    --gray-light: #e8edf5;
+    --gray: #8a9ab5;
+    --danger: #c23b3b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(10,22,40,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,149,42,0.2);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 1rem;
+    text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 44px; height: 44px;
+    background: var(--navy);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 1rem;
+    color: var(--white);
+    letter-spacing: -1px;
+  }
+  .nav-logo-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 1rem;
+    color: var(--cream); letter-spacing: 1px; text-transform: uppercase;
+  }
+  .nav-logo-text span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--gray); text-decoration: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    color: var(--white) !important;
+    padding: .55rem 1.4rem; border-radius: 4px;
+  }
+  .nav-cta:hover { opacity: .85; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(14,124,123,.25) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 20%, rgba(26,74,122,.3) 0%, transparent 50%),
+      linear-gradient(180deg, #040c1a 0%, #0a1628 60%, #081422 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(14,124,123,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(14,124,123,.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: linear-gradient(180deg, transparent, rgba(0,0,0,.4) 20%, rgba(0,0,0,.4) 80%, transparent);
+  }
+  .hero-particles {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .particle {
+    position: absolute; border-radius: 50%;
+    background: var(--teal-light); opacity: 0;
+    animation: float-up linear infinite;
+  }
+  @keyframes float-up {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    10% { opacity: .4; }
+    90% { opacity: .15; }
+    100% { transform: translateY(-20vh) scale(1); opacity: 0; }
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 1400px; margin: 0 auto; padding: 8rem 3rem 4rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: .75rem;
+    background: rgba(14,124,123,.15); border: 1px solid rgba(14,124,123,.4);
+    padding: .5rem 1.2rem; border-radius: 100px; margin-bottom: 2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .78rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal-light);
+    animation: fade-in .8s ease forwards;
+  }
+  .eyebrow-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--teal-light);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; transform: scale(1); }
+    50% { opacity:.5; transform: scale(1.4); }
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    font-weight: 900; line-height: 1.05;
+    color: var(--white);
+    animation: slide-up .9s ease forwards;
+  }
+  .hero-title em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-subtitle {
+    margin-top: 1.5rem;
+    font-size: 1.1rem; font-weight: 300; line-height: 1.7;
+    color: rgba(245,240,232,.7);
+    animation: slide-up 1s .15s ease both;
+    max-width: 520px;
+  }
+  .hero-quote {
+    margin-top: 2rem;
+    padding: 1.2rem 1.5rem;
+    border-left: 3px solid var(--gold);
+    background: rgba(200,149,42,.08);
+    border-radius: 0 8px 8px 0;
+    font-style: italic; font-size: .95rem; line-height: 1.6;
+    color: rgba(245,240,232,.8);
+    animation: slide-up 1s .25s ease both;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem;
+    animation: slide-up 1s .35s ease both;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: .6rem;
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    color: var(--white); text-decoration: none;
+    padding: .9rem 2rem; border-radius: 6px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .95rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 20px rgba(14,124,123,.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(14,124,123,.5); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: .6rem;
+    border: 1px solid rgba(200,149,42,.5); color: var(--gold-light); text-decoration: none;
+    padding: .9rem 2rem; border-radius: 6px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .95rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    transition: background .2s, border-color .2s;
+  }
+  .btn-secondary:hover { background: rgba(200,149,42,.1); border-color: var(--gold); }
+
+  .hero-visual {
+    position: relative; animation: fade-in 1.2s .3s ease both;
+  }
+  .hero-card {
+    background: rgba(13,37,69,.6);
+    border: 1px solid rgba(14,124,123,.25);
+    border-radius: 16px; padding: 2.5rem;
+    backdrop-filter: blur(20px);
+    position: relative; overflow: hidden;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(14,124,123,.3), transparent 70%);
+    border-radius: 50%;
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  .stat-item {
+    text-align: center; padding: 1.5rem 1rem;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; font-weight: 900;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--gray); margin-top: .4rem;
+  }
+  .hero-card-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .78rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal-light); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .hero-card-label::before {
+    content: ''; flex: 1; height: 1px; background: rgba(14,124,123,.3);
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  @keyframes fade-in { from { opacity:0 } to { opacity:1 } }
+  @keyframes slide-up { from { opacity:0; transform: translateY(30px) } to { opacity:1; transform: none } }
+
+  /* ── SECTION BASE ── */
+  section { padding: 7rem 3rem; }
+  .container { max-width: 1400px; margin: 0 auto; }
+  .section-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .78rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal-light); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-eyebrow::after { content: ''; flex:0 0 40px; height: 1px; background: var(--teal); }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 700; line-height: 1.15; color: var(--white);
+  }
+  .section-title em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .section-body {
+    font-size: 1.05rem; font-weight: 300; line-height: 1.8;
+    color: rgba(245,240,232,.7); max-width: 650px;
+    margin-top: 1.2rem;
+  }
+
+  /* ── MISSION STRIP ── */
+  .mission-strip {
+    background: linear-gradient(135deg, var(--deep-blue), rgba(13,37,69,.9));
+    border-top: 1px solid rgba(14,124,123,.2);
+    border-bottom: 1px solid rgba(14,124,123,.2);
+    padding: 2.5rem 3rem;
+  }
+  .mission-inner {
+    max-width: 1400px; margin: 0 auto;
+    display: flex; align-items: center; gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .mission-text {
+    flex: 1; min-width: 280px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem; font-weight: 400; letter-spacing: .5px; line-height: 1.5;
+    color: var(--cream);
+  }
+  .mission-text strong { color: var(--teal-light); }
+  .mission-badges { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .badge {
+    display: flex; align-items: center; gap: .5rem;
+    background: rgba(14,124,123,.12); border: 1px solid rgba(14,124,123,.3);
+    padding: .45rem 1rem; border-radius: 100px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--teal-light);
+  }
+
+  /* ── THREAT SECTION ── */
+  .threat-section {
+    background: linear-gradient(180deg, var(--navy) 0%, #060f1e 100%);
+  }
+  .threat-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: start; margin-top: 4rem;
+  }
+  .threat-text p { margin-top: 1rem; font-size: 1rem; line-height: 1.8; color: rgba(245,240,232,.65); }
+  .threat-stats { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+  .threat-stat {
+    display: flex; align-items: center; gap: 1.5rem;
+    padding: 1.2rem 1.5rem;
+    background: rgba(194,59,59,.07);
+    border: 1px solid rgba(194,59,59,.2);
+    border-radius: 10px;
+  }
+  .threat-stat-num {
+    font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900;
+    color: #e05a5a; white-space: nowrap;
+  }
+  .threat-stat-text { font-size: .9rem; line-height: 1.5; color: rgba(245,240,232,.7); }
+  .threat-pillars { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  .pillar {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    padding: 1.5rem; background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.07); border-radius: 12px;
+    transition: border-color .2s, background .2s;
+  }
+  .pillar:hover { border-color: rgba(14,124,123,.35); background: rgba(14,124,123,.06); }
+  .pillar-icon {
+    flex: 0 0 44px; height: 44px;
+    background: linear-gradient(135deg, rgba(14,124,123,.3), rgba(26,74,122,.3));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+  .pillar-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem; font-weight: 600; letter-spacing: .5px;
+    color: var(--white); margin-bottom: .3rem;
+  }
+  .pillar-body { font-size: .88rem; line-height: 1.6; color: rgba(245,240,232,.6); }
+
+  /* ── FOUNDER ── */
+  .founder-section { background: #040c1a; }
+  .founder-grid {
+    display: grid; grid-template-columns: 400px 1fr; gap: 5rem;
+    align-items: start; margin-top: 4rem;
+  }
+  .founder-img-wrap {
+    position: sticky; top: 6rem;
+  }
+  .founder-img-frame {
+    border-radius: 16px; overflow: hidden;
+    border: 2px solid rgba(200,149,42,.3);
+    background: var(--deep-blue);
+    aspect-ratio: 3/4;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .founder-img-frame::after {
+    content: '';
+  }
+  .founder-img-frame img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center center;
+    display: block; border-radius: 14px;
+  }
+  .founder-tag {
+    margin-top: 1rem; text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .founder-name {
+    font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700;
+    color: var(--white); margin-top: 1rem;
+  }
+  .founder-role {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 400;
+    color: var(--teal-light); margin-top: .3rem;
+  }
+  .founder-bio { font-size: 1rem; line-height: 1.8; color: rgba(245,240,232,.7); margin-top: 1.5rem; }
+  .founder-bio + .founder-bio { margin-top: 1rem; }
+  .roles-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;
+  }
+  .role-item {
+    display: flex; gap: .7rem; align-items: flex-start;
+    padding: 1rem 1.2rem;
+    background: rgba(14,124,123,.07); border: 1px solid rgba(14,124,123,.2);
+    border-radius: 10px; font-size: .87rem; line-height: 1.5; color: rgba(245,240,232,.75);
+  }
+  .role-item::before {
+    content: '›'; color: var(--teal-light); font-size: 1.2rem; line-height: 1.2; flex-shrink: 0;
+  }
+  .achievements-list {
+    margin-top: 2rem; display: flex; flex-direction: column; gap: .75rem;
+  }
+  .achievement {
+    display: flex; gap: .8rem; align-items: flex-start;
+    font-size: .9rem; line-height: 1.55; color: rgba(245,240,232,.7);
+  }
+  .achievement-dot {
+    flex-shrink: 0; margin-top: .45rem;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+  }
+  .contact-strip {
+    margin-top: 2.5rem; padding: 1.5rem;
+    background: rgba(200,149,42,.08); border: 1px solid rgba(200,149,42,.25);
+    border-radius: 12px;
+    display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: .7rem;
+    font-family: 'Barlow Condensed', sans-serif; font-size: .95rem; font-weight: 400;
+    color: var(--gold-light); text-decoration: none;
+    transition: color .2s;
+  }
+  .contact-item:hover { color: var(--white); }
+  .contact-icon { font-size: 1rem; }
+
+  /* ── OCEAN ACTION ── */
+  .ocean-action {
+    background: linear-gradient(135deg, var(--deep-blue), #061220);
+    border-top: 1px solid rgba(14,124,123,.2);
+  }
+  .action-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 4rem;
+  }
+  .action-items { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+  .action-item {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    padding: 1.3rem 1.5rem;
+    background: rgba(255,255,255,.03); border: 1px solid rgba(14,124,123,.2);
+    border-radius: 10px; transition: border-color .2s;
+  }
+  .action-item:hover { border-color: rgba(14,124,123,.5); }
+  .action-num {
+    flex-shrink: 0; width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif; font-size: .85rem; font-weight: 700;
+    color: var(--white);
+  }
+  .action-title {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 600;
+    color: var(--white); margin-bottom: .25rem;
+  }
+  .action-body { font-size: .87rem; line-height: 1.55; color: rgba(245,240,232,.6); }
+  .action-visual {
+    position: relative; background: rgba(13,37,69,.5);
+    border: 1px solid rgba(14,124,123,.25); border-radius: 16px;
+    overflow: hidden; padding: 2.5rem;
+  }
+  .action-visual-title {
+    font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700;
+    color: var(--white); margin-bottom: 1.5rem;
+  }
+  .action-badge-large {
+    display: inline-flex; align-items: center; gap: .8rem;
+    background: rgba(14,124,123,.15); border: 1px solid rgba(14,124,123,.35);
+    padding: .8rem 1.5rem; border-radius: 100px; margin-bottom: 2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem; font-weight: 600; letter-spacing: 1px; color: var(--teal-light);
+  }
+  .solution-steps { display: flex; flex-direction: column; gap: 1rem; }
+  .solution-step {
+    display: flex; gap: 1rem; align-items: center;
+    padding: .8rem 1rem;
+    background: rgba(255,255,255,.04); border-radius: 8px;
+  }
+  .step-num {
+    width: 28px; height: 28px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif; font-size: .8rem; font-weight: 700;
+    color: var(--navy);
+  }
+  .step-text { font-size: .9rem; color: rgba(245,240,232,.75); }
+
+  /* ── PARTNERSHIPS ── */
+  .partners-section { background: var(--navy); }
+  .partners-row {
+    display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 3rem; justify-content: center;
+  }
+  .partner-chip {
+    display: flex; align-items: center; gap: .7rem;
+    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+    padding: .7rem 1.4rem; border-radius: 100px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: .85rem; font-weight: 600;
+    letter-spacing: 1px; color: rgba(245,240,232,.75);
+    transition: border-color .2s, color .2s;
+  }
+  .partner-chip:hover { border-color: rgba(14,124,123,.4); color: var(--cream); }
+  .partner-chip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+
+  /* ── EXPERT NETWORK ── */
+  .experts-section { background: #040c1a; }
+  .experts-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem;
+  }
+  .expert-card {
+    background: rgba(13,37,69,.5); border: 1px solid rgba(255,255,255,.07);
+    border-radius: 14px; padding: 1.8rem;
+    transition: border-color .25s, transform .25s;
+  }
+  .expert-card:hover { border-color: rgba(14,124,123,.4); transform: translateY(-4px); }
+  .expert-avatar {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--ocean), var(--teal));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
+    color: var(--white); margin-bottom: 1rem;
+  }
+  .expert-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--white); }
+  .expert-title { font-size: .8rem; color: var(--teal-light); margin-top: .2rem; }
+  .expert-relevance { font-size: .83rem; line-height: 1.55; color: rgba(245,240,232,.6); margin-top: .9rem; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--deep-blue) 0%, #050e1c 100%);
+    border-top: 1px solid rgba(200,149,42,.2);
+    text-align: center;
+  }
+  .cta-section .section-title { font-size: clamp(2rem, 4vw, 3.5rem); }
+  .cta-grid { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; }
+  .cta-card {
+    flex: 0 1 280px;
+    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+    border-radius: 14px; padding: 2rem 1.5rem; text-align: left;
+    transition: border-color .2s; text-decoration: none; color: inherit;
+  }
+  .cta-card:hover { border-color: rgba(14,124,123,.5); }
+  .cta-card-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .cta-card-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--white); margin-bottom: .5rem; }
+  .cta-card-body { font-size: .87rem; line-height: 1.55; color: rgba(245,240,232,.6); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #020810;
+    border-top: 1px solid rgba(14,124,123,.15);
+    padding: 4rem 3rem 2.5rem;
+  }
+  .footer-inner {
+    max-width: 1400px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; margin-bottom: 3rem;
+  }
+  .footer-mission {
+    font-size: .9rem; line-height: 1.7; color: rgba(245,240,232,.55);
+    margin-top: 1rem; max-width: 320px;
+  }
+  .footer-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal-light); margin-bottom: 1.2rem;
+  }
+  .footer-links { display: flex; flex-direction: column; gap: .6rem; }
+  .footer-links a {
+    text-decoration: none; font-size: .88rem; color: rgba(245,240,232,.55);
+    transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-bottom {
+    max-width: 1400px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.06);
+    font-size: .8rem; color: rgba(245,240,232,.35);
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero-content, .threat-grid, .founder-grid, .action-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .founder-img-wrap { position: static; }
+    .experts-grid { grid-template-columns: 1fr 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    section { padding: 5rem 1.5rem; }
+    .roles-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .experts-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ── DOCUMENTARIES ── */
+  .documentaries-section {
+    background: linear-gradient(180deg, var(--navy) 0%, #060f1e 100%);
+    border-top: 1px solid rgba(14,124,123,.2);
+  }
+  .docs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .docs-text-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(13,37,69,.5);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px;
+    padding: 1.5rem;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(245,240,232,.75);
+    text-align: center;
+  }
+  .docs-img-cell {
+    background: rgba(13,37,69,.5);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 3/4;
+    transition: border-color .25s, transform .25s;
+  }
+  .docs-img-cell:hover {
+    border-color: rgba(14,124,123,.4);
+    transform: translateY(-3px);
+  }
+  .docs-img-cell a {
+    display: block;
+    width: 100%; height: 100%;
+  }
+  .docs-thumb {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity .2s;
+  }
+  .docs-img-cell:hover .docs-thumb { opacity: .88; }
+
+
+  .services-section {
+    background: linear-gradient(180deg, #040c1a 0%, var(--navy) 100%);
+    border-top: 1px solid rgba(200,149,42,.15);
+  }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3.5rem;
+  }
+  .service-card {
+    background: rgba(13,37,69,.55);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 16px; padding: 2rem 1.6rem 1.8rem;
+    display: flex; flex-direction: column; gap: 0;
+    transition: border-color .25s, transform .25s, box-shadow .25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--teal-light));
+    opacity: 0; transition: opacity .25s;
+  }
+  .service-card:hover { border-color: rgba(14,124,123,.45); transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,.3); }
+  .service-card:hover::before { opacity: 1; }
+  .service-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--teal-light); margin-bottom: 1rem;
+  }
+  .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .service-title {
+    font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700;
+    color: var(--white); line-height: 1.25; margin-bottom: .5rem;
+  }
+  .service-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .8rem; font-weight: 500; color: var(--gold); margin-bottom: 1rem; letter-spacing: .5px;
+  }
+  .service-list {
+    list-style: none; margin: 0; padding: 0; flex: 1;
+    display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.8rem;
+  }
+  .service-list li {
+    font-size: .83rem; line-height: 1.5; color: rgba(245,240,232,.65);
+    padding-left: 1.1rem; position: relative;
+  }
+  .service-list li::before {
+    content: '›'; position: absolute; left: 0;
+    color: var(--teal-light); font-size: 1rem; line-height: 1.4;
+  }
+  .service-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    color: var(--white); text-decoration: none;
+    padding: .7rem 1.2rem; border-radius: 6px; border: none; cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    transition: opacity .2s, transform .2s; width: 100%;
+    margin-top: auto;
+  }
+  .service-btn:hover { opacity: .85; transform: translateY(-1px); }
+
+  /* ── CONTACT FORM ── */
+  .contact-section {
+    background: linear-gradient(135deg, #030a14 0%, var(--deep-blue) 60%, #040c1a 100%);
+    border-top: 1px solid rgba(14,124,123,.2);
+  }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 420px; gap: 5rem; margin-top: 4rem; align-items: start;
+  }
+  .contact-tabs {
+    display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2rem;
+  }
+  .contact-tab {
+    padding: .5rem 1.1rem; border-radius: 100px; border: 1px solid rgba(14,124,123,.3);
+    background: transparent; cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gray); transition: all .2s;
+  }
+  .contact-tab.active, .contact-tab:hover {
+    background: rgba(14,124,123,.2); border-color: var(--teal-light); color: var(--teal-light);
+  }
+  .contact-form-wrap {
+    background: rgba(13,37,69,.5); border: 1px solid rgba(14,124,123,.2);
+    border-radius: 16px; padding: 2.5rem; backdrop-filter: blur(12px);
+  }
+  .form-title {
+    font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700;
+    color: var(--white); margin-bottom: .4rem;
+  }
+  .form-subtitle {
+    font-size: .85rem; color: rgba(245,240,232,.55); margin-bottom: 2rem; line-height: 1.5;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { margin-bottom: 1.1rem; }
+  .form-label {
+    display: block; font-family: 'Barlow Condensed', sans-serif;
+    font-size: .72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--teal-light); margin-bottom: .4rem;
+  }
+  .form-input, .form-select, .form-textarea {
+    width: 100%; background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.1); border-radius: 6px;
+    padding: .7rem 1rem; color: var(--cream);
+    font-family: 'Barlow', sans-serif; font-size: .9rem; font-weight: 300;
+    transition: border-color .2s;
+    -webkit-appearance: none;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none; border-color: var(--teal-light);
+    background: rgba(14,124,123,.07);
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(245,240,232,.3); }
+  .form-select { color: var(--cream); cursor: pointer; }
+  .form-select option { background: var(--deep-blue); color: var(--cream); }
+  .form-textarea { resize: vertical; min-height: 90px; }
+  .form-submit {
+    display: flex; align-items: center; justify-content: center; gap: .6rem;
+    width: 100%; padding: .9rem;
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    border: none; border-radius: 6px; cursor: pointer; color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .95rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    transition: opacity .2s, transform .2s; margin-top: .5rem;
+  }
+  .form-submit:hover { opacity: .85; transform: translateY(-2px); }
+  .contact-info-block {
+    position: sticky; top: 7rem;
+  }
+  .contact-info-card {
+    background: rgba(13,37,69,.5); border: 1px solid rgba(200,149,42,.2);
+    border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem;
+  }
+  .contact-info-name {
+    font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700;
+    color: var(--white); margin-bottom: .25rem;
+  }
+  .contact-info-role { font-size: .85rem; color: var(--teal-light); margin-bottom: 1.5rem; }
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: .9rem; margin-bottom: 1rem;
+    font-size: .88rem; line-height: 1.5; color: rgba(245,240,232,.7);
+    text-decoration: none;
+  }
+  .contact-detail:hover { color: var(--gold-light); }
+  .contact-detail-icon { font-size: 1rem; flex-shrink: 0; margin-top: .1rem; }
+  .contact-affiliations {
+    background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+    border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem;
+  }
+  .contact-affil-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gray); margin-bottom: 1rem;
+  }
+  .contact-affil-chips { display: flex; gap: .6rem; flex-wrap: wrap; }
+  .contact-affil-chip {
+    padding: .35rem .9rem; border-radius: 100px;
+    background: rgba(14,124,123,.12); border: 1px solid rgba(14,124,123,.25);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .72rem; font-weight: 600; letter-spacing: 1px;
+    color: var(--teal-light);
+  }
+  .form-success {
+    display: none; text-align: center; padding: 2rem;
+    color: var(--teal-light);
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem;
+  }
+  @media (max-width: 900px) {
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .contact-info-block { position: static; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── SCIENTIFIC PROJECTS ── */
+  .projects-section { background: linear-gradient(180deg, #040c1a 0%, var(--navy) 100%); }
+  .projects-list { display: flex; flex-direction: column; gap: 5rem; margin-top: 4rem; }
+  .project-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .project-row.reverse { direction: rtl; }
+  .project-row.reverse > * { direction: ltr; }
+  .project-img-wrap {
+    border-radius: 14px; overflow: hidden;
+    border: 1px solid rgba(14,124,123,.25);
+    aspect-ratio: 4/3;
+    position: relative;
+  }
+  .project-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .project-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(4,12,26,.7) 100%);
+  }
+  .project-content { display: flex; flex-direction: column; gap: 1rem; }
+  .project-meta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .78rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+  }
+  .project-meta-year { color: var(--gold); }
+  .project-meta-sep { color: rgba(255,255,255,.2); }
+  .project-meta-loc { color: var(--teal-light); }
+  .project-title {
+    font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700;
+    color: var(--white); line-height: 1.2;
+  }
+  .project-desc { font-size: .95rem; line-height: 1.75; color: rgba(245,240,232,.65); }
+  .project-achievements {
+    margin-top: .5rem; padding: 1.25rem 1.5rem;
+    background: rgba(14,124,123,.06); border: 1px solid rgba(14,124,123,.18);
+    border-radius: 10px;
+  }
+  .project-achievements-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal-light); margin-bottom: .75rem;
+  }
+  .project-achievement {
+    display: flex; gap: .7rem; align-items: flex-start;
+    font-size: .87rem; line-height: 1.5; color: rgba(245,240,232,.7);
+    margin-bottom: .45rem;
+  }
+  .project-achievement:last-child { margin-bottom: 0; }
+  .project-achievement::before {
+    content: '›'; color: var(--gold); font-size: 1.1rem; line-height: 1.3; flex-shrink: 0;
+  }
+  .project-partners {
+    font-family: 'Barlow Condensed', sans-serif; font-size: .82rem; font-weight: 500;
+    color: rgba(245,240,232,.45); letter-spacing: .5px; margin-top: .25rem;
+  }
+  .project-partners strong { color: rgba(245,240,232,.65); }
+
+
+  /* ── ACCREDITATIONS TABLE ── */
+  .accred-table {
+    margin-top: 3rem;
+    border: 1px solid rgba(14,124,123,.25);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .accred-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .accred-header-row {
+    border-bottom: 1px solid rgba(14,124,123,.2);
+  }
+  .accred-col {
+    padding: 0.8rem 1rem;
+  }
+  .accred-col + .accred-col {
+    border-left: 1px solid rgba(14,124,123,.2);
+  }
+  .accred-header-row {
+    background: rgba(14,124,123,.1);
+  }
+  .accred-col-header {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .78rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal-light);
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    padding: 0.7rem 1rem;
+  }
+  .accred-logos {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+    padding: 1.5rem 0.5rem;
+  }
+  .accred-logo-item {
+    display: flex; align-items: center; justify-content: center;
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .accred-logo {
+    max-height: 78px;
+    max-width: 100%;
+    width: auto;
+    object-fit: contain;
+    opacity: .88;
+    transition: opacity .2s, transform .2s;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,.25));
+  }
+  .accred-logo-square {
+    max-height: 84px;
+    max-width: 84px;
+  }
+  .accred-logo-wide {
+    max-height: 66px;
+    max-width: 100%;
+  }
+  .accred-logo:hover { opacity: 1; transform: scale(1.07); }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-text">International Dialogues on<br><span>Underwater Munitions</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#threat">The Threat</a></li>
+    <li><a href="#founder">Founder</a></li>
+    <li><a href="#accreditations">Accreditations</a></li>
+    <li><a href="#experts">Experts</a></li>
+    <li><a href="#projects">Scientific Projects</a></li>
+    <li><a href="#documentaries">Documentaries</a></li>
+    <li><a href="#operations">Operations</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#action">Ocean Action</a></li>
+    <li><button onclick="openContact('consulting')" class="nav-cta" style="cursor:pointer;border:none;font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;">Contact</button></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content container">
+    <div>
+      <div class="hero-eyebrow">
+        <div class="eyebrow-dot"></div>
+        UN Ocean Action #21356 &nbsp;·&nbsp; Global Authority
+      </div>
+      <h1 class="hero-title">
+        Leading the Global Mission to <em>Eradicate</em> Underwater Munitions
+      </h1>
+      <p class="hero-subtitle">
+        Safeguarding the world's oceans, ecosystems, and communities by addressing the hidden threats posed by decades of dumping millions of tons of chemical, conventional, and radiological weapons in the marine environment.
+      </p>
+      <blockquote class="hero-quote">
+        "Underwater munitions will make ocean plastic look like a lollipop." — George Orbelian, Project Kaisei
+      </blockquote>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="openContact('partnerships')" style="cursor:pointer;border:none;">↗ Support Ocean Action #21356</button>
+
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-label">The Scale of the Crisis</div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-num">1.6M</div>
+            <div class="stat-label">Tons of Munitions</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">54</div>
+            <div class="stat-label">Affected Seas</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">3,000+</div>
+            <div class="stat-label">Documented Sites</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">40+</div>
+            <div class="stat-label">Countries Mapped</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION STRIP -->
+<div class="mission-strip">
+  <div class="mission-inner">
+    <p class="mission-text">
+      IDUM's mission is to promote the creation of an <strong>Internationally Binding Treaty</strong> on all classes—biological, chemical, conventional, and radiological—of underwater munitions, to lead to the cleanup of our seas and oceans worldwide.
+    </p>
+    <div class="mission-badges">
+      <div class="badge">🌊 UN SDG 14</div>
+      <div class="badge">🌍 NATO Partner</div>
+      <div class="badge">☣️ OPCW Affiliated</div>
+      <div class="badge">🔬 30+ Years Research</div>
+    </div>
+  </div>
+</div>
+
+<!-- THREAT SECTION -->
+<section class="threat-section" id="threat">
+  <div class="container">
+    <div class="section-eyebrow">The Hidden Crisis</div>
+    <h2 class="section-title">The <em>Silent Threat</em> Beneath Our Oceans</h2>
+    <div class="threat-grid">
+      <div class="threat-text">
+        <p>As early as 1910, the dumping of chemical and conventional munitions was recorded in the English Channel. This process continued throughout all seas as a cheap means of disposal for militaries until the mid-1970s when countries began to understand the environmental catastrophe they were creating.</p>
+        <p>1.6 million tons of underwater munitions—chemical, biological, and conventional—are rusting in 54 seas and oceans. Earth's five major ocean gyres circulate water and contaminants across all hemispheres. These slow-moving conveyor belts do not respect borders.</p>
+        <p>Evidence shows cancer rates up to 5× higher in coastal populations near known munitions sites. Shellfish toxicity linked to mustard gas and lewisite degradation has been documented. TNT with a 5,000-year half-life bioaccumulates in fish and coral.</p>
+        <div class="threat-stats">
+          <div class="threat-stat">
+            <div class="threat-stat-num">5×</div>
+            <div class="threat-stat-text">Higher cancer rates documented in coastal communities near known munitions sites</div>
+          </div>
+          <div class="threat-stat">
+            <div class="threat-stat-num">303 dB</div>
+            <div class="threat-stat-text">NATO underwater detonations — powerful enough to kill marine mammals at range</div>
+          </div>
+          <div class="threat-stat">
+            <div class="threat-stat-num">80%</div>
+            <div class="threat-stat-text">Of U.S. dumped munitions are unfused and could be safely retrieved with proper training</div>
+          </div>
+        </div>
+      </div>
+      <div class="threat-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">⚗️</div>
+          <div>
+            <div class="pillar-title">Chemical Contamination</div>
+            <div class="pillar-body">Munitions' chemical breakdown is spreading deadly arsenic, mustard gas compounds, and lewisite degradation products across the sea floor and into the food chain.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">💥</div>
+          <div>
+            <div class="pillar-title">Unstable Ordnance</div>
+            <div class="pillar-body">Unexploded ordnance is becoming more unstable with time, posing acute risks to fishing fleets, offshore energy infrastructure, and submarine cables.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🐟</div>
+          <div>
+            <div class="pillar-title">Marine Ecosystem Collapse</div>
+            <div class="pillar-body">Bioaccumulation in fish, coral bleaching, and dead zones near dump sites threaten food security for billions of people who depend on healthy oceans.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🌊</div>
+          <div>
+            <div class="pillar-title">Ocean Gyre Dispersion</div>
+            <div class="pillar-body">There is no "away" on Spaceship Earth. Contaminants from one region propagate through global ocean circulation, affecting ecosystems thousands of miles away.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">☢️</div>
+          <div>
+            <div class="pillar-title">Radiological Hazards</div>
+            <div class="pillar-body">Radiological weapons dumped at sea compound the crisis, intersecting with radioactive water releases and creating compound stressors on already-stressed ecosystems.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="founder-section" id="founder">
+  <div class="container">
+    <div class="section-eyebrow">Leadership</div>
+    <h2 class="section-title">Global Expert & <em>Cooperator</em></h2>
+    <div class="founder-grid">
+      <div class="founder-img-wrap">
+        <div class="founder-tag">Chair &amp; Founder, IDUM</div>
+        <div class="contact-strip" id="contact">
+          <a href="/cdn-cgi/l/email-protection#ee818d8b8f808c81838c869b809a8b9c9dae89838f8782c08d8183" class="contact-item"><span class="contact-icon">✉</span> <span class="__cf_email__" data-cfemail="37585452565955585a555f42594352454477505a565e5b1954585a">[email&#160;protected]</span></a>
+          <a href="tel:+19025779439" class="contact-item"><span class="contact-icon">📞</span> +1 902-577-9439</a>
+        </div>
+      </div>
+      <div>
+        <h3 class="founder-name">Terrance P. Long CD.</h3>
+        <p class="founder-role">Global Authority on Underwater &amp; Submerged Munitions</p>
+        <p class="founder-bio">Terrance (Terry) P. Long is the Chair and founder of the International Dialogues on Underwater Munitions (IDUM) and a world-leading expert on sea-dumped chemical and conventional weapons. A retired Canadian Military Engineer with over 30 years of experience specializing in Explosive Ordnance Disposal (EOD), Terrance has led international efforts to address the environmental and human health impacts of underwater and submerged munitions globally.</p>
+        <p class="founder-bio">As the driving force behind UN Ocean Action #21356, Terrance has established the international framework for underwater munitions responses. His advocacy led to the landmark Baltic Sea blasting moratorium, creating a global model for environmental protection. He maintains the world's most comprehensive database of underwater munitions sites, including newly declassified records and coordinates that inform risk assessment and cleanup operations worldwide.</p>
+
+        <div class="roles-grid">
+          <div class="role-item">Chair, International Dialogues on Underwater Munitions (IDUM)</div>
+          <div class="role-item">Chair, International Science &amp; Technology Advisory Board (ISTAB)</div>
+          <div class="role-item">Partner &amp; Co-Director, NATO Science for Peace and Security MODUM Program</div>
+          <div class="role-item">Associated Partner &amp; Co-Director, CHEMSEA (Chemical Munitions Search &amp; Assessment)</div>
+          <div class="role-item">Partner &amp; Co-Director, DAIMON (Decision Aids for Marine Munitions)</div>
+          <div class="role-item">Advisory Committee, Dumpsites of Munitions: Integrated Science Approach</div>
+        </div>
+
+        <div class="achievements-list">
+          <div class="achievement"><div class="achievement-dot"></div><span>Recipient of "The Hague OPCW Award" for the elimination of chemical weapons</span></div>
+          <div class="achievement"><div class="achievement-dot"></div><span>Lead author, <em>Legal Aspects of Marine Munitions Management: Decision Making in the Face of Uncertainty and Risk</em></span></div>
+          <div class="achievement"><div class="achievement-dot"></div><span>Chaired Expert Panel on Human Health and Environment impacts at CDC</span></div>
+          <div class="achievement"><div class="achievement-dot"></div><span>Contributor to UN Resolution A/RES/65/149 on underwater munitions</span></div>
+          <div class="achievement"><div class="achievement-dot"></div><span>Delivered special remarks in the European Parliament on chemical residues and unexploded ordnance</span></div>
+          <div class="achievement"><div class="achievement-dot"></div><span>Thematic Keynote, Kiel Expert Panel Round Table on Dumped Munitions in the Baltic Sea</span></div>
+          <div class="achievement"><div class="achievement-dot"></div><span>Special Editor's Award, Marine Technology Journal (MTS), Legacy of Underwater Munitions</span></div>
+          <div class="achievement"><div class="achievement-dot"></div><span>United Nations commissioned Officer with missions across Africa, Middle East, Asia, and Europe</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SCIENTIFIC PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="container">
+    <div class="section-eyebrow">Scientific Projects</div>
+    <h2 class="section-title">International Research <em>Initiatives</em></h2>
+    <div class="projects-list">
+
+      <!-- Project 1 -->
+      <div class="project-row">
+        <div class="project-img-wrap">
+          <div class="project-img-overlay"></div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-meta-year">2011–2014</span>
+            <span class="project-meta-sep">|</span>
+            <span class="project-meta-loc">Baltic Sea</span>
+          </div>
+          <div class="project-title">Chemical Munitions Search &amp; Assessment</div>
+          <p class="project-desc">Pioneering project mapping chemical weapons dump sites in the Baltic Sea using advanced sonar and ROV technology.</p>
+          <div class="project-achievements">
+            <div class="project-achievements-title">Key Achievements</div>
+            <div class="project-achievement">Mapped 300,000+ tons of chemical weapons</div>
+            <div class="project-achievement">Established first comprehensive Baltic munitions database</div>
+            <div class="project-achievement">Led to Baltic Sea blasting moratorium</div>
+            <div class="project-achievement">Created environmental impact assessment protocols</div>
+          </div>
+          <div class="project-partners"><strong>Partners:</strong> NATO, European Commission, Baltic Sea nations</div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-row reverse">
+        <div class="project-img-wrap">
+          <div class="project-img-overlay"></div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-meta-year">2017–2020</span>
+            <span class="project-meta-sep">|</span>
+            <span class="project-meta-loc">North Atlantic &amp; Baltic</span>
+          </div>
+          <div class="project-title">Monitoring of Dumped Munitions</div>
+          <p class="project-desc">NATO Science for Peace and Security program developing advanced monitoring systems for underwater munitions sites.</p>
+          <div class="project-achievements">
+            <div class="project-achievements-title">Key Achievements</div>
+            <div class="project-achievement">Deployed autonomous monitoring stations</div>
+            <div class="project-achievement">Real-time toxin detection systems</div>
+            <div class="project-achievement">AI-powered munitions classification</div>
+            <div class="project-achievement">International data-sharing protocols</div>
+          </div>
+          <div class="project-partners"><strong>Partners:</strong> NATO SPS, UNEP, Multiple EU nations</div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-row">
+        <div class="project-img-wrap">
+          <div class="project-img-overlay"></div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-meta-year">2019–Present</span>
+            <span class="project-meta-sep">|</span>
+            <span class="project-meta-loc">Global</span>
+          </div>
+          <div class="project-title">Decision Aids for Marine Munitions</div>
+          <p class="project-desc">International project creating decision-support tools and treaty frameworks for global munitions remediation.</p>
+          <div class="project-achievements">
+            <div class="project-achievements-title">Key Achievements</div>
+            <div class="project-achievement">Risk assessment modeling tools</div>
+            <div class="project-achievement">Treaty pathway development</div>
+            <div class="project-achievement">Cost-benefit analysis frameworks</div>
+            <div class="project-achievement">International cooperation mechanisms</div>
+          </div>
+          <div class="project-partners"><strong>Partners:</strong> OPCW, UNEP, International legal experts</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTARIES -->
+<section class="documentaries-section" id="documentaries">
+  <div class="container">
+    <div class="section-eyebrow">Documentaries&#8212;</div>
+    <h2 class="section-title">Award-Winning Documentaries and <em>International Broadcasts</em></h2>
+    <div class="docs-grid">
+      <!-- Row 1 -->
+      <div class="docs-text-cell">
+        <p>Terrance has raised public awareness through numerous broadcasts.</p>
+      </div>
+      <div class="docs-img-cell">
+        <a href="https://underwatermunitions.org" target="_blank" rel="noopener">
+        </a>
+      </div>
+      <div class="docs-img-cell">
+        <a href="https://transformerfilms.tv/deadly-depths/" target="_blank" rel="noopener">
+        </a>
+      </div>
+      <div class="docs-img-cell">
+        <a href="https://underwatermunitions.org/2017/01/12/bomb-hunters-of-the-baltic/" target="_blank" rel="noopener">
+        </a>
+      </div>
+      <!-- Row 2 -->
+      <div class="docs-img-cell">
+      </div>
+      <div class="docs-img-cell">
+      </div>
+      <div class="docs-img-cell">
+        <a href="https://collection.nfb.ca/film/buried-at-sea" target="_blank" rel="noopener">
+        </a>
+      </div>
+      <div class="docs-img-cell">
+        <a href="https://www.tv5unis.ca/videos/39-45-en-sol-canadien/saisons/3/episodes/7" target="_blank" rel="noopener">
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- OPERATIONS -->
+<section class="projects-section" id="operations">
+  <div class="container">
+    <div class="section-eyebrow">Operations&#8212;</div>
+    <h2 class="section-title">Field Operations and <em>Training</em></h2>
+    <div class="projects-list">
+
+      <!-- Operation 1 -->
+      <div class="project-row">
+        <div class="project-img-wrap">
+          <div class="project-img-overlay"></div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-meta-year">2018</span>
+            <span class="project-meta-sep">|</span>
+            <span class="project-meta-loc">North Atlantic</span>
+          </div>
+          <div class="project-title">Munitions Recovery Operation</div>
+          <p class="project-desc">Recovering a red container munition with a ship-mounted crane and specialized lifting equipment.</p>
+        </div>
+      </div>
+
+      <!-- Operation 2 -->
+      <div class="project-row reverse">
+        <div class="project-img-wrap">
+          <div class="project-img-overlay"></div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-meta-year">2019</span>
+            <span class="project-meta-sep">|</span>
+            <span class="project-meta-loc">NATO Training Facility</span>
+          </div>
+          <div class="project-title">Training &amp; Education</div>
+          <p class="project-desc">Terrance demonstrated corroded munition identification techniques for international EOD specialists.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OCEAN ACTION -->
+<section class="ocean-action" id="action">
+  <div class="container">
+    <div class="section-eyebrow">UN Ocean Action #21356</div>
+    <h2 class="section-title">A Formal International <em>Commitment</em></h2>
+    <p class="section-body">
+      UN Ocean Action #21356 represents the formal international commitment to address underwater munitions on a global scale. Led by Terrance P. Long CD., this initiative provides the framework for cooperation across national boundaries, bringing public and private sectors together to implement sustainable solutions.
+    </p>
+    <div class="action-grid">
+      <div class="action-items">
+        <div class="action-item">
+          <div class="action-num">1</div>
+          <div>
+            <div class="action-title">International Dialogues with Global Stakeholders</div>
+            <div class="action-body">Bringing together governments, military, scientists, and NGOs across national borders to coordinate responses.</div>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">2</div>
+          <div>
+            <div class="action-title">Comprehensive Global Munitions Map</div>
+            <div class="action-body">Documenting locations, types, and quantities of underwater munitions across all 54 affected seas and inland waters.</div>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">3</div>
+          <div>
+            <div class="action-title">Risk-Ranked Cleanup Priorities</div>
+            <div class="action-body">Focusing resources where they're needed most — ranked by environmental risk and human health impact.</div>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">4</div>
+          <div>
+            <div class="action-title">Standardized Protocols &amp; Technologies</div>
+            <div class="action-body">Establishing best practices for safe, effective, and environmentally sound remediation globally.</div>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">5</div>
+          <div>
+            <div class="action-title">Training &amp; Certification Programs</div>
+            <div class="action-body">Building global capacity — preparing the next generation of specialists with tools and expertise to restore resilient oceans.</div>
+          </div>
+        </div>
+      </div>
+      <div class="action-visual">
+        <div class="action-badge-large">🌊 UN Recognized Initiative</div>
+        <div class="action-visual-title">The Solution Framework</div>
+        <div class="solution-steps">
+          <div class="solution-step"><div class="step-num">1</div><div class="step-text">Support Ocean Action 21356 — come together to cooperate globally</div></div>
+          <div class="solution-step"><div class="step-num">2</div><div class="step-text">Advanced Detection — AUVs, ROVs, specialized sonars and sensors</div></div>
+          <div class="solution-step"><div class="step-num">3</div><div class="step-text">Non-destructive Recovery — protect marine ecosystems during remediation</div></div>
+          <div class="solution-step"><div class="step-num">4</div><div class="step-text">Contribute to the global database development</div></div>
+          <div class="solution-step"><div class="step-num">5</div><div class="step-text">International Binding Treaty — enforce accountability across nations</div></div>
+        </div>
+        <div style="margin-top:2rem;">
+          <button class="btn-primary" onclick="openContact('partnerships')" style="cursor:pointer;border:none;">Support This Initiative →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERSHIPS -->
+<section class="partners-section" id="accreditations">
+  <div class="container">
+    <div class="section-eyebrow">Accreditations &amp; Collaborators</div>
+    <h2 class="section-title">Global <em>Recognition</em> &amp; Collaboration</h2>
+    <div class="accred-table">
+      <!-- Row 1: Headers -->
+      <div class="accred-row accred-header-row">
+        <div class="accred-col accred-col-header">International Accreditations</div>
+        <div class="accred-col accred-col-header">Cooperating Organizations</div>
+      </div>
+      <!-- Row 2 -->
+      <div class="accred-row">
+        <div class="accred-col">
+          <div class="accred-logos">
+          </div>
+        </div>
+        <div class="accred-col">
+          <div class="accred-logos">
+          </div>
+        </div>
+      </div>
+      <!-- Row 3 -->
+      <div class="accred-row accred-row-last">
+        <div class="accred-col">
+          <div class="accred-logos">
+          </div>
+        </div>
+        <div class="accred-col">
+          <div class="accred-logos">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERT NETWORK -->
+<section class="experts-section" id="experts">
+  <div class="container">
+    <div class="section-eyebrow">Expert Network</div>
+    <h2 class="section-title">World-Renowned <em>Collaborators</em></h2>
+    <p class="section-body">Scientists, explorers, and innovators working together to address the global underwater munitions crisis and restore ocean health.</p>
+    <div class="experts-grid">
+      <div class="expert-card">
+        <div class="expert-name">Dr. Sylvia Earle</div>
+        <div class="expert-title">Marine Biologist, Ocean Explorer</div>
+        <div class="expert-relevance">Legendary ocean explorer and conservationist, founder of Mission Blue. Advocate for ocean protection and marine ecosystem restoration post-munitions remediation.</div>
+      </div>
+      <div class="expert-card">
+        <div class="expert-name">Jacques Cousteau</div>
+        <div class="expert-title">Naval Officer, Ocean Explorer (1910–1997)</div>
+        <div class="expert-relevance">Co-inventor of the Aqua-Lung and pioneering ocean filmmaker. Documented early underwater munitions sites and raised global awareness of ocean contamination.</div>
+      </div>
+      <div class="expert-card">
+        <div class="expert-name">Dr. Craig Venter</div>
+        <div class="expert-title">Geneticist, Biotechnologist</div>
+        <div class="expert-relevance">Global Ocean Sampling Expedition leader. Marine genomics research reveals the impact of munitions toxins on ocean biodiversity.</div>
+      </div>
+      <div class="expert-card">
+        <div class="expert-name">James Cameron</div>
+        <div class="expert-title">Filmmaker, Deep-Sea Explorer</div>
+        <div class="expert-relevance">Solo diver to the Mariana Trench, pioneer in deep-sea filming. Deep-ocean exploration technologies applicable to munitions site mapping and documentation.</div>
+      </div>
+      <div class="expert-card">
+        <div class="expert-name">Dr. Brian Von Herzen</div>
+        <div class="expert-title">Executive Director, Climate Foundation</div>
+        <div class="expert-relevance">Pioneer in marine permaculture and ocean upwelling for ecosystem restoration. Post-remediation ecosystem regeneration using marine permaculture arrays.</div>
+      </div>
+      <div class="expert-card">
+        <div class="expert-name">Tom Chi</div>
+        <div class="expert-title">Founding Partner, At One Ventures</div>
+        <div class="expert-relevance">Inventor, entrepreneur, and regenerative economy investor. Funding ocean restoration and munitions remediation as planetary-scale impact investing.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROFESSIONAL SERVICES -->
+<section class="services-section" id="services">
+  <div class="container">
+    <div class="section-eyebrow">Professional Services</div>
+    <h2 class="section-title">How Terrance Can <em>Help You</em></h2>
+    <p class="section-body">Decades of field experience and international leadership — available to governments, industry, media, and researchers addressing the underwater munitions crisis.</p>
+    <div class="services-grid">
+
+      <!-- Consulting -->
+      <div class="service-card">
+        <div class="service-eyebrow">Consulting Services</div>
+        <div class="service-icon">🏛️</div>
+        <div class="service-title">Expert Advisory Services</div>
+        <div class="service-subtitle">For Governments, Military &amp; Industry</div>
+        <ul class="service-list">
+          <li>Risk assessment and site surveys of underwater munitions</li>
+          <li>Environmental impact evaluation of chemical weapons</li>
+          <li>Strategic planning for remediation projects</li>
+          <li>Technical standards development</li>
+          <li>Training program design for marine safety</li>
+        </ul>
+        <button class="service-btn" onclick="openContact('consulting')">Request Consultation →</button>
+      </div>
+
+      <!-- Speaking -->
+      <div class="service-card">
+        <div class="service-eyebrow">Speaking Engagements</div>
+        <div class="service-icon">🎤</div>
+        <div class="service-title">International Speaking</div>
+        <div class="service-subtitle">Keynotes, Panels &amp; Presentations</div>
+        <ul class="service-list">
+          <li>Global underwater munitions crisis</li>
+          <li>Environmental security and ocean health</li>
+          <li>Case studies from Baltic Sea, North Atlantic, and Pacific</li>
+          <li>Chemical weapons disposition technologies</li>
+          <li>International policy development for ocean protection</li>
+        </ul>
+        <button class="service-btn" onclick="openContact('speaking')">Book as Speaker →</button>
+      </div>
+
+      <!-- Media -->
+      <div class="service-card">
+        <div class="service-eyebrow">Media Collaboration</div>
+        <div class="service-icon">📽️</div>
+        <div class="service-title">Media &amp; Documentary</div>
+        <div class="service-subtitle">Expert Commentary &amp; Collaboration</div>
+        <ul class="service-list">
+          <li>Technical advisor for documentary productions</li>
+          <li>On-location expert guidance for marine filming</li>
+          <li>Access to underwater munitions site documentation</li>
+          <li>Educational content development</li>
+          <li>Media interviews and press briefings</li>
+        </ul>
+        <button class="service-btn" onclick="openContact('media')">Media Inquiries →</button>
+      </div>
+
+      <!-- Data -->
+      <div class="service-card">
+        <div class="service-eyebrow">Data Services</div>
+        <div class="service-icon">🗄️</div>
+        <div class="service-title">Data Licensing &amp; Analysis</div>
+        <div class="service-subtitle">Exclusive Database Access</div>
+        <ul class="service-list">
+          <li>Site-specific risk assessment for marine projects</li>
+          <li>Custom mapping and visualization of munitions sites</li>
+          <li>Environmental impact analysis and mitigation planning</li>
+          <li>Expert interpretation of historical disposal records</li>
+          <li>Integration with project safety and compliance frameworks</li>
+        </ul>
+        <button class="service-btn" onclick="openContact('data')">Data Access Inquiry →</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="contact-section" id="contact-form-section">
+  <div class="container">
+    <div class="section-eyebrow">Get In Touch</div>
+    <h2 class="section-title">Connect with <em>Terrance P. Long CD.</em></h2>
+    <p class="section-body">For expert consultation, speaking engagements, media collaboration, or data inquiries — reach out directly.</p>
+    <div class="contact-grid">
+
+      <!-- Form -->
+      <div>
+        <div class="contact-tabs">
+          <button class="contact-tab active" data-tab="consulting" onclick="switchTab(this, 'consulting')">Consulting</button>
+          <button class="contact-tab" data-tab="speaking" onclick="switchTab(this, 'speaking')">Speaking</button>
+          <button class="contact-tab" data-tab="media" onclick="switchTab(this, 'media')">Media</button>
+          <button class="contact-tab" data-tab="data" onclick="switchTab(this, 'data')">Data Access</button>
+          <button class="contact-tab" data-tab="partnerships" onclick="switchTab(this, 'partnerships')">Partnerships</button>
+        </div>
+
+        <div class="contact-form-wrap">
+          <div id="form-title-wrap">
+            <div class="form-title" id="form-dynamic-title">Expert Consultation Request</div>
+            <div class="form-subtitle" id="form-dynamic-subtitle">For government, military, or industry consultation on underwater munitions.</div>
+          </div>
+          <div id="form-success" class="form-success">
+            ✅ Thank you — your message has been sent. Terrance will be in touch shortly.
+          </div>
+          <form id="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Name *</label>
+                <input class="form-input" type="text" placeholder="Your full name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Organization</label>
+                <input class="form-input" type="text" placeholder="Company / Institution">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Email *</label>
+                <input class="form-input" type="email" placeholder="your@email.com" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone</label>
+                <input class="form-input" type="tel" placeholder="+1 000 000 0000">
+              </div>
+            </div>
+            <div class="form-group" id="field-location">
+              <label class="form-label">Project Location</label>
+              <input class="form-input" type="text" placeholder="Country / Region / Body of water">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Brief Description *</label>
+              <textarea class="form-textarea" placeholder="Describe your project or inquiry..." rows="4" required></textarea>
+            </div>
+            <div class="form-group" id="field-timeframe">
+              <label class="form-label">Timeframe</label>
+              <select class="form-select">
+                <option value="" disabled selected>Select timeframe</option>
+                <option>Immediate (within 30 days)</option>
+                <option>Short-term (1–3 months)</option>
+                <option>Mid-term (3–6 months)</option>
+                <option>Long-term (6+ months)</option>
+                <option>Ongoing / TBD</option>
+              </select>
+            </div>
+            <button type="submit" class="form-submit" id="form-submit-btn">
+              Submit Request →
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Info sidebar -->
+      <div class="contact-info-block">
+        <div class="contact-info-card">
+          <div class="contact-info-name">Terrance P. Long CD.</div>
+          <div class="contact-info-role">Chair &amp; Founder, IDUM — Global Expert on Underwater Munitions</div>
+          <a href="/cdn-cgi/l/email-protection#06696563676864696b646e73687263747546616b676f6a2865696b" class="contact-detail">
+            <span class="contact-detail-icon">✉️</span>
+            <span class="__cf_email__" data-cfemail="1e717d7b7f707c71737c766b706a7b6c6d5e79737f7772307d7173">[email&#160;protected]</span>
+          </a>
+          <a href="tel:+19025779439" class="contact-detail">
+            <span class="contact-detail-icon">📞</span>
+            +1 902-577-9439
+          </a>
+          <div class="contact-detail">
+            <span class="contact-detail-icon">📍</span>
+            27 Woodward Street, Glace Bay,<br>Nova Scotia, Canada B1A 6J4
+          </div>
+        </div>
+
+        <div class="contact-affiliations">
+          <div class="contact-affil-title">Accreditations and Collaborators</div>
+          <div class="contact-affil-chips">
+            <span class="contact-affil-chip">United Nations</span>
+            <span class="contact-affil-chip">NATO SPS</span>
+            <span class="contact-affil-chip">OPCW</span>
+            <span class="contact-affil-chip">UN SDG 13</span>
+            <span class="contact-affil-chip">UN SDG 14</span>
+            <span class="contact-affil-chip">Helsinki Commission</span>
+            <span class="contact-affil-chip">OSPAR Commission</span>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem; padding: 1.5rem; background: rgba(200,149,42,.07); border: 1px solid rgba(200,149,42,.2); border-radius: 12px;">
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:.75rem;">Ocean Action #21356</div>
+          <p style="font-size:.85rem; line-height:1.6; color:rgba(245,240,232,.65);">Join us in our mission to address the global underwater munitions crisis and protect our oceans for future generations.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="nav-logo-text" style="font-size:1.1rem;">International Dialogues on<br><span style="color:var(--gold);">Underwater Munitions</span></div>
+      <p class="footer-mission">IDUM is dedicated to eradicating munitions from the seas while advancing global cooperation for a safer and sustainable ocean for all generations.</p>
+    </div>
+    <div style="text-align:right;">
+      <div class="footer-heading">Navigation</div>
+      <div class="footer-links" style="align-items:flex-end;">
+        <a href="#hero">Home</a>
+        <a href="#threat">The Threat</a>
+        <a href="#founder">Our Founder</a>
+        <a href="#experts">Expert Network</a>
+        <a href="#projects">Scientific Projects</a>
+        <a href="#action">Ocean Action #21356</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 International Dialogues on Underwater Munitions (IDUM). All rights reserved.</span>
+    <span>Chair: Terrance P. Long CD. &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection#dfb0bcbabeb1bdb0b2bdb7aab1abbaadac9fb8b2beb6b3f1bcb0b2" style="color:var(--teal-light);text-decoration:none;"><span class="__cf_email__" data-cfemail="f9969a9c98979b96949b918c978d9c8b8ab99e94989095d79a9694">[email&#160;protected]</span></a></span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Floating particles
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 25; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 4 + 2;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      animation-duration:${Math.random()*20+10}s;
+      animation-delay:${Math.random()*15}s;
+    `;
+    container.appendChild(p);
+  }
+
+  // ── Contact tab / form logic ──────────────────────────────────────────────
+  var tabMeta = {
+    consulting:   { title: 'Expert Consultation Request',    subtitle: 'For government, military, or industry consultation on underwater munitions.',       btn: 'Submit Consultation Request →', loc: true,  time: true  },
+    speaking:     { title: 'Speaking Engagement Inquiry',    subtitle: 'Book Terrance for international keynotes, panels, or conference presentations.',     btn: 'Submit Speaking Inquiry →',     loc: false, time: true  },
+    media:        { title: 'Media Collaboration Inquiry',    subtitle: 'For documentary, journalism, or broadcast collaboration requests.',                   btn: 'Submit Media Inquiry →',        loc: false, time: false },
+    data:         { title: 'Data Access Request',            subtitle: 'Request access to the world\'s most comprehensive underwater munitions database.',    btn: 'Submit Data Request →',         loc: true,  time: true  },
+    partnerships: { title: 'Partnership Inquiry',            subtitle: 'For organizations seeking to collaborate with IDUM on ocean munitions initiatives.',  btn: 'Submit Partnership Inquiry →',  loc: false, time: false }
+  };
+
+  function switchTab(el, tab) {
+    document.querySelectorAll('.contact-tab').forEach(function(t) { t.classList.remove('active'); });
+    el.classList.add('active');
+    var m = tabMeta[tab];
+    document.getElementById('form-dynamic-title').textContent = m.title;
+    document.getElementById('form-dynamic-subtitle').textContent = m.subtitle;
+    document.getElementById('form-submit-btn').textContent = m.btn;
+    document.getElementById('field-location').style.display = m.loc ? '' : 'none';
+    document.getElementById('field-timeframe').style.display = m.time ? '' : 'none';
+  }
+
+  function openContact(tab) {
+    document.getElementById('contact-form-section').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(function() {
+      var btn = document.querySelector('.contact-tab[data-tab="' + tab + '"]');
+      if (btn) switchTab(btn, tab);
+    }, 400);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('form-title-wrap').style.display = 'none';
+    var s = document.getElementById('form-success');
+    s.style.display = 'block';
+    setTimeout(function() {
+      document.getElementById('contact-form').reset();
+      document.getElementById('contact-form').style.display = '';
+      document.getElementById('form-title-wrap').style.display = '';
+      s.style.display = 'none';
+    }, 4000);
+  }
+</script>
+</body>
+</html>
