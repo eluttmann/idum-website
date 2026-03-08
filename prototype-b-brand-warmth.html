@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IDUM | Version B - Brand System + Warmth</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  /* ══════════════════════════════════════════════════════════════════
+     VERSION B: BRAND SYSTEM + WARMTH
+     Brand system foundation with added human warmth:
+     - Subtle gradient backgrounds (not buttons)
+     - Slightly warmer off-white text
+     - Larger visual breathing room
+     - Softer shadows and glows
+     - More organic transitions
+     ══════════════════════════════════════════════════════════════════ */
+
+  :root {
+    /* Brand System Colors */
+    --deep-ocean: #0B2A3C;
+    --ocean-blue: #1F5E7A;
+    --sea-green: #2C8C6B;
+    --sea-green-soft: #34A07A;
+    --light-ocean: #E8F3F8;
+    --charcoal: #1E1E1E;
+    --slate: #5F6B73;
+    --light-gray: #E5E7EB;
+    --white: #FFFFFF;
+    /* Warmth additions */
+    --warm-white: #F8FAFB;
+    --warm-cream: #F0F5F7;
+    --glow-green: rgba(44, 140, 107, 0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep-ocean);
+    color: var(--warm-white);
+    font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: linear-gradient(180deg, rgba(11, 42, 60, 0.98) 0%, rgba(11, 42, 60, 0.92) 100%);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(44, 140, 107, 0.15);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo-text {
+    font-weight: 600; font-size: 14px;
+    color: var(--warm-white); letter-spacing: 0.5px;
+    line-height: 1.3;
+  }
+  .nav-logo-text span { color: var(--sea-green-soft); }
+  .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+  .nav-links a {
+    color: rgba(248, 250, 251, 0.6); text-decoration: none;
+    font-size: 14px; font-weight: 500;
+    transition: color 0.25s ease;
+  }
+  .nav-links a:hover { color: var(--warm-white); }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--sea-green);
+    color: var(--white);
+    padding: 14px 24px; border-radius: 6px;
+    font-size: 14px; font-weight: 600;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(44, 140, 107, 0.25);
+  }
+  .btn-primary:hover {
+    background: var(--sea-green-soft);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(44, 140, 107, 0.35);
+  }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    /* Glass effect for outline button */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--white);
+    padding: 14px 24px; border-radius: 6px;
+    font-size: 14px; font-weight: 600;
+    text-decoration: none; cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 140px 48px 96px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Hero background image with color grading */
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('images/oceanhero.jpeg') center center / cover no-repeat;
+    /* Color grade: desaturate + blue tint to fit brand system */
+    filter: saturate(0.7) brightness(0.85) contrast(1.05);
+  }
+  /* Blue tint overlay for brand harmony */
+  .hero-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(11, 42, 60, 0.4) 0%,
+      rgba(11, 42, 60, 0.25) 40%,
+      rgba(11, 42, 60, 0.5) 100%
+    );
+    mix-blend-mode: multiply;
+  }
+  /* Gradient overlay from left for text legibility */
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(11, 42, 60, 0.92) 0%,
+      rgba(11, 42, 60, 0.75) 35%,
+      rgba(11, 42, 60, 0.3) 60%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+  .hero-content {
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 20px;
+    /* Glass effect for eyebrow */
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 28px;
+    font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--white);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  .eyebrow-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--sea-green-soft);
+    box-shadow: 0 0 8px var(--sea-green-soft);
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+  }
+  .hero-title {
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 700; line-height: 1.08;
+    color: var(--warm-white);
+    margin-bottom: 28px;
+    letter-spacing: -0.5px;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--sea-green-soft);
+    position: relative;
+  }
+  .hero-subtitle {
+    font-size: 18px; font-weight: 400; line-height: 1.75;
+    color: rgba(248, 250, 251, 0.75);
+    max-width: 540px;
+    margin-bottom: 28px;
+  }
+  .hero-quote {
+    padding: 20px 24px;
+    border-left: 3px solid var(--sea-green-soft);
+    /* Glass effect for quote */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 0 8px 8px 0;
+    font-size: 16px; line-height: 1.65;
+    color: var(--white);
+    font-style: italic;
+    margin-bottom: 36px;
+    max-width: 540px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  }
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+
+  /* ── STATS CARD — visionOS Glass Effect ── */
+  .stats-card {
+    /* visionOS-style frosted glass */
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.08) 50%,
+      rgba(255, 255, 255, 0.12) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 24px;
+    padding: 40px;
+    backdrop-filter: blur(40px) saturate(1.8);
+    -webkit-backdrop-filter: blur(40px) saturate(1.8);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.25),
+      0 2px 8px rgba(0, 0, 0, 0.15),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3),
+      inset 0 -1px 1px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  /* Subtle inner glow */
+  .stats-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: 24px;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      transparent 40%,
+      transparent 60%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .stats-label {
+    font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--sea-green-soft);
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 14px;
+    position: relative; z-index: 1;
+  }
+  .stats-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, rgba(44, 140, 107, 0.4), transparent);
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    position: relative; z-index: 1;
+  }
+  .stat-item {
+    text-align: center; padding: 28px 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+  .stat-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+  .stat-num {
+    font-size: 44px; font-weight: 700;
+    color: var(--warm-white);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .stat-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; color: rgba(248, 250, 251, 0.55);
+    margin-top: 10px;
+  }
+
+  /* ── MISSION STRIP ── */
+  .mission-strip {
+    background: linear-gradient(135deg, var(--ocean-blue) 0%, rgba(31, 94, 122, 0.9) 100%);
+    border-top: 1px solid rgba(44, 140, 107, 0.2);
+    border-bottom: 1px solid rgba(44, 140, 107, 0.2);
+    padding: 36px 48px;
+    position: relative;
+  }
+  .mission-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; gap: 56px;
+    flex-wrap: wrap;
+  }
+  .mission-text {
+    flex: 1; min-width: 340px;
+    font-size: 17px; font-weight: 400; line-height: 1.7;
+    color: rgba(248, 250, 251, 0.95);
+  }
+  .mission-text strong {
+    color: var(--warm-white);
+    font-weight: 600;
+    background: linear-gradient(180deg, transparent 60%, rgba(44, 140, 107, 0.3) 60%);
+    padding: 0 2px;
+  }
+  .mission-badges { display: flex; gap: 14px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px 18px; border-radius: 6px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+    color: var(--warm-white);
+    transition: all 0.25s ease;
+    backdrop-filter: blur(4px);
+  }
+  .badge:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+  }
+  .badge i { width: 16px; height: 16px; opacity: 0.9; }
+
+  /* ── THREAT SECTION ── */
+  .threat-section {
+    background:
+      radial-gradient(ellipse at 70% 20%, rgba(31, 94, 122, 0.08) 0%, transparent 50%),
+      linear-gradient(180deg, #081E2B 0%, var(--deep-ocean) 50%, #0A2535 100%);
+    padding: 112px 48px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--sea-green-soft); margin-bottom: 18px;
+    display: flex; align-items: center; gap: 18px;
+  }
+  .section-eyebrow::after {
+    content: ''; width: 56px; height: 1px;
+    background: linear-gradient(90deg, var(--sea-green), transparent);
+  }
+  .section-title {
+    font-size: clamp(30px, 4vw, 40px);
+    font-weight: 700; line-height: 1.15; color: var(--warm-white);
+    margin-bottom: 20px;
+    letter-spacing: -0.3px;
+  }
+  .section-title em {
+    font-style: normal;
+    color: var(--sea-green-soft);
+  }
+  .threat-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 72px;
+    align-items: start; margin-top: 56px;
+  }
+  .threat-text p {
+    margin-top: 18px; font-size: 16px; line-height: 1.85;
+    color: rgba(248, 250, 251, 0.72);
+    max-width: 640px;
+  }
+  .threat-text p:first-child { margin-top: 0; }
+  .threat-stats { display: flex; flex-direction: column; gap: 18px; margin-top: 40px; }
+  .threat-stat {
+    display: flex; align-items: center; gap: 22px;
+    padding: 18px 22px;
+    background: linear-gradient(135deg, rgba(194,59,59,0.1) 0%, rgba(194,59,59,0.05) 100%);
+    border: 1px solid rgba(194,59,59,0.2);
+    border-radius: 8px;
+    transition: all 0.25s ease;
+  }
+  .threat-stat:hover {
+    background: linear-gradient(135deg, rgba(194,59,59,0.14) 0%, rgba(194,59,59,0.08) 100%);
+    transform: translateX(4px);
+  }
+  .threat-stat-num {
+    font-size: 30px; font-weight: 700;
+    color: #E86868; white-space: nowrap;
+    letter-spacing: -0.5px;
+  }
+  .threat-stat-text { font-size: 14px; line-height: 1.55; color: rgba(248, 250, 251, 0.72); }
+
+  /* ── PILLARS ── */
+  .threat-pillars { display: flex; flex-direction: column; gap: 18px; }
+  .pillar {
+    display: flex; gap: 18px; align-items: flex-start;
+    padding: 22px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  .pillar:hover {
+    border-color: rgba(44, 140, 107, 0.3);
+    background: linear-gradient(135deg, rgba(44, 140, 107, 0.08) 0%, rgba(44, 140, 107, 0.04) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+  .pillar-icon {
+    flex: 0 0 48px; height: 48px;
+    background: linear-gradient(145deg, rgba(44, 140, 107, 0.2), rgba(31, 94, 122, 0.25));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--sea-green-soft);
+    transition: all 0.25s ease;
+  }
+  .pillar:hover .pillar-icon {
+    background: linear-gradient(145deg, rgba(44, 140, 107, 0.3), rgba(31, 94, 122, 0.35));
+    transform: scale(1.05);
+  }
+  .pillar-icon i { width: 22px; height: 22px; stroke-width: 1.5; }
+  .pillar-title {
+    font-size: 17px; font-weight: 600;
+    color: var(--warm-white); margin-bottom: 6px;
+  }
+  .pillar-body { font-size: 14px; line-height: 1.65; color: rgba(248, 250, 251, 0.62); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 120px 24px 80px; }
+    .hero-content { grid-template-columns: 1fr; gap: 56px; }
+    .threat-section { padding: 80px 24px; }
+    .threat-grid { grid-template-columns: 1fr; gap: 56px; }
+    .mission-strip { padding: 28px 24px; }
+    .mission-inner { flex-direction: column; align-items: flex-start; gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-text">International Dialogue on<br><span>Underwater Munitions</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#threat">The Threat</a></li>
+    <li><a href="#founder">Founder</a></li>
+    <li><a href="#experts">Experts</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><button class="btn-primary">Contact</button></li>
+  </ul>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-eyebrow">
+        <div class="eyebrow-dot"></div>
+        UN Ocean Action #21356 · Global Authority
+      </div>
+      <h1 class="hero-title">
+        Leading the Global Mission to <em>Eradicate</em> Underwater Munitions
+      </h1>
+      <p class="hero-subtitle">
+        Safeguarding the world's oceans, ecosystems, and communities by addressing the hidden threats posed by decades of dumping millions of tons of chemical, conventional, and radiological weapons in the marine environment.
+      </p>
+      <blockquote class="hero-quote">
+        "Underwater munitions will make ocean plastic look like a lollipop." — George Orbelian, Project Kaisei
+      </blockquote>
+      <div class="hero-actions">
+        <button class="btn-primary">Support Ocean Action #21356</button>
+        <button class="btn-outline">Learn More</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="stats-card">
+        <div class="stats-label">The Scale of the Crisis</div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-num">1.6M</div>
+            <div class="stat-label">Tons of Munitions</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">54</div>
+            <div class="stat-label">Affected Seas</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">3,000+</div>
+            <div class="stat-label">Documented Sites</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">40+</div>
+            <div class="stat-label">Countries Mapped</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="mission-strip">
+  <div class="mission-inner">
+    <p class="mission-text">
+      IDUM's mission is to promote the creation of an <strong>Internationally Binding Treaty</strong> on all classes—biological, chemical, conventional, and radiological—of underwater munitions, to lead to the cleanup of our seas and oceans worldwide.
+    </p>
+    <div class="mission-badges">
+      <div class="badge"><i data-lucide="waves"></i> UN SDG 14</div>
+      <div class="badge"><i data-lucide="globe"></i> NATO Partner</div>
+      <div class="badge"><i data-lucide="flask-conical"></i> OPCW Affiliated</div>
+      <div class="badge"><i data-lucide="microscope"></i> 30+ Years</div>
+    </div>
+  </div>
+</div>
+
+<section class="threat-section" id="threat">
+  <div class="container">
+    <div class="section-eyebrow">The Hidden Crisis</div>
+    <h2 class="section-title">The <em>Silent Threat</em> Beneath Our Oceans</h2>
+    <div class="threat-grid">
+      <div class="threat-text">
+        <p>As early as 1910, the dumping of chemical and conventional munitions was recorded in the English Channel. This process continued throughout all seas as a cheap means of disposal for militaries until the mid-1970s when countries began to understand the environmental catastrophe they were creating.</p>
+        <p>1.6 million tons of underwater munitions—chemical, biological, and conventional—are rusting in 54 seas and oceans. Earth's five major ocean gyres circulate water and contaminants across all hemispheres. These slow-moving conveyor belts do not respect borders.</p>
+        <p>Evidence shows cancer rates up to 5x higher in coastal populations near known munitions sites. Shellfish toxicity linked to mustard gas and lewisite degradation has been documented. TNT with a 5,000-year half-life bioaccumulates in fish and coral.</p>
+        <div class="threat-stats">
+          <div class="threat-stat">
+            <div class="threat-stat-num">5x</div>
+            <div class="threat-stat-text">Higher cancer rates documented in coastal communities near known munitions sites</div>
+          </div>
+          <div class="threat-stat">
+            <div class="threat-stat-num">303 dB</div>
+            <div class="threat-stat-text">NATO underwater detonations — powerful enough to kill marine mammals at range</div>
+          </div>
+          <div class="threat-stat">
+            <div class="threat-stat-num">80%</div>
+            <div class="threat-stat-text">Of U.S. dumped munitions are unfused and could be safely retrieved with proper training</div>
+          </div>
+        </div>
+      </div>
+      <div class="threat-pillars">
+        <div class="pillar">
+          <div class="pillar-icon"><i data-lucide="flask-conical"></i></div>
+          <div>
+            <div class="pillar-title">Chemical Contamination</div>
+            <div class="pillar-body">Munitions' chemical breakdown is spreading deadly arsenic, mustard gas compounds, and lewisite degradation products across the sea floor and into the food chain.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><i data-lucide="alert-triangle"></i></div>
+          <div>
+            <div class="pillar-title">Unstable Ordnance</div>
+            <div class="pillar-body">Unexploded ordnance is becoming more unstable with time, posing acute risks to fishing fleets, offshore energy infrastructure, and submarine cables.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><i data-lucide="fish"></i></div>
+          <div>
+            <div class="pillar-title">Marine Ecosystem Collapse</div>
+            <div class="pillar-body">Bioaccumulation in fish, coral bleaching, and dead zones near dump sites threaten food security for billions of people who depend on healthy oceans.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><i data-lucide="waves"></i></div>
+          <div>
+            <div class="pillar-title">Ocean Gyre Dispersion</div>
+            <div class="pillar-body">There is no "away" on Spaceship Earth. Contaminants from one region propagate through global ocean circulation, affecting ecosystems thousands of miles away.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><i data-lucide="radiation"></i></div>
+          <div>
+            <div class="pillar-title">Radiological Hazards</div>
+            <div class="pillar-body">Radiological weapons dumped at sea compound the crisis, intersecting with radioactive water releases and creating compound stressors on already-stressed ecosystems.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  lucide.createIcons();
+</script>
+
+</body>
+</html>
