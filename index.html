@@ -79,7 +79,8 @@
     text-transform: uppercase;
   }
   nav.scrolled .nav-logo-text { color: var(--deep-ocean); }
-  .nav-logo-text span { color: var(--sea-green-soft); }
+  .nav-logo-text span { color: var(--white); }
+  nav.scrolled .nav-logo-text span { color: var(--sea-green); }
   .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
   .nav-links a {
     color: rgba(255, 255, 255, 0.7); text-decoration: none;
@@ -141,8 +142,11 @@
   }
   .hero-content {
     max-width: 1200px; margin: 0 auto; width: 100%;
-    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center;
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: start;
     position: relative; z-index: 1;
+  }
+  .hero-visual {
+    display: flex; flex-direction: column; gap: 24px;
   }
   .hero-eyebrow {
     display: inline-flex; align-items: center; gap: 10px;
@@ -231,6 +235,43 @@
     border-color: rgba(255, 255, 255, 0.5);
   }
 
+  /* ── HERO PARTNERS ── */
+  .hero-partners {
+    margin-top: 8px;
+  }
+  .hero-partners-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 16px;
+    text-align: left;
+  }
+  .hero-partners-logos {
+    display: flex; align-items: center; gap: 32px; flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  .hero-partners-logos img {
+    height: 44px; width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+  .hero-partners-logos img:hover {
+    opacity: 1;
+  }
+  .hero-partners-logos img.partner-un {
+    height: 46px;
+  }
+  .hero-partners-logos img.partner-opcw {
+    height: 46px;
+  }
+  .hero-partners-logos img.partner-isa {
+    height: 50px;
+  }
+  .hero-partners-logos img.partner-nato {
+    height: 50px;
+    filter: none;
+  }
+
   /* ── STATS CARD — visionOS Glass ── */
   .stats-card {
     background: linear-gradient(
@@ -252,7 +293,7 @@
     font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
     color: var(--white);
     margin-bottom: 24px;
-    text-align: center;
+    text-align: left;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   }
   .stats-grid {
@@ -969,7 +1010,7 @@
         UN Ocean Action #21356 · Global Authority
       </div>
       <h1 class="hero-title">
-        Leading the Global Mission to <em>Eradicate</em> Underwater Munitions
+        Leading the Global Mission to <em>Eradicate Underwater Munitions</em>
       </h1>
       <p class="hero-subtitle">
         Safeguarding the world's oceans, ecosystems, and communities by addressing the hidden threats posed by decades of dumping millions of tons of chemical, conventional, and radiological weapons in the marine environment.
@@ -978,8 +1019,8 @@
         "Underwater munitions will make ocean plastic look like a lollipop." — George Orbelian, Project Kaisei
       </blockquote>
       <div class="hero-actions">
-        <button class="btn-primary" onclick="scrollToContact()">Support Ocean Action #21356 <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></button>
-        <a href="#documentaries" class="btn-outline"><i data-lucide="play" style="width:16px;height:16px;"></i> Watch Documentary</a>
+        <button class="btn-primary" onclick="scrollToContact()">Support Ocean Action <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></button>
+        <button class="btn-outline" onclick="openContact('speaking')">Book As Speaker</button>
       </div>
     </div>
     <div class="hero-visual">
@@ -1004,6 +1045,15 @@
           </div>
         </div>
       </div>
+      <div class="hero-partners">
+        <div class="hero-partners-label">Partner Accreditations</div>
+        <div class="hero-partners-logos">
+          <img src="images/partners/Logo_of_the_United_Nations.svg" alt="United Nations" class="partner-un">
+          <img src="images/partners/OPCW_3x.png" alt="OPCW" class="partner-opcw">
+          <img src="images/partners/International_Seabed_Authority_Logo.svg" alt="International Seabed Authority" class="partner-isa">
+          <img src="images/partners/Nato_logo.svg" alt="NATO" class="partner-nato">
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1016,12 +1066,6 @@
     <p class="mission-text">
       IDUM's mission is to promote the creation of an <strong>Internationally Binding Treaty</strong> on all classes—biological, chemical, conventional, and radiological—of underwater munitions, to lead to the cleanup of our seas and oceans worldwide.
     </p>
-    <div class="mission-badges">
-      <div class="badge"><i data-lucide="waves"></i> UN SDG 14</div>
-      <div class="badge"><i data-lucide="globe"></i> NATO Partner</div>
-      <div class="badge"><i data-lucide="flask-conical"></i> OPCW Affiliated</div>
-      <div class="badge"><i data-lucide="microscope"></i> 30+ Years</div>
-    </div>
   </div>
 </div>
 
