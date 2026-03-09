@@ -961,8 +961,21 @@
   @media (max-width: 900px) {
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
-    .hero { padding: 120px 24px 80px; }
+    .hero { padding: 120px 24px 80px; overflow-x: hidden; }
     .hero-content { grid-template-columns: 1fr; gap: 48px; }
+    .hero-visual { gap: 20px; }
+    .hero-partners-logos {
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: flex-start;
+    }
+    .hero-partners-logos img { height: 32px; }
+    .hero-partners-logos img.partner-un { height: 34px; }
+    .hero-partners-logos img.partner-opcw { height: 34px; }
+    .hero-partners-logos img.partner-isa { height: 36px; }
+    .hero-partners-logos img.partner-nato { height: 36px; }
+    .stats-card { padding: 24px; }
+    .stat-num { font-size: 32px; }
     .content-section { padding: 72px 24px; }
     .threat-grid { grid-template-columns: 1fr; gap: 48px; }
     .threat-stats { grid-template-columns: 1fr; }
