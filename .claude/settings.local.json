@@ -9,7 +9,10 @@
       "Bash(open \"http://localhost:8000/version-b-deep-ocean.html\")",
       "Bash(open \"http://localhost:8000/version-c-nordic-clarity.html\")",
       "Bash(wc:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(python3:*)"
     ]
   }
 }
