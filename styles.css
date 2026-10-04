@@ -690,6 +690,13 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
   aspect-ratio: 4/3; position: relative;
 }
 .project-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Programme logo above each project's meta line (WIL-12). multiply drops
+   the opaque white boxes in the JPEG/PNG sources on the off-white section. */
+.project-logo {
+  display: block; height: 48px; width: auto; max-width: 180px;
+  object-fit: contain; object-position: left center;
+  margin-bottom: 16px; mix-blend-mode: multiply;
+}
 .project-img-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(180deg, transparent 50%, rgba(11, 42, 60, 0.5) 100%);
