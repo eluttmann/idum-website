@@ -864,8 +864,10 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
   display: flex; align-items: center; justify-content: center;
   flex: 0 0 calc(25% - 24px);   /* 4 per row */
 }
+.accred-section--coop .accred-logos { gap: 36px 24px; }
 .accred-section--coop .accred-logo-item {
-  flex-basis: calc(33.333% - 22px);   /* 3 per row — wider cells for wordmarks */
+  flex-basis: calc(16.666% - 20px);   /* 6 per row — 26 partner logos */
+  height: 64px;
 }
 .accred-logo {
   max-height: 100px; max-width: 100%; width: auto; object-fit: contain;
@@ -877,7 +879,14 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
   border-radius: 8px;
 }
 /* Cooperators are wide wordmarks — let them grow taller in their wider cells. */
-.accred-section--coop .accred-logo { max-height: 112px; }
+.accred-section--coop .accred-logo {
+  max-height: 64px; max-width: 100%; border-radius: 0;
+}
+/* Partners with no usable logo, named in one line under the grid */
+.accred-also {
+  margin: 0; padding: 0 32px 32px; text-align: center;
+  font-size: 14px; line-height: 1.6; color: var(--slate);
+}
 /* Square emblems (SDGs) read larger at a given height, so cap them tighter. */
 .accred-logo-square { max-height: 92px; max-width: 92px; }
 .accred-logo:hover { opacity: 1; transform: scale(1.05); }
@@ -1158,9 +1167,9 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
   .form-row { grid-template-columns: 1fr; }
   .accred-logos { gap: 28px 24px; padding: 32px 20px; }
   .accred-logo-item,
-  .accred-section--coop .accred-logo-item { flex-basis: calc(50% - 12px); }  /* 2 per row */
-  .accred-logo,
-  .accred-section--coop .accred-logo { max-height: 80px; }
+  .accred-section--coop .accred-logo-item { flex-basis: calc(25% - 18px); height: 56px; }  /* 4 per row */
+  .accred-logo { max-height: 80px; }
+  .accred-section--coop .accred-logo { max-height: 56px; }
   .accred-logo-square { max-height: 72px; max-width: 72px; }
   .honors-grid { grid-template-columns: repeat(2, 1fr); }
   .honors-title { font-size: 28px; }
@@ -1169,6 +1178,8 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
 }
 @media (max-width: 600px) {
   .docs-img-cell { flex-basis: 100%; }
+  .accred-section--coop .accred-logo-item { flex-basis: calc(33.333% - 16px); height: 48px; }  /* 3 per row */
+  .accred-section--coop .accred-logo { max-height: 48px; }
   .experts-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
   .honors-grid { grid-template-columns: 1fr; }

@@ -51,8 +51,33 @@ come from that organization's own site:
 | thunen-institute.png | Thünen Institute of Fisheries Ecology |
 | technical-university-of-clausthal.jpg | Technical University of Clausthal (TUC) |
 
-Not yet wired into `index.html` — the Cooperating Organizations section
-still shows the previous placeholder set (Scripps, Woods Hole, Monaco,
-Exponent, Climate Foundation, Tetiaroa) pending Terry's confirmation
-(see PR #2 item 2 discussion) on whether to do the full swap and how to
-handle the 15 organizations with no available logo.
+## Added 2026-10-04 (WIL-8) for the 15 organizations without a logo
+
+Eric gave permission to source these from the web. 12 of 15 found:
+
+| File | Organization | Source |
+|---|---|---|
+| centers-for-disease-control-and-prevention.png | CDC | Wikimedia Commons, `CDC logo 2024.svg` (Wikidata P154) |
+| swedish-coast-guard.png | Swedish Coast Guard | Wikimedia Commons, `Kustbevakningens vapen.svg` |
+| finnish-environment-institute-syke.png | SYKE | Wikimedia Commons, `Logo of SYKE.svg` |
+| maritime-office-gdynia.png | Maritime Office Gdynia | Wikimedia Commons, `Urząd Morski w Gdyni.svg` |
+| nabu.png | NABU | Wikimedia Commons, `Naturschutzbund Deutschland Logo.webp` |
+| sipri.jpg | SIPRI | Wikimedia Commons, `LogoName RGB SIPRI.jpg` |
+| shirshov-institute-of-oceanology.jpg | P.P. Shirshov Institute of Oceanology | Wikimedia Commons, `Ioras.JPG` (Wikidata P154) |
+| finland-ministry-of-the-environment.png | Finland Ministry of the Environment | Wikimedia Commons, `Ministry of the Environment Finland logo.png` |
+| geological-survey-of-sweden.png | Geological Survey of Sweden | sgu.se, `sgu-logotyp-nyhetsbrev.png` |
+| green-screen-festival.png | Green Screen Festival | greenscreen-festival.de, `Green_Screen_Logo_2026_DE.png` |
+| nature-research-centre.svg | Nature Research Centre (Lithuania) | gamtostyrimai.lt, `Logo_lt.svg` |
+| gesellschaft-zur-rettung-der-delphine.svg | GRD | delphinschutz.org, `GRD-Logo-35-Jahre_embedded-1.svg` (current 35th-anniversary mark) |
+
+`alfred-wegener-institute.png` was also replaced with the sharper
+`AWI Logo 2017.svg` from Wikimedia Commons (the old file was 174×83).
+
+No usable logo found (named in a text line under the grid instead):
+Ikanawtiket (no website; CanadaHelps shows a placeholder), GSM
+(gsm-ev.de has an invalid TLS certificate), and Inspekcja Ochrony
+Środowiska (no logo on gov.pl or Wikimedia Commons).
+
+Not shown in the Cooperating Organizations grid because they already
+appear elsewhere on the page: united-nations.png, opcw.png, helcom.png,
+ospar-commission.png, nato.png, international-seabed-authority.png.
