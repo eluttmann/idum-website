@@ -1,0 +1,12 @@
+# Vercel previews publish every tracked file unless excluded here.
+# Allowlist: deploy only what .cpanel.yml deploys to production
+# (index.html, styles.css, script.js, images/). Keeps archive/, prototypes,
+# brand docs and .claude/ off public preview URLs.
+/*
+!index.html
+!styles.css
+!script.js
+!images
+
+# Removed collaborators' photos (WIL-7): kept in the repo, never published.
+images/experts
