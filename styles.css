@@ -315,11 +315,13 @@ nav.menu-open .nav-toggle .icon-close { display: block; }
 }
 .hero-quote p { margin: 0; }
 .hero-quote cite { display: block; margin-top: 8px; font-style: normal; font-weight: 600; font-size: 14px; }
-/* Full-colour Ocean Action endorsement marks beside the hero CTAs */
-.hero-endorse { display: flex; align-items: center; gap: 14px; }
-.hero-endorse img { display: block; width: auto; }
-.hero-endorse .endorse-coa { height: 40px; }
-.hero-endorse .endorse-square { height: 44px; border-radius: 4px; }
+/* Hero partner row: three UN Ocean Action marks in official colour, one row,
+   aligned to the stats card's left edge, equal optical height. */
+.hero-partners-logos--color { gap: 24px; flex-wrap: nowrap; }
+.hero-partners-logos.hero-partners-logos--color img { filter: none; opacity: 1; }
+.hero-partners-logos--color .partner-coa { height: 52px; }
+.hero-partners-logos--color .partner-square { height: 56px; border-radius: 6px; }
+.hero-partners { margin-bottom: 16px; }
 /* Terry + Sylvia photo under the stats card and partner row */
 .hero-photo { margin: 8px 0 0; }
 .hero-photo img {
@@ -1393,6 +1395,8 @@ footer {
   .hero-partners-logos img.partner-isa { height: 36px; }
   .hero-partners-logos img.partner-nato { height: 36px; }
   .hero-partners-logos img.partner-knockout { height: 36px; }
+  .hero-partners-logos--color .partner-coa { height: 42px; }
+  .hero-partners-logos--color .partner-square { height: 46px; }
   .hero-partners-logos img.partner-ocean-action { height: 28px; }
   .stats-card { padding: 24px; }
   .stat-num { font-size: 32px; }
