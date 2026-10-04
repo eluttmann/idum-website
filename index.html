@@ -131,16 +131,13 @@
           <img src="images/partners/OPCW_3x.png" alt="OPCW" class="partner-opcw">
           <img src="images/partners/International_Seabed_Authority_Logo.svg" alt="International Seabed Authority" class="partner-isa">
           <img src="images/partners/Nato_logo.svg" alt="NATO" class="partner-nato">
-          <!-- TODO(Terry, Sep 9 2026 feedback): tried adding Helsinki Commission
-               (images/partners/helcom.png) and SDG 13/14 (sdg13.png, sdg14.png —
-               both already in the repo) here, but .hero-partners-logos img applies
-               `filter: brightness(0) invert(1)` (styles.css ~line 20) to force every
-               logo to white/monochrome for this strip. The NATO/UN/OPCW/ISA marks
-               survive that fine, but the full-color SDG squares just turn into a
-               blank white block. "Ocean Action" logo and the "SDG Ring" also have no
-               matching asset at all yet. Needs a real design decision (separate
-               un-filtered row? recolored SDG marks?) before adding these — reverted
-               to the original 4 logos for now. -->
+          <!-- Full-colour square marks skip the white filter (.partner-color).
+               Ocean Action uses a transparent white-wordmark copy made for this
+               dark strip (images/partners/ocean-action-white.png). WIL-13 -->
+          <img src="images/partners/ocean-action-white.png" alt="Communities of Ocean Action, Sustainable Development Goal 14" class="partner-ocean-action">
+          <img src="images/partners/helcom.png" alt="Helsinki Commission (HELCOM)" class="partner-color">
+          <img src="images/partners/sdg13.png" alt="UN Sustainable Development Goal 13: Climate Action" class="partner-color">
+          <img src="images/partners/sdg14.png" alt="UN Sustainable Development Goal 14: Life Below Water" class="partner-color">
         </div>
       </div>
     </div>
