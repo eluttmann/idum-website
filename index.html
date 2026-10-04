@@ -49,13 +49,18 @@
      NAVIGATION
      Fixed header. Starts transparent over hero, switches to white on scroll
      via .scrolled class toggled by script.js (threshold: 100px).
-     Nav links hidden on mobile (<900px). Contact button always visible.
+     At 1180px and below the links collapse into a menu panel opened by
+     .nav-toggle (script.js). The Contact button sits inside the panel.
      ════════════════════════════════════════════════════════════════════ -->
 <nav id="nav">
   <a href="#" class="nav-logo">
     <div class="nav-logo-text">International Dialogue on<br><span>Underwater Munitions</span></div>
   </a>
-  <ul class="nav-links">
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+    <i data-lucide="menu" class="icon-open"></i>
+    <i data-lucide="x" class="icon-close"></i>
+  </button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="#threat">The Threat</a></li>
     <li><a href="#founder">Founder</a></li>
     <li><a href="#action">Ocean Action</a></li>

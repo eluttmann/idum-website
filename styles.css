@@ -150,6 +150,60 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
 }
 .btn-nav:hover { background: var(--sea-green-soft); }
 
+/* ── Mobile / narrow menu (WIL-19) ──
+   Below 1180px the links don't fit on one line, so they move into a
+   drop-down panel opened by .nav-toggle (script.js toggles nav.menu-open). */
+.nav-toggle {
+  display: none; align-items: center; justify-content: center;
+  width: 44px; height: 44px; padding: 0;
+  border: 0; border-radius: 8px; background: transparent;
+  color: var(--white); cursor: pointer;
+}
+nav.scrolled .nav-toggle { color: var(--deep-ocean); }
+.nav-toggle svg { width: 24px; height: 24px; }
+.nav-toggle .icon-close { display: none; }
+nav.menu-open .nav-toggle .icon-open { display: none; }
+nav.menu-open .nav-toggle .icon-close { display: block; }
+.nav-toggle:focus-visible,
+.nav-links a:focus-visible,
+.btn-nav:focus-visible { outline: 2px solid var(--sea-green-soft); outline-offset: 2px; }
+
+@media (max-width: 1360px) {
+  .nav-links { gap: 20px; }
+}
+@media (max-width: 1180px) {
+  .nav-toggle { display: inline-flex; }
+  .nav-links {
+    display: none;
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    padding: 8px 24px 24px;
+    background: var(--deep-ocean);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+    max-height: calc(100vh - 76px); overflow-y: auto;
+  }
+  nav.menu-open .nav-links { display: flex; }
+  .nav-links li a {
+    display: block; padding: 14px 0;
+    font-size: 16px; color: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  nav.scrolled .nav-links { background: var(--white); border-bottom-color: rgba(11, 42, 60, 0.1); }
+  nav.scrolled .nav-links li a { color: var(--charcoal); border-bottom-color: var(--light-gray); }
+  .nav-links .btn-nav {
+    margin-top: 16px; width: 100%; justify-content: center;
+    padding: 14px 20px; font-size: 15px;
+  }
+}
+@media (max-width: 1180px) and (prefers-reduced-motion: no-preference) {
+  nav.menu-open .nav-links { animation: nav-drop 0.18s ease-out; }
+}
+@keyframes nav-drop {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+
 /* ══════════════════════════════════════════════════════════════════
    HERO — DARK WITH IMAGE
    3-layer background stack for the full-viewport hero:
@@ -1285,7 +1339,6 @@ footer {
    ══════════════════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
   nav { padding: 16px 24px; }
-  .nav-links { display: none; }
   .hero { padding: 120px 24px 80px; overflow-x: hidden; }
   .hero-content { grid-template-columns: 1fr; gap: 48px; }
   .hero-visual { gap: 20px; }

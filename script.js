@@ -5,7 +5,8 @@
  *
  * WHAT THIS FILE DOES:
  *   1. Initializes Lucide icons (converts data-lucide attributes to SVGs)
- *   2. Toggles nav bar appearance on scroll (dark <-> white)
+ *   2. Toggles nav bar appearance on scroll (dark <-> white) and the
+ *      mobile menu panel (.nav-toggle / nav.menu-open)
  *   3. Manages the 6-tab dynamic contact form (tab switching, field visibility)
  *   4. Submits the form to Web3Forms (hosted email service) and shows
  *      loading / success / error states
@@ -43,6 +44,38 @@ window.addEventListener('scroll', () => {
   } else {
     nav.classList.remove('scrolled');
   }
+});
+
+// ── Mobile menu (WIL-19) ────────────────────────────────────────────────
+// At 1180px and below (styles.css) the nav links live in a drop-down panel.
+// .nav-toggle opens/closes it by toggling nav.menu-open. Focus moves into
+// the panel on open and back to the toggle when closed with the button or
+// Esc. Tapping a link or the Contact button closes the panel.
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.getElementById('nav-links');
+
+function setMenu(open, returnFocus) {
+  nav.classList.toggle('menu-open', open);
+  navToggle.setAttribute('aria-expanded', String(open));
+  navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  if (open) {
+    navLinks.querySelector('a, button').focus();
+  } else if (returnFocus) {
+    navToggle.focus();
+  }
+}
+
+navToggle.addEventListener('click', () => {
+  setMenu(!nav.classList.contains('menu-open'), true);
+});
+navLinks.addEventListener('click', (e) => {
+  if (e.target.closest('a, button')) setMenu(false, false);
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && nav.classList.contains('menu-open')) setMenu(false, true);
+});
+window.matchMedia('(min-width: 1181px)').addEventListener('change', (e) => {
+  if (e.matches) setMenu(false, false);
 });
 
 // ── Contact form tab configuration ──────────────────────────────────────
