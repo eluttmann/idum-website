@@ -19,6 +19,7 @@
     #documentaries        — centered grid of 7 documentary/broadcast thumbnails (4+3)
     #operations           — 2 field operation case studies
     #accreditations       — 2-column logo table (accreditations vs. cooperators)
+    #istab                — Advisory Board (ISTAB) description + member list
     #services             — 4 service offering cards with CTAs
     #contact-form-section — Dynamic 5-tab contact form + info sidebar
     (no id)               — CTA section (dark urgency close)
@@ -62,6 +63,7 @@
     <li><a href="#documentaries">Documentaries</a></li>
     <li><a href="#operations">Operations</a></li>
     <li><a href="#accreditations">Accreditations</a></li>
+    <li><a href="#istab">Advisory Board</a></li>
     <li><a href="#services">Services</a></li>
     <li><button class="btn-nav" onclick="scrollToContact()">Contact</button></li>
   </ul>
@@ -263,13 +265,7 @@
 
         <div class="roles-grid">
           <div class="role-item"><i data-lucide="chevron-right"></i> Chair, International Dialogue on Underwater Munitions (IDUM)</div>
-          <!-- TODO(Terry, Sep 9 2026 feedback): transfer the Advisory Board (ISTAB)
-               page content from https://underwatermunitions.org/advisory-board/ —
-               background on ISTAB's mandate (requested by Lithuania's Foreign
-               Minister at the 2010 OPCW Conference of States Parties), its
-               10+-nationality membership, and the MTS Special Editor's Award note.
-               Needs a decision on where this lives (own section vs. expanded here). -->
-          <div class="role-item"><i data-lucide="chevron-right"></i> Chair, International Science & Technology Advisory Board (ISTAB)</div>
+          <div class="role-item"><i data-lucide="chevron-right"></i> Chair, International Scientific and Technology Advisory Board (ISTAB)</div>
           <div class="role-item"><i data-lucide="chevron-right"></i> Partner & Co-Director, NATO Science for Peace and Security MODUM Program</div>
           <div class="role-item"><i data-lucide="chevron-right"></i> Associated Partner & Co-Director, CHEMSEA (Chemical Munitions Search & Assessment)</div>
           <div class="role-item"><i data-lucide="chevron-right"></i> Partner & Co-Director, DAIMON (Decision Aid for Marine Munitions)</div>
@@ -797,9 +793,105 @@
   </div>
 </section>
 
-<!-- "World-Renowned Collaborators" (#experts) section removed 2026-10-04:
-     no permission from the people named. Full markup + restore steps in
-     archive/experts-section.html. See Linear WIL-7. -->
+<!-- ════════════════════════════════════════════════════════════════════
+     ADVISORY BOARD (ISTAB)
+     Text from "ISTAB section materials - Advisory Board.docx" (Craig, Sep 30).
+     Members: one .istab-member block per person. To add someone, copy a
+     block; to remove someone, delete their block. Leave .istab-affil out
+     if there is no affiliation. (WIL-9)
+     Replaces the archived "World-Renowned Collaborators" section
+     (archive/experts-section.html, WIL-7).
+     ════════════════════════════════════════════════════════════════════ -->
+<section class="content-section alt" id="istab">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">International Scientific and Technology <em>Advisory Board</em></h2>
+    </div>
+    <p class="threat-text istab-intro">
+      Chaired by Terry, the International Scientific and Technology Advisory Board (ISTAB) on Underwater Munitions consists of diplomats, scientists, academics, and munitions experts representing more than 10 nationalities. It provides independent advice on scientific, technical, and organizational aspects in response to sea-dumped munitions, and promotes dialogue and multilateral contacts among interested governments, international organizations, academic institutions, and the global community.
+    </p>
+    <p class="threat-text istab-intro">
+      The ISTAB was originally appointed to IDUM at the request of the Foreign Minister of Lithuania during the 2010 Conference of States Parties of the Organisation for the Prohibition of Chemical Weapons (OPCW). Members work in their personal capacity and meet twice annually in The Hague, The Netherlands.
+    </p>
+    <div class="istab-grid">
+      <div class="istab-member">
+        <div class="istab-name">Dr. Thomas Stock</div>
+        <div class="istab-affil">DYNSAFE, Germany (Co-Chairman)</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Dr. Andrzej Jagusiewicz</div>
+        <div class="istab-affil">Former Chief Inspector of Environmental Protection, Poland; Co-Chairman of IDUM</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Albert Marshall</div>
+        <div class="istab-affil">Friends and Elders Advisor, Eskasoni First Nations</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Chelbylynn Milton</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Retired Col. Peter Courtney-Green</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Dr. Jacek Beldowski</div>
+        <div class="istab-affil">Institute of Oceanology, Polish Academy of Sciences, Marine Chemistry &amp; Ecology</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Dr. Kela Weber</div>
+        <div class="istab-affil">Associate Professor, Royal Military College of Canada</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Ms. Elisa Perpignan MSc.</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Ms. Cherylynn Hunt BSc., MES.</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Dr. James W. Porter</div>
+        <div class="istab-affil">Josiah Meigs Professor of Ecology, Emeritus, Odum School of Ecology, University of Georgia</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Prof. Dr. Janina Baršienė</div>
+        <div class="istab-affil">Lead Scientist, Head of Genotoxicology Laboratory, Institute of Ecology of Nature Research Center, Vilnius, Lithuania</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Dr. Valentine Nzengung</div>
+        <div class="istab-affil">Founder, CEO &amp; CTO, MuniRem Environmental</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Mr. Dominique Anelli</div>
+        <div class="istab-affil">Former military officer</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Dr. Alex Souchen</div>
+        <div class="istab-affil">Social Sciences and Humanities Research Council (SSHRC) Postdoctoral Fellow, Wilfrid Laurier University</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Mr. James Barton</div>
+        <div class="istab-affil">President, Underwater Ordnance Recovery</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Mr. Noah Ameer Al-Malt</div>
+        <div class="istab-affil">Legal Consultant</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">George Orbelian</div>
+        <div class="istab-affil">Board member, Buckminster Fuller Institute and Walter Munk Foundation for the Oceans</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Christine Ward-Paige, PhD</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Mr. Jared Baribeau</div>
+        <div class="istab-affil">Founder &amp; CTO, Demine Robotics</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Thomas J. F. Goreau, PhD</div>
+        <div class="istab-affil">President, Global Coral Reef Alliance</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ════════════════════════════════════════════════════════════════════
      PROFESSIONAL SERVICES
@@ -808,7 +900,7 @@
      list, and CTA button. Buttons call openContact(tabName) in script.js
      to scroll to the contact form and auto-select the matching tab.
      ════════════════════════════════════════════════════════════════════ -->
-<section class="content-section alt" id="services">
+<section class="content-section" id="services">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">How Terrance Can <em>Help You</em></h2>
@@ -897,7 +989,7 @@
   <!-- Testimonials deferred until after launch: each person's permission and a
        real quote are required before anything is published under their name.
        See Linear WIL-7. -->
-<section class="content-section" id="contact-form-section">
+<section class="content-section alt" id="contact-form-section">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">Connect with <em>Terrance P. Long CD.</em></h2>
@@ -1052,6 +1144,7 @@
       <a href="#threat">The Threat</a>
       <a href="#founder">Our Founder</a>
       <a href="#projects">Projects</a>
+      <a href="#istab">Advisory Board</a>
       <a href="#action">Ocean Action #21356</a>
       <a href="#contact-form-section">Contact</a>
     </div>
