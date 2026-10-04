@@ -81,6 +81,9 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+/* <img> tags carry width/height attributes (reserves space, no layout shift);
+   height:auto keeps the aspect ratio wherever CSS only sets a width. */
+img { height: auto; }
 
 html { scroll-behavior: smooth; }
 
@@ -222,7 +225,7 @@ nav.menu-open .nav-toggle .icon-close { display: block; }
 /* Background image with color grading */
 .hero-bg {
   position: absolute; inset: 0;
-  background: url('images/oceanhero.jpeg') center 40% / cover no-repeat;
+  background: url('images/oceanhero.webp') center 40% / cover no-repeat;
   filter: saturate(0.7) brightness(0.8) contrast(1.05);
 }
 /* Blue tint overlay */
