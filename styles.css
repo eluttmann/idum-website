@@ -601,6 +601,12 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
   flex-shrink: 0; margin-top: 8px;
   width: 6px; height: 6px; border-radius: 50%; background: var(--sea-green);
 }
+/* Inline "learn more" / source link inside body copy */
+.text-link {
+  color: var(--sea-green); font-weight: 600;
+  text-decoration: underline; text-underline-offset: 2px;
+}
+.text-link:hover { color: var(--sea-green-soft); }
 .contact-strip {
   margin-top: 20px; padding: 16px;
   background: var(--light-ocean); border: 1px solid rgba(44, 140, 107, 0.15);
