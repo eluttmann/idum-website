@@ -658,6 +658,7 @@ nav.menu-open .nav-toggle .icon-close { display: block; }
 .founder-role {
   font-size: 16px; font-weight: 500; color: var(--sea-green); margin-bottom: 20px;
 }
+.founder-bio strong { font-weight: 600; color: var(--deep-ocean); }
 .founder-bio {
   font-size: 15px; line-height: 1.8; color: var(--slate); margin-bottom: 16px;
 }
