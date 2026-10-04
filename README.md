@@ -1,2 +1,2 @@
 # idum-website
-website for International Dialogue for Underwater Munitions
+website for International Dialogue on Underwater Munitions

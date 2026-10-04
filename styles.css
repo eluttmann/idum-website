@@ -81,6 +81,9 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+/* <img> tags carry width/height attributes (reserves space, no layout shift);
+   height:auto keeps the aspect ratio wherever CSS only sets a width. */
+img { height: auto; }
 
 html { scroll-behavior: smooth; }
 
@@ -150,6 +153,60 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
 }
 .btn-nav:hover { background: var(--sea-green-soft); }
 
+/* ── Mobile / narrow menu (WIL-19) ──
+   Below 1180px the links don't fit on one line, so they move into a
+   drop-down panel opened by .nav-toggle (script.js toggles nav.menu-open). */
+.nav-toggle {
+  display: none; align-items: center; justify-content: center;
+  width: 44px; height: 44px; padding: 0;
+  border: 0; border-radius: 8px; background: transparent;
+  color: var(--white); cursor: pointer;
+}
+nav.scrolled .nav-toggle { color: var(--deep-ocean); }
+.nav-toggle svg { width: 24px; height: 24px; }
+.nav-toggle .icon-close { display: none; }
+nav.menu-open .nav-toggle .icon-open { display: none; }
+nav.menu-open .nav-toggle .icon-close { display: block; }
+.nav-toggle:focus-visible,
+.nav-links a:focus-visible,
+.btn-nav:focus-visible { outline: 2px solid var(--sea-green-soft); outline-offset: 2px; }
+
+@media (max-width: 1360px) {
+  .nav-links { gap: 20px; }
+}
+@media (max-width: 1180px) {
+  .nav-toggle { display: inline-flex; }
+  .nav-links {
+    display: none;
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    padding: 8px 24px 24px;
+    background: var(--deep-ocean);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+    max-height: calc(100vh - 76px); overflow-y: auto;
+  }
+  nav.menu-open .nav-links { display: flex; }
+  .nav-links li a {
+    display: block; padding: 14px 0;
+    font-size: 16px; color: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  nav.scrolled .nav-links { background: var(--white); border-bottom-color: rgba(11, 42, 60, 0.1); }
+  nav.scrolled .nav-links li a { color: var(--charcoal); border-bottom-color: var(--light-gray); }
+  .nav-links .btn-nav {
+    margin-top: 16px; width: 100%; justify-content: center;
+    padding: 14px 20px; font-size: 15px;
+  }
+}
+@media (max-width: 1180px) and (prefers-reduced-motion: no-preference) {
+  nav.menu-open .nav-links { animation: nav-drop 0.18s ease-out; }
+}
+@keyframes nav-drop {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+
 /* ══════════════════════════════════════════════════════════════════
    HERO — DARK WITH IMAGE
    3-layer background stack for the full-viewport hero:
@@ -168,7 +225,7 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
 /* Background image with color grading */
 .hero-bg {
   position: absolute; inset: 0;
-  background: url('images/oceanhero.jpeg') center 40% / cover no-repeat;
+  background: url('images/oceanhero.webp') center 40% / cover no-repeat;
   filter: saturate(0.7) brightness(0.8) contrast(1.05);
 }
 /* Blue tint overlay */
@@ -195,7 +252,7 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
 }
 .hero-content {
   max-width: 1200px; margin: 0 auto; width: 100%;
-  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: start;
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 64px; align-items: start;
   position: relative; z-index: 1;
 }
 .hero-visual {
@@ -224,7 +281,7 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
   50% { opacity: 0.6; transform: scale(1.3); }
 }
 .hero-title {
-  font-size: clamp(36px, 5vw, 56px);
+  font-size: clamp(34px, 4.2vw, 56px);
   font-weight: 700; line-height: 1.08;
   color: var(--white);
   margin-bottom: 24px;
@@ -303,7 +360,7 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
   text-align: left;
 }
 .hero-partners-logos {
-  display: flex; align-items: center; gap: 32px; flex-wrap: nowrap;
+  display: flex; align-items: center; gap: 20px 32px; flex-wrap: wrap;
   justify-content: flex-start;
 }
 .hero-partners-logos img {
@@ -328,6 +385,10 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
   height: 50px;
   filter: none;
 }
+/* White knockouts of the HELCOM and SDG 13/14 icons, and the transparent
+   Ocean Action wordmark: same white filter + opacity as the other marks. */
+.hero-partners-logos img.partner-knockout { height: 48px; }
+.hero-partners-logos img.partner-ocean-action { height: 36px; }
 
 /* ── STATS CARD — visionOS-style Glassmorphism ──
    Frosted glass effect via backdrop-filter: blur(40px) saturate(1.8).
@@ -379,6 +440,24 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
 .stat-label {
   font-size: 10px; font-weight: 600; letter-spacing: 0.8px;
   text-transform: uppercase; color: rgba(255, 255, 255, 0.7);
+  margin-top: 8px;
+}
+/* Text-headline tiles (WIL-23): a short phrase as the headline and a
+   caption beneath it, left-aligned on a shared top edge so the four
+   headlines line up across each row. Equal-height tiles. */
+.stats-grid--text { grid-auto-rows: 1fr; }
+.stats-grid--text .stat-item {
+  display: flex; flex-direction: column; justify-content: flex-start;
+  text-align: left; padding: 22px 20px 24px; min-width: 0;
+}
+.stats-grid--text .stat-num {
+  font-size: clamp(18px, 1.55vw, 22px); line-height: 1.2;
+  letter-spacing: -0.3px; text-wrap: balance;
+}
+.stats-grid--text .stat-label {
+  font-size: 13px; font-weight: 400; line-height: 1.5;
+  letter-spacing: 0; text-transform: none;
+  color: rgba(255, 255, 255, 0.75);
   margin-top: 8px;
 }
 
@@ -601,6 +680,12 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
   flex-shrink: 0; margin-top: 8px;
   width: 6px; height: 6px; border-radius: 50%; background: var(--sea-green);
 }
+/* Inline "learn more" / source link inside body copy */
+.text-link {
+  color: var(--sea-green); font-weight: 600;
+  text-decoration: underline; text-underline-offset: 2px;
+}
+.text-link:hover { color: var(--sea-green-soft); }
 .contact-strip {
   margin-top: 20px; padding: 16px;
   background: var(--light-ocean); border: 1px solid rgba(44, 140, 107, 0.15);
@@ -654,6 +739,13 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
   aspect-ratio: 4/3; position: relative;
 }
 .project-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Programme logo above each project's meta line (WIL-12). multiply drops
+   the opaque white boxes in the JPEG/PNG sources on the off-white section. */
+.project-logo {
+  display: block; height: 48px; width: auto; max-width: 180px;
+  object-fit: contain; object-position: left center;
+  margin-bottom: 16px; mix-blend-mode: multiply;
+}
 .project-img-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(180deg, transparent 50%, rgba(11, 42, 60, 0.5) 100%);
@@ -821,8 +913,10 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
   display: flex; align-items: center; justify-content: center;
   flex: 0 0 calc(25% - 24px);   /* 4 per row */
 }
+.accred-section--coop .accred-logos { gap: 36px 24px; }
 .accred-section--coop .accred-logo-item {
-  flex-basis: calc(33.333% - 22px);   /* 3 per row — wider cells for wordmarks */
+  flex-basis: calc(16.666% - 20px);   /* 6 per row — 26 partner logos */
+  height: 64px;
 }
 .accred-logo {
   max-height: 100px; max-width: 100%; width: auto; object-fit: contain;
@@ -834,7 +928,14 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
   border-radius: 8px;
 }
 /* Cooperators are wide wordmarks — let them grow taller in their wider cells. */
-.accred-section--coop .accred-logo { max-height: 112px; }
+.accred-section--coop .accred-logo {
+  max-height: 64px; max-width: 100%; border-radius: 0;
+}
+/* Partners with no usable logo, named in one line under the grid */
+.accred-also {
+  margin: 0; padding: 0 32px 32px; text-align: center;
+  font-size: 14px; line-height: 1.6; color: var(--slate);
+}
 /* Square emblems (SDGs) read larger at a given height, so cap them tighter. */
 .accred-logo-square { max-height: 92px; max-width: 92px; }
 .accred-logo:hover { opacity: 1; transform: scale(1.05); }
@@ -931,6 +1032,26 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
 .expert-name { font-size: 16px; font-weight: 600; color: var(--deep-ocean); }
 .expert-title { font-size: 12px; color: var(--sea-green); margin-top: 2px; font-weight: 500; }
 .expert-relevance { font-size: 13px; line-height: 1.6; color: var(--slate); margin-top: 12px; }
+
+/* ══════════════════════════════════════════════════════════════════
+   ADVISORY BOARD (ISTAB) — intro + name/affiliation cards (WIL-9)
+   ══════════════════════════════════════════════════════════════════ */
+.istab-intro {
+  max-width: 760px; margin-bottom: 16px;
+  font-size: 16px; line-height: 1.8; color: var(--slate);
+}
+.istab-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+  margin-top: 40px;
+}
+.istab-member {
+  background: var(--white); border: 1px solid var(--light-gray);
+  border-radius: 10px; padding: 18px 20px;
+}
+.istab-name { font-size: 15px; font-weight: 600; color: var(--deep-ocean); }
+.istab-affil { font-size: 13px; line-height: 1.55; color: var(--slate); margin-top: 4px; }
+@media (max-width: 900px) { .istab-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .istab-grid { grid-template-columns: 1fr; } }
 
 /* ══════════════════════════════════════════════════════════════════
    PROFESSIONAL SERVICES
@@ -1115,9 +1236,9 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
   .form-row { grid-template-columns: 1fr; }
   .accred-logos { gap: 28px 24px; padding: 32px 20px; }
   .accred-logo-item,
-  .accred-section--coop .accred-logo-item { flex-basis: calc(50% - 12px); }  /* 2 per row */
-  .accred-logo,
-  .accred-section--coop .accred-logo { max-height: 80px; }
+  .accred-section--coop .accred-logo-item { flex-basis: calc(25% - 18px); height: 56px; }  /* 4 per row */
+  .accred-logo { max-height: 80px; }
+  .accred-section--coop .accred-logo { max-height: 56px; }
   .accred-logo-square { max-height: 72px; max-width: 72px; }
   .honors-grid { grid-template-columns: repeat(2, 1fr); }
   .honors-title { font-size: 28px; }
@@ -1126,6 +1247,8 @@ nav.scrolled .nav-links a:hover { color: var(--deep-ocean); }
 }
 @media (max-width: 600px) {
   .docs-img-cell { flex-basis: 100%; }
+  .accred-section--coop .accred-logo-item { flex-basis: calc(33.333% - 16px); height: 48px; }  /* 3 per row */
+  .accred-section--coop .accred-logo { max-height: 48px; }
   .experts-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
   .honors-grid { grid-template-columns: 1fr; }
@@ -1202,6 +1325,13 @@ footer {
   font-size: 12px; color: rgba(255, 255, 255, 0.35);
 }
 
+/* Hero: stack text above the stats card below 1180px, so the four
+   headline tiles keep enough width (they were ~150px wide at 1024px). */
+@media (max-width: 1180px) {
+  .hero-content { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { max-width: 760px; }
+}
+
 /* ══════════════════════════════════════════════════════════════════
    RESPONSIVE — LAYOUT, NAV, HERO, SPACING (900px)
    Handles nav, hero, section padding, mission strip, footer.
@@ -1211,7 +1341,6 @@ footer {
    ══════════════════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
   nav { padding: 16px 24px; }
-  .nav-links { display: none; }
   .hero { padding: 120px 24px 80px; overflow-x: hidden; }
   .hero-content { grid-template-columns: 1fr; gap: 48px; }
   .hero-visual { gap: 20px; }
@@ -1225,8 +1354,12 @@ footer {
   .hero-partners-logos img.partner-opcw { height: 34px; }
   .hero-partners-logos img.partner-isa { height: 36px; }
   .hero-partners-logos img.partner-nato { height: 36px; }
+  .hero-partners-logos img.partner-knockout { height: 36px; }
+  .hero-partners-logos img.partner-ocean-action { height: 28px; }
   .stats-card { padding: 24px; }
   .stat-num { font-size: 32px; }
+  .stats-grid--text .stat-num { font-size: 18px; }
+  .stats-grid--text .stat-item { padding: 18px 16px 20px; }
   .content-section { padding: 72px 24px; }
   .threat-grid { grid-template-columns: 1fr; gap: 48px; }
   .threat-stats { grid-template-columns: 1fr; }

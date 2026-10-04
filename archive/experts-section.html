@@ -1,0 +1,94 @@
+<!-- ════════════════════════════════════════════════════════════════════
+     ARCHIVED: "World-Renowned Collaborators" (#experts) section
+     Removed from index.html on 2026-10-04 per Linear WIL-7:
+     https://linear.app/wild-labs/issue/WIL-7/remove-the-collaborators-section-and-the-experts-nav-link
+
+     Why: these public figures have no relationship with IDUM and have not
+     given permission to appear on the site. Keep hidden until IDUM has
+     their agreement and real quotes (planned post-launch testimonials,
+     possibly within the ISTAB section, WIL-9).
+
+     NOT DEPLOYED: .cpanel.yml copies only index.html, script.js,
+     styles.css and images/, so nothing in archive/ reaches public_html.
+
+     To restore:
+       1. Paste the <section> below back into index.html. Its old slot
+          (after #accreditations) now holds the Advisory Board (#istab,
+          WIL-9), so put it after #istab and check the .alt background
+          alternation with the sections around it.
+       2. Re-add the nav link after Advisory Board:
+            <li><a href="#experts">Experts</a></li>
+       3. Re-add the footer link after Advisory Board:
+            <a href="#experts">Experts</a>
+       4. Re-add to the PAGE STRUCTURE list at the top of index.html:
+            #experts              — 6 expert collaborator cards
+       Photos are still in images/experts/ and the .expert-* / .experts-grid
+       rules are still in styles.css.
+     ════════════════════════════════════════════════════════════════════ -->
+
+<!-- ════════════════════════════════════════════════════════════════════
+     EXPERT NETWORK
+     3-column grid of 6 expert cards (2x2 on tablet, 1-col on mobile).
+     Each card: avatar (72px circle), name, title, relevance description.
+     Photos in images/experts/.
+     ════════════════════════════════════════════════════════════════════ -->
+<section class="content-section alt" id="experts">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">World-Renowned <em>Collaborators</em></h2>
+    </div>
+    <p class="threat-text" style="max-width: 720px; margin-bottom: 32px;">
+      Scientists, explorers, and innovators working together to address the global underwater munitions crisis and restore ocean health.
+    </p>
+    <div class="experts-grid">
+      <div class="expert-card">
+        <div class="expert-avatar">
+          <img src="images/experts/dr-sylvia.png" alt="Dr. Sylvia Earle">
+        </div>
+        <div class="expert-name">Dr. Sylvia Earle</div>
+        <div class="expert-title">Marine Biologist, Ocean Explorer</div>
+        <div class="expert-relevance">Legendary ocean explorer and conservationist, founder of Mission Blue. Advocate for ocean protection and marine ecosystem restoration post-munitions remediation.</div>
+      </div>
+      <div class="expert-card">
+        <div class="expert-avatar">
+          <img src="images/experts/jacques.png" alt="Jacques Cousteau">
+        </div>
+        <div class="expert-name">Jacques Cousteau</div>
+        <div class="expert-title">Naval Officer, Ocean Explorer (1910–1997)</div>
+        <div class="expert-relevance">Co-inventor of the Aqua-Lung and pioneering ocean filmmaker. Documented early underwater munitions sites and raised global awareness of ocean contamination.</div>
+      </div>
+      <div class="expert-card">
+        <div class="expert-avatar">
+          <img src="images/experts/dr-craig.png" alt="Dr. Craig Venter">
+        </div>
+        <div class="expert-name">Dr. Craig Venter</div>
+        <div class="expert-title">Geneticist, Biotechnologist</div>
+        <div class="expert-relevance">Global Ocean Sampling Expedition leader. Marine genomics research reveals the impact of munitions toxins on ocean biodiversity.</div>
+      </div>
+      <div class="expert-card">
+        <div class="expert-avatar">
+          <img src="images/experts/james.png" alt="James Cameron">
+        </div>
+        <div class="expert-name">James Cameron</div>
+        <div class="expert-title">Filmmaker, Deep-Sea Explorer</div>
+        <div class="expert-relevance">Solo diver to the Mariana Trench, pioneer in deep-sea filming. Deep-ocean exploration technologies applicable to munitions site mapping and documentation.</div>
+      </div>
+      <div class="expert-card">
+        <div class="expert-avatar">
+          <img src="images/experts/dr-brian.png" alt="Dr. Brian Von Herzen">
+        </div>
+        <div class="expert-name">Dr. Brian Von Herzen</div>
+        <div class="expert-title">Executive Director, Climate Foundation</div>
+        <div class="expert-relevance">Pioneer in marine permaculture and ocean upwelling for ecosystem restoration. Post-remediation ecosystem regeneration using marine permaculture arrays.</div>
+      </div>
+      <div class="expert-card">
+        <div class="expert-avatar">
+          <img src="images/experts/tom.png" alt="Tom Chi">
+        </div>
+        <div class="expert-name">Tom Chi</div>
+        <div class="expert-title">Founding Partner, At One Ventures</div>
+        <div class="expert-relevance">Inventor, entrepreneur, and regenerative economy investor. Funding ocean restoration and munitions remediation as planetary-scale impact investing.</div>
+      </div>
+    </div>
+  </div>
+</section>

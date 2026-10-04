@@ -1,6 +1,6 @@
 <!--
   IDUM Website — index.html
-  Single-page marketing site for International Dialogues on Underwater Munitions.
+  Single-page marketing site for International Dialogue on Underwater Munitions.
   Founded by Terrance P. Long CD.
 
   ARCHITECTURE:
@@ -19,7 +19,7 @@
     #documentaries        — centered grid of 7 documentary/broadcast thumbnails (4+3)
     #operations           — 2 field operation case studies
     #accreditations       — 2-column logo table (accreditations vs. cooperators)
-    #experts              — 6 expert collaborator cards
+    #istab                — Advisory Board (ISTAB) description + member list
     #services             — 4 service offering cards with CTAs
     #contact-form-section — Dynamic 5-tab contact form + info sidebar
     (no id)               — CTA section (dark urgency close)
@@ -39,8 +39,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IDUM | International Dialogue on Underwater Munitions</title>
+<meta name="description" content="IDUM leads the global effort to eradicate sea-dumped chemical, conventional and radiological weapons from the world's seas and oceans. UN Ocean Action #21356.">
+<!-- Link previews (LinkedIn, Slack, email). og:image must be an absolute URL. WIL-20 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="International Dialogue on Underwater Munitions">
+<meta property="og:title" content="IDUM | International Dialogue on Underwater Munitions">
+<meta property="og:description" content="Leading the global mission to eradicate underwater and submerged munitions. UN Ocean Action #21356.">
+<meta property="og:url" content="https://idum.org/">
+<meta property="og:image" content="https://idum.org/images/brand/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="International Dialogue on Underwater Munitions: Leading the Global Mission to Eradicate Underwater and Submerged Munitions">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="images/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest"></script>
+<!-- Lucide pinned to an exact version so an upstream release can't change icons. -->
+<script src="https://unpkg.com/lucide@1.52.0/dist/umd/lucide.min.js"></script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -49,13 +64,18 @@
      NAVIGATION
      Fixed header. Starts transparent over hero, switches to white on scroll
      via .scrolled class toggled by script.js (threshold: 100px).
-     Nav links hidden on mobile (<900px). Contact button always visible.
+     At 1180px and below the links collapse into a menu panel opened by
+     .nav-toggle (script.js). The Contact button sits inside the panel.
      ════════════════════════════════════════════════════════════════════ -->
 <nav id="nav">
   <a href="#" class="nav-logo">
     <div class="nav-logo-text">International Dialogue on<br><span>Underwater Munitions</span></div>
   </a>
-  <ul class="nav-links">
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+    <i data-lucide="menu" class="icon-open"></i>
+    <i data-lucide="x" class="icon-close"></i>
+  </button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="#threat">The Threat</a></li>
     <li><a href="#founder">Founder</a></li>
     <li><a href="#action">Ocean Action</a></li>
@@ -63,7 +83,7 @@
     <li><a href="#documentaries">Documentaries</a></li>
     <li><a href="#operations">Operations</a></li>
     <li><a href="#accreditations">Accreditations</a></li>
-    <li><a href="#experts">Experts</a></li>
+    <li><a href="#istab">Advisory Board</a></li>
     <li><a href="#services">Services</a></li>
     <li><button class="btn-nav" onclick="scrollToContact()">Contact</button></li>
   </ul>
@@ -88,7 +108,7 @@
         UN Ocean Action #21356 · Global Authority
       </div>
       <h1 class="hero-title">
-        Leading the Global Mission to <em>Eradicate Underwater Munitions</em>
+        Leading the Global Mission to <em>Eradicate Underwater and Submerged Munitions</em>
       </h1>
       <p class="hero-subtitle">
         Safeguarding the world's oceans, ecosystems, and communities by addressing the hidden threats posed by decades of dumping millions of tons of chemical, conventional, and radiological weapons in the marine environment.
@@ -104,26 +124,25 @@
     <div class="hero-visual">
       <div class="stats-card">
         <div class="stats-label">The Scale of the Crisis</div>
-        <div class="stats-grid">
-          <!-- TODO(Terry, Sep 9 2026 feedback): replaced hard numbers with descriptive
-               copy per his request. Split each sentence into a short headline (stat-num)
-               + fuller caption (stat-label) to fit the existing tile design — worth a
-               sanity check from Eric/Craig on the split before this goes live. -->
+        <!-- Terry's Sep 9 descriptive copy (no hard numbers). Headlines are
+             Eric's wording (Oct 4); captions carry the remaining detail.
+             stats-grid--text: left-aligned headline + caption tiles. WIL-23 -->
+        <div class="stats-grid stats-grid--text">
           <div class="stat-item">
-            <div class="stat-num">100s of Millions</div>
-            <div class="stat-label">Tons of munitions scattered throughout the seas and oceans</div>
+            <div class="stat-num">100s of millions of tons of munitions</div>
+            <div class="stat-label">Scattered throughout the seas and oceans.</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num">1910–1970s</div>
-            <div class="stat-label">First recorded chemical weapons dumping (English Channel) through the mid-1970s</div>
+            <div class="stat-num">Dumping from 1910–1970s</div>
+            <div class="stat-label">First recorded in the English Channel, continuing through the mid-1970s.</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num">Thousands</div>
-            <div class="stat-label">Dump sites and munitions wrecks in the marine environment</div>
+            <div class="stat-num">1,000s of dump sites</div>
+            <div class="stat-label">And munitions wrecks in the marine environment.</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num">Undisclosed</div>
-            <div class="stat-label">Most governments have not released the number of sites and what they contain</div>
+            <div class="stat-num">Undisclosed sites</div>
+            <div class="stat-label">Most governments have not released the number of sites or what they contain.</div>
           </div>
         </div>
       </div>
@@ -131,19 +150,16 @@
         <div class="hero-partners-label">Partner Accreditation and Affiliations</div>
         <div class="hero-partners-logos">
           <img src="images/partners/Logo_of_the_United_Nations.svg" alt="United Nations" class="partner-un">
-          <img src="images/partners/OPCW_3x.png" alt="OPCW" class="partner-opcw">
+          <img src="images/partners/OPCW_3x.png" alt="OPCW" class="partner-opcw" width="325" height="120">
           <img src="images/partners/International_Seabed_Authority_Logo.svg" alt="International Seabed Authority" class="partner-isa">
           <img src="images/partners/Nato_logo.svg" alt="NATO" class="partner-nato">
-          <!-- TODO(Terry, Sep 9 2026 feedback): tried adding Helsinki Commission
-               (images/partners/helcom.png) and SDG 13/14 (sdg13.png, sdg14.png —
-               both already in the repo) here, but .hero-partners-logos img applies
-               `filter: brightness(0) invert(1)` (styles.css ~line 20) to force every
-               logo to white/monochrome for this strip. The NATO/UN/OPCW/ISA marks
-               survive that fine, but the full-color SDG squares just turn into a
-               blank white block. "Ocean Action" logo and the "SDG Ring" also have no
-               matching asset at all yet. Needs a real design decision (separate
-               un-filtered row? recolored SDG marks?) before adding these — reverted
-               to the original 4 logos for now. -->
+          <!-- All marks share the white/70% treatment. HELCOM and SDG 13/14 use
+               white knockouts of their square icons (*-white.png) so they match
+               the wordmarks; full-colour versions stay in #accreditations. WIL-13 -->
+          <img src="images/partners/ocean-action-white.png" alt="Communities of Ocean Action, Sustainable Development Goal 14" class="partner-ocean-action" width="331" height="79">
+          <img src="images/partners/helcom-white.png" alt="Helsinki Commission (HELCOM)" class="partner-knockout" width="200" height="200">
+          <img src="images/partners/sdg13-white.png" alt="UN Sustainable Development Goal 13: Climate Action" class="partner-knockout" width="219" height="200">
+          <img src="images/partners/sdg14-white.png" alt="UN Sustainable Development Goal 14: Life Below Water" class="partner-knockout" width="187" height="200">
         </div>
       </div>
     </div>
@@ -253,7 +269,7 @@
     <div class="founder-grid">
       <div class="founder-img-wrap">
         <div class="founder-img-frame">
-          <img src="images/terry-photo.png" alt="Terrance P. Long CD. - Chair and Founder of IDUM">
+          <img loading="lazy" src="images/terry-photo.webp" alt="Terrance P. Long CD. - Chair and Founder of IDUM" width="1068" height="1066">
         </div>
         <div class="founder-tag">Chair & Founder, IDUM</div>
         <div class="contact-strip">
@@ -264,35 +280,22 @@
       <div>
         <h3 class="founder-name">Terrance P. Long CD.</h3>
         <p class="founder-role">Global Authority on Underwater & Submerged Munitions</p>
-        <p class="founder-bio">Terrance (Terry) P. Long is the Chair and founder of the International Dialogues on Underwater Munitions (IDUM) and a world-leading expert on sea-dumped chemical and conventional weapons. A retired Canadian Military Engineer with over 30 years of experience specializing in Explosive Ordnance Disposal (EOD), Terrance has led international efforts to address the environmental and human health impacts of underwater and submerged munitions globally.</p>
-        <p class="founder-bio">Terrance P. Long is a recognized global authority and leading voice in the response to underwater munitions. As the driving force behind UN Ocean Action #21356, and the international dialogues to address the environmental and safety risks of sea-dumped weapons. Through decades of dedicated advocacy, Terry has collaborated with international bodies, research institutes, and Baltic Sea regional initiatives to shape global models for marine protection and munitions clearance. His leadership within the International Dialogue on Underwater Munitions (IDUM) continues to unite governments, scientists, and industry stakeholders, leveraging critical mapping data and risk assessments to drive safer, more sustainable ocean cleanup operations worldwide.</p>
+        <p class="founder-bio">Terrance (Terry) P. Long is the Chair and founder of the International Dialogue on Underwater Munitions (IDUM) and a world-leading expert on sea-dumped chemical and conventional weapons. A retired Canadian Military Engineer with over 30 years of experience specializing in Explosive Ordnance Disposal (EOD), Terrance has led international efforts to address the environmental and human health impacts of underwater and submerged munitions globally.</p>
+        <p class="founder-bio">Terrance P. Long is a recognized global authority and leading voice in the response to underwater munitions. As the driving force behind UN Ocean Action #21356, he pioneered an international dialogue to address the environmental and safety risks of sea-dumped weapons. Through decades of dedicated advocacy, Terry has collaborated with international bodies, research institutes, and Baltic Sea regional initiatives to shape global models for marine protection and munitions clearance. His leadership within the International Dialogue on Underwater Munitions (IDUM) continues to unite governments, scientists, and industry stakeholders, leveraging critical mapping data and risk assessments to drive safer, more sustainable ocean cleanup operations worldwide.</p>
 
         <div class="roles-grid">
-          <div class="role-item"><i data-lucide="chevron-right"></i> Chair, International Dialogues on Underwater Munitions (IDUM)</div>
-          <!-- TODO(Terry, Sep 9 2026 feedback): transfer the Advisory Board (ISTAB)
-               page content from https://underwatermunitions.org/advisory-board/ —
-               background on ISTAB's mandate (requested by Lithuania's Foreign
-               Minister at the 2010 OPCW Conference of States Parties), its
-               10+-nationality membership, and the MTS Special Editor's Award note.
-               Needs a decision on where this lives (own section vs. expanded here). -->
-          <div class="role-item"><i data-lucide="chevron-right"></i> Chair, International Science & Technology Advisory Board (ISTAB)</div>
+          <div class="role-item"><i data-lucide="chevron-right"></i> Chair, International Dialogue on Underwater Munitions (IDUM)</div>
+          <div class="role-item"><i data-lucide="chevron-right"></i> Chair, International Scientific and Technology Advisory Board (ISTAB)</div>
           <div class="role-item"><i data-lucide="chevron-right"></i> Partner & Co-Director, NATO Science for Peace and Security MODUM Program</div>
           <div class="role-item"><i data-lucide="chevron-right"></i> Associated Partner & Co-Director, CHEMSEA (Chemical Munitions Search & Assessment)</div>
-          <div class="role-item"><i data-lucide="chevron-right"></i> Partner & Co-Director, DAIMON (Decision Aids for Marine Munitions)</div>
+          <div class="role-item"><i data-lucide="chevron-right"></i> Partner & Co-Director, DAIMON (Decision Aid for Marine Munitions)</div>
           <div class="role-item"><i data-lucide="chevron-right"></i> Advisory Committee, Dumpsites of Munitions: Integrated Science Approach</div>
         </div>
 
         <div class="achievements-list">
-          <!-- TODO(Terry, Sep 9 2026 feedback): kept the [1,2,3,4] citation markers
-               as plain text since the site has no footnote/reference system —
-               needs real linked sources before publishing. -->
-          <div class="achievement"><div class="achievement-dot"></div><span>As a prominent member organization of the Chemical Weapons Convention (CWC) Coalition, IDUM played a vital role in the collective efforts that earned the coalition the prestigious OPCW-The Hague Award. Serving as a key face and voice for underwater chemical weapons responses at the Organisation for the Prohibition of Chemical Weapons (OPCW) headquarters in The Hague, Terry's leadership was instrumental in this global recognition. The award, which carries the legacy of the OPCW's 2013 Nobel Peace Prize, underscores Terry and IDUM's tireless global advocacy and diplomatic engagement toward the permanent elimination of chemical weapons from our international waters. [1, 2, 3, 4]</span></div>
+          <div class="achievement"><div class="achievement-dot"></div><span>As a prominent member organization of the Chemical Weapons Convention (CWC) Coalition, IDUM played a vital role in the collective efforts that earned the coalition the prestigious OPCW-The Hague Award. Serving as a key face and voice for underwater chemical weapons responses at the Organisation for the Prohibition of Chemical Weapons (OPCW) headquarters in The Hague, Terry's leadership was instrumental in this global recognition. The award, which carries the legacy of the OPCW's 2013 Nobel Peace Prize, underscores Terry and IDUM's tireless global advocacy and diplomatic engagement toward the permanent elimination of chemical weapons from our international waters. <a class="text-link" href="https://www.cwccoalition.org/opcw-the-hague-award/" target="_blank" rel="noopener">Learn more about the OPCW&#8209;The Hague Award</a></span></div>
         </div>
 
-        <!-- TODO(Terry, Sep 14 2026 feedback): heading text updated from "Recognition"
-             to "Project Leadership" and 3 Co-Director bullets added, per the newer
-             "IDUM Website Changes 02-09-2026.docx" attachment — that doc otherwise
-             repeats the Sep 9 feedback verbatim for this section. -->
         <p style="font-weight:600;margin-top:1.5rem;margin-bottom:0.75rem;">Global Advocacy, High-Level Briefings &amp; Project Leadership</p>
         <div class="achievements-list">
           <div class="achievement"><div class="achievement-dot"></div><span><strong>Chaired Expert Panel at the CDC:</strong> Led the critical panel investigating the direct impacts of sea-dumped weapons on human health and marine environments at the Centers for Disease Control and Prevention.</span></div>
@@ -310,21 +313,21 @@
     <div class="founder-photos">
       <figure class="founder-photo">
         <div class="founder-photo-frame">
-          <img src="images/terry-landmines.jpg" alt="Terrance P. Long — global expert on underwater explosives, chemicals, and landmines">
+          <img loading="lazy" src="images/terry-landmines.jpg" alt="Terrance P. Long — global expert on underwater explosives, chemicals, and landmines" width="808" height="561">
         </div>
         <figcaption>Global expert on underwater explosives, chemicals, and landmines</figcaption>
       </figure>
       <figure class="founder-photo">
         <div class="founder-photo-frame">
-          <img src="images/terry-nato-auv.jpg" alt="NATO SPS MODUM Program — deploying AUVs from the Polish research vessel">
+          <img loading="lazy" src="images/terry-nato-auv.jpg" alt="NATO SPS MODUM Program — deploying AUVs from the Polish research vessel" width="1086" height="724">
         </div>
         <figcaption>NATO SPS MODUM Program — deploying AUVs from the Polish research vessel</figcaption>
       </figure>
       <figure class="founder-photo">
         <div class="founder-photo-frame">
-          <img src="images/terry-sylvia-earle.jpg" alt="Terrance with Dr. Sylvia Earle" style="object-position: center 30%;">
+          <img loading="lazy" src="images/terry-sylvia-earle.jpg" alt="Terrance with Dr. Sylvia Earle at United Nations World Ocean Day" style="object-position: center 30%;" width="800" height="1066">
         </div>
-        <figcaption>Terrance with Dr. Sylvia Earle, TIME Magazine Hero of the Planet</figcaption>
+        <figcaption>Terrance with Dr. Sylvia Earle, TIME Magazine Hero of the Planet at United Nations World Ocean Day</figcaption>
       </figure>
     </div>
   </div>
@@ -351,8 +354,8 @@
         </div>
       </div>
       <div class="action-header-logo">
-        <img src="images/partners/Logo_of_the_United_Nations.svg" alt="United Nations" class="action-un-logo">
-        <img src="images/ocean-action-logo.png" alt="Communities of Ocean Action — Implementation of Sustainable Development Goal 14">
+        <img loading="lazy" src="images/partners/Logo_of_the_United_Nations.svg" alt="United Nations" class="action-un-logo">
+        <img loading="lazy" src="images/ocean-action-logo.png" alt="Communities of Ocean Action — Implementation of Sustainable Development Goal 14" width="800" height="267">
       </div>
     </div>
     <!-- "Our work includes" — orients the icon pillars as IDUM's workstreams within Ocean Action -->
@@ -439,93 +442,76 @@
      3 project rows using alternating image/text layout.
      .project-row.reverse flips column order via CSS direction:rtl trick
      (children reset to ltr). Each project has: image, meta (year/location),
-     title, description, achievements list, and partners line.
+     title, description and partners line. Text follows IDUM's project sheets
+     on underwatermunitions.org (WIL-14); unverifiable achievement lists removed.
      ════════════════════════════════════════════════════════════════════ -->
 <section class="content-section alt" id="projects">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">International Research <em>Initiatives</em></h2>
     </div>
-    <!-- TODO(Terry, Sep 14 2026 feedback): add NATO SPS MODUM, CHEMSEA, and DAIMON
-         program logos to this section — Terry says they're already on
-         underwatermunitions.org but we don't have the asset files in this repo yet. -->
     <div class="projects-list">
 
       <!-- Project 1: CHEMSEA -->
       <div class="project-row">
         <div class="project-img-wrap">
-          <img src="images/project-1.png" alt="CHEMSEA - Chemical Munitions Search and Assessment">
+          <img loading="lazy" src="images/project-1.webp" alt="CHEMSEA - Chemical Munitions Search and Assessment" width="1200" height="1401">
           <div class="project-img-overlay"></div>
           <!-- Added per Terry's Sep 14 2026 feedback -->
           <div class="project-img-caption">A shallow underwater munitions site offshore Nova Scotia, Canada</div>
         </div>
         <div class="project-content">
+          <img loading="lazy" class="project-logo" src="images/chemsea-logo.png" alt="CHEMSEA programme logo" width="238" height="97">
           <div class="project-meta">
             <span class="project-meta-year">2011–2014</span>
             <span class="project-meta-sep">|</span>
-            <span class="project-meta-loc">Baltic Sea</span>
+            <span class="project-meta-loc">Baltic Sea · Gotland &amp; Gdańsk Deep</span>
           </div>
-          <div class="project-title">Chemical Munitions Search & Assessment</div>
-          <p class="project-desc">Pioneering project mapping chemical weapons dump sites in the Baltic Sea using advanced sonar and ROV technology.</p>
-          <!-- Removed per Terry's Sep 9 2026 feedback ("remove yellow: Key achievements") -->
-          <div class="project-partners"><strong>Partners:</strong> NATO, European Commission, Baltic Sea nations</div>
+          <div class="project-title">Chemical Munitions Search &amp; Assessment</div>
+          <p class="project-desc">A €4.5M project, part-financed by the European Union through the European Regional Development Fund (Baltic Sea Region Programme 2007–2013), that mapped the Gotland and Gdańsk Deep chemical weapons dumpsites, assessed their toxicity to aquatic life, modelled leakage, and produced guidelines for managing contaminated sediments.</p>
+          <div class="project-partners"><strong>IDUM role:</strong> Partner and Co-Director (Terrance P. Long)</div>
         </div>
       </div>
 
       <!-- Project 2: MODUM -->
       <div class="project-row reverse">
         <div class="project-img-wrap">
-          <img src="images/project-2.png" alt="MODUM - Monitoring of Dumped Munitions">
+          <img loading="lazy" src="images/project-2.webp" alt="MODUM - Monitoring of Dumped Munitions" width="985" height="742">
           <div class="project-img-overlay"></div>
           <!-- Added per Terry's Sep 14 2026 feedback -->
           <div class="project-img-caption">Underwater chemical munitions site in the Polish Economic Zone</div>
         </div>
         <div class="project-content">
+          <img loading="lazy" class="project-logo" src="images/modum-logo.png" alt="MODUM, NATO Science for Peace and Security programme logo" width="319" height="145">
           <div class="project-meta">
-            <span class="project-meta-year">2017–2020</span>
+            <span class="project-meta-year">2013–2016</span>
             <span class="project-meta-sep">|</span>
-            <span class="project-meta-loc">North Atlantic & Baltic</span>
+            <span class="project-meta-loc">Baltic Sea</span>
           </div>
           <div class="project-title">Monitoring of Dumped Munitions</div>
-          <p class="project-desc">NATO Science for Peace and Security program developing advanced monitoring systems for underwater munitions sites.</p>
-          <div class="project-achievements">
-            <div class="project-achievements-title">Key achievements</div>
-            <div class="project-achievement"><i data-lucide="check"></i> Deployed autonomous monitoring stations</div>
-            <div class="project-achievement"><i data-lucide="check"></i> Real-time toxin detection systems</div>
-            <div class="project-achievement"><i data-lucide="check"></i> AI-powered munitions classification</div>
-            <div class="project-achievement"><i data-lucide="check"></i> International data-sharing protocols</div>
-          </div>
-          <div class="project-partners"><strong>Partners:</strong> NATO SPS, UNEP, Multiple EU nations</div>
+          <p class="project-desc">A North Atlantic Treaty Organization Science for Peace and Security (NATO SPS) project that established a monitoring network for chemical weapons dumpsites in the Baltic Sea, using Autonomous Underwater Vehicles (AUVs) and Remotely Operated Vehicles (ROVs), with habitat status evaluation, fish health studies and modelling across three representative areas.</p>
+          <div class="project-partners"><strong>Lead partner:</strong> Institute of Oceanology, Polish Academy of Sciences · <strong>IDUM role:</strong> Partner and Co-Director (Terrance P. Long)</div>
         </div>
       </div>
 
       <!-- Project 3: DAIMON -->
-      <!-- TODO(Terry, Sep 14 2026 feedback): Terry says this photo ("Pic 3 -
-           instruments") isn't IDUM's and asked for it to be replaced with an
-           attached picture. No replacement image was actually attached to
-           either website-changes email — needs the real photo from Terry
-           before this can be swapped. -->
+      <!-- Photo: Terry's "chase a 086" (Sep 30 email), replacing the non-IDUM
+           instruments photo. WIL-10 -->
       <div class="project-row">
         <div class="project-img-wrap">
-          <img src="images/project-3.png" alt="DAIMON - Decision Aids for Marine Munitions">
+          <img loading="lazy" src="images/project-3-daimon.webp" alt="Oceanographic instrument package being lowered on a cable into the open sea" style="object-position: center 58%;" width="1200" height="1200">
           <div class="project-img-overlay"></div>
         </div>
         <div class="project-content">
+          <img loading="lazy" class="project-logo" src="images/daimon-logo.jpg" alt="DAIMON programme logo" width="800" height="315">
           <div class="project-meta">
-            <span class="project-meta-year">2019–Present</span>
+            <span class="project-meta-year">2016–2019</span>
             <span class="project-meta-sep">|</span>
-            <span class="project-meta-loc">Global</span>
+            <span class="project-meta-loc">Baltic Sea</span>
           </div>
-          <div class="project-title">Decision Aids for Marine Munitions</div>
-          <p class="project-desc">International project creating decision-support tools and treaty frameworks for global munitions remediation.</p>
-          <div class="project-achievements">
-            <div class="project-achievements-title">Key achievements</div>
-            <div class="project-achievement"><i data-lucide="check"></i> Risk assessment modeling tools</div>
-            <div class="project-achievement"><i data-lucide="check"></i> Treaty pathway development</div>
-            <div class="project-achievement"><i data-lucide="check"></i> Cost-benefit analysis frameworks</div>
-            <div class="project-achievement"><i data-lucide="check"></i> International cooperation mechanisms</div>
-          </div>
-          <div class="project-partners"><strong>Partners:</strong> OPCW, UNEP, International legal experts</div>
+          <div class="project-title">Decision Aid for Marine Munitions</div>
+          <p class="project-desc">An EU Interreg Baltic Sea Region project (European Regional Development Fund, EU Strategy for the Baltic Sea Region) that built decision-support software to help maritime, defence and environmental administrations manage dumped chemical and conventional munitions: evaluating the risks of individual munitions, categorising threats and assessing remediation methods. Study areas included the Gulf of Finland, the Bornholm and Gdańsk Deeps, the Little Belt and the Skagerrak.</p>
+          <div class="project-partners"><strong>Lead partner:</strong> Chalmers University of Technology · <strong>IDUM role:</strong> Partner and Co-Director (Terrance P. Long)</div>
         </div>
       </div>
 
@@ -547,33 +533,33 @@
     <div class="docs-grid">
       <div class="docs-img-cell">
         <a href="https://underwatermunitions.org" target="_blank" rel="noopener">
-          <img src="images/films/film-1.png" alt="Documentary 1" class="docs-thumb">
+          <img loading="lazy" src="images/films/film-1.webp" alt="Documentary 1" class="docs-thumb" width="710" height="860">
         </a>
       </div>
       <div class="docs-img-cell">
         <a href="https://transformerfilms.tv/deadly-depths/" target="_blank" rel="noopener">
-          <img src="images/films/film-2.png" alt="Deadly Depths Documentary" class="docs-thumb">
+          <img loading="lazy" src="images/films/film-2.webp" alt="Deadly Depths Documentary" class="docs-thumb" width="714" height="860">
         </a>
       </div>
       <div class="docs-img-cell">
         <a href="https://underwatermunitions.org/2017/01/12/bomb-hunters-of-the-baltic/" target="_blank" rel="noopener">
-          <img src="images/films/film-3.png" alt="Bomb Hunters of the Baltic" class="docs-thumb">
+          <img loading="lazy" src="images/films/film-3.webp" alt="Bomb Hunters of the Baltic" class="docs-thumb" width="1367" height="860">
         </a>
       </div>
       <div class="docs-img-cell">
-        <img src="images/films/film-4.png" alt="Documentary 4" class="docs-thumb">
+        <img loading="lazy" src="images/films/film-4.webp" alt="Documentary 4" class="docs-thumb" width="661" height="860">
       </div>
       <div class="docs-img-cell">
-        <img src="images/films/film-5.png" alt="Documentary 5" class="docs-thumb">
+        <img loading="lazy" src="images/films/film-5.webp" alt="Documentary 5" class="docs-thumb" width="676" height="860">
       </div>
       <div class="docs-img-cell">
         <a href="https://collection.nfb.ca/film/buried-at-sea" target="_blank" rel="noopener">
-          <img src="images/films/film-6.png" alt="Buried at Sea - NFB" class="docs-thumb">
+          <img loading="lazy" src="images/films/film-6.webp" alt="Buried at Sea - NFB" class="docs-thumb" width="737" height="860">
         </a>
       </div>
       <div class="docs-img-cell">
         <a href="https://www.tv5unis.ca/videos/39-45-en-sol-canadien/saisons/3/episodes/7" target="_blank" rel="noopener">
-          <img src="images/films/film-7.png" alt="39-45 en sol canadien" class="docs-thumb">
+          <img loading="lazy" src="images/films/film-7.webp" alt="39-45 en sol canadien" class="docs-thumb" width="741" height="860">
         </a>
       </div>
     </div>
@@ -590,38 +576,28 @@
     <div class="section-header">
       <h2 class="section-title">Field Operations and <em>Training</em></h2>
     </div>
-    <!-- TODO(Terry, Sep 14 2026 feedback): Terry flagged "the pic isn't IDUM" for
-         one of these operation photos and attached two replacement images, but
-         didn't say which operation entry (or entries) each one replaces. Staged
-         both, unplaced, at images/pending-terry-feedback/field-ops-candidate-1.jpeg
-         (sample collection on a boat, NATO SPS lifejacket visible — looks like
-         Training & Education) and field-ops-candidate-2.jpeg (two people with a
-         certificate and munitions-ID display, could be either entry). Needs
-         Terry/Eric to confirm placement before wiring into images/ and swapping
-         the <img src> below. -->
+    <!-- Operations photo: Terry's Sep 14 replacement, taken directly from
+         "IDUM Website Changes 02-09-2026.docx" (446x300, the only copy; swap
+         in the original if Terry sends it). Training & Education keeps the
+         original summer-school photo. WIL-11 -->
     <div class="projects-list">
 
       <!-- Operation 1 -->
       <div class="project-row">
         <div class="project-img-wrap">
-          <img src="images/operation-1.png" alt="Munitions Recovery Operation">
+          <img loading="lazy" src="images/operations/field-ops-water-sample.jpg" alt="Team member in gloves testing a water sample on a small boat" width="446" height="300">
           <div class="project-img-overlay"></div>
         </div>
         <div class="project-content">
-          <div class="project-meta">
-            <span class="project-meta-year">2018</span>
-            <span class="project-meta-sep">|</span>
-            <span class="project-meta-loc">North Atlantic</span>
-          </div>
-          <div class="project-title">Munitions Recovery Operation</div>
-          <p class="project-desc">Recovering a red container munition with a ship-mounted crane and specialized lifting equipment.</p>
+          <div class="project-title">Operations</div>
+          <p class="project-desc">Team member tests a water sample.</p>
         </div>
       </div>
 
       <!-- Operation 2 -->
       <div class="project-row reverse">
         <div class="project-img-wrap">
-          <img src="images/student-nato-summer-school.jpg" alt="Student at NATO SPS Summer School on sea-dumped chemical weapons">
+          <img loading="lazy" src="images/student-nato-summer-school.jpg" alt="Student at NATO SPS Summer School on sea-dumped chemical weapons" width="1024" height="768">
           <div class="project-img-overlay"></div>
         </div>
         <div class="project-content">
@@ -658,40 +634,52 @@
       <div class="accred-section">
         <div class="accred-col-header">International accreditations</div>
         <div class="accred-logos">
-          <div class="accred-logo-item"><img src="images/partners/un.png" alt="United Nations" class="accred-logo"></div>
-          <div class="accred-logo-item"><img src="images/partners/nato.png" alt="NATO" class="accred-logo"></div>
-          <div class="accred-logo-item"><img src="images/partners/opcw.jpg" alt="OPCW" class="accred-logo"></div>
-          <div class="accred-logo-item"><img src="images/partners/sdg13.png" alt="UN SDG 13 - Climate Action" class="accred-logo accred-logo-square"></div>
-          <div class="accred-logo-item"><img src="images/partners/sdg14.png" alt="UN SDG 14 - Life Below Water" class="accred-logo accred-logo-square"></div>
-          <div class="accred-logo-item"><img src="images/partners/helcom.png" alt="HELCOM" class="accred-logo"></div>
-          <div class="accred-logo-item"><img src="images/partners/ospar.png" alt="OSPAR Commission" class="accred-logo"></div>
+          <div class="accred-logo-item"><img loading="lazy" src="images/partners/un.png" alt="United Nations" class="accred-logo" width="220" height="200"></div>
+          <div class="accred-logo-item"><img loading="lazy" src="images/partners/nato.png" alt="NATO" class="accred-logo" width="400" height="200"></div>
+          <div class="accred-logo-item"><img loading="lazy" src="images/partners/opcw.jpg" alt="OPCW" class="accred-logo" width="200" height="200"></div>
+          <div class="accred-logo-item"><img loading="lazy" src="images/partners/sdg13.png" alt="UN SDG 13 - Climate Action" class="accred-logo accred-logo-square" width="200" height="200"></div>
+          <div class="accred-logo-item"><img loading="lazy" src="images/partners/sdg14.png" alt="UN SDG 14 - Life Below Water" class="accred-logo accred-logo-square" width="200" height="200"></div>
+          <div class="accred-logo-item"><img loading="lazy" src="images/partners/helcom.png" alt="HELCOM" class="accred-logo" width="201" height="200"></div>
+          <div class="accred-logo-item"><img loading="lazy" src="images/partners/ospar.png" alt="OSPAR Commission" class="accred-logo" width="202" height="200"></div>
         </div>
       </div>
-      <!-- TODO(Terry, Sep 9 2026 feedback): Terry says the logos below (Scripps,
-           Woods Hole, Monaco, Exponent, Climate Foundation, Tetiaroa) are "George's"
-           network, not IDUM's actual Cooperating Organizations list. He wants IDUM's
-           real list transferred from https://underwatermunitions.org/cooperating-organizations-2/
-           — that page has ~35 organizations (UN, Interreg, OSPAR, CHEMSEA, MODUM,
-           Lithuanian EPA, CDC, Swedish Coast Guard, SYKE, VERIFIN, Maritime Office
-           Gdynia, Green Screen Festival, NABU, Ikanawtiket, OPCW, Helsinki Commission,
-           IO PAN, Polish Naval Academy, MUT, MIG, SIPRI, FFI, Finland Min. of Environment,
-           Geological Survey of Sweden, Chalmers, Nature Research Centre, EU, ISA,
-           NATO SPS, EU Baltic Strategy, Pentarius, AWI, Thünen Institute, TU Clausthal,
-           IOS, GRD, GSM — most with a short description, few/none with logo files we
-           have here). This needs a real design + asset pass with Eric/Craig, not a
-           guess — left the existing "George's" logos in place until that's decided.
-           Full text pulled from the live page is available on request. -->
-      <!-- Section 2: Cooperating Organizations (3-up grid of wider wordmarks) -->
+      <!-- Section 2: Cooperating Organizations. IDUM's own list from
+           underwatermunitions.org/cooperating-organizations-2/ (WIL-8). Logos
+           already shown under International accreditations or in the hero (UN,
+           NATO, OPCW, HELCOM, OSPAR, ISA) are not repeated. Sources for each
+           file: images/cooperating-orgs/SOURCES.md. Organizations with no
+           usable logo are named in the text line under the grid. -->
       <div class="accred-section accred-section--coop">
         <div class="accred-col-header">Cooperating organizations</div>
         <div class="accred-logos">
-          <div class="accred-logo-item"><img src="images/partners/scripps.png" alt="Scripps Institution of Oceanography" class="accred-logo"></div>
-          <div class="accred-logo-item"><img src="images/partners/woods-transparent.png" alt="Woods Hole Oceanographic Institution" class="accred-logo"></div>
-          <div class="accred-logo-item"><img src="images/partners/monaco.png" alt="Monaco Oceanographic Museum" class="accred-logo"></div>
-          <div class="accred-logo-item"><img src="images/partners/exponent.png" alt="Exponent" class="accred-logo"></div>
-          <div class="accred-logo-item"><img src="images/partners/climate.png" alt="Climate Foundation" class="accred-logo"></div>
-          <div class="accred-logo-item"><img src="images/partners/tetiaroa.png" alt="Tetiaroa Society" class="accred-logo"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/interreg-baltic-sea-region.jpg" alt="Interreg Baltic Sea Region" class="accred-logo" loading="lazy" width="457" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/lithuanian-environmental-protection-agency.png" alt="Lithuanian Environmental Protection Agency" class="accred-logo" loading="lazy" width="158" height="126"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/centers-for-disease-control-and-prevention.png" alt="U.S. Centers for Disease Control and Prevention (CDC)" class="accred-logo" loading="lazy" width="203" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/swedish-coast-guard.png" alt="Swedish Coast Guard" class="accred-logo" loading="lazy" width="96" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/finnish-environment-institute-syke.png" alt="Finnish Environment Institute (SYKE)" class="accred-logo" loading="lazy" width="211" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/verifin.png" alt="Finnish Institute for Verification of the Chemical Weapons Convention (VERIFIN)" class="accred-logo" loading="lazy" width="113" height="105"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/maritime-office-gdynia.png" alt="Maritime Office Gdynia" class="accred-logo" loading="lazy" width="160" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/green-screen-festival.png" alt="Green Screen Nature Film Festival" class="accred-logo" loading="lazy" width="962" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/nabu.png" alt="Nature and Biodiversity Conservation Union (NABU)" class="accred-logo" loading="lazy" width="252" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/iopan.png" alt="Institute of Oceanology, Polish Academy of Sciences (IO PAN)" class="accred-logo" loading="lazy" width="79" height="130"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/polish-naval-academy.jpg" alt="Polish Naval Academy" class="accred-logo" loading="lazy" width="119" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/military-university-of-technology.jpg" alt="Military University of Technology, Poland" class="accred-logo" loading="lazy" width="152" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/sipri.jpg" alt="Stockholm International Peace Research Institute (SIPRI)" class="accred-logo" loading="lazy" width="244" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/shirshov-institute-of-oceanology.jpg" alt="P.P. Shirshov Institute of Oceanology, Russian Academy of Sciences" class="accred-logo" loading="lazy" width="296" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/norwegian-defence-research-establishment-ffi.jpg" alt="Norwegian Defence Research Establishment (FFI)" class="accred-logo" loading="lazy" width="384" height="104"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/finland-ministry-of-the-environment.png" alt="Ministry of the Environment, Finland" class="accred-logo" loading="lazy" width="500" height="150"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/geological-survey-of-sweden.png" alt="Geological Survey of Sweden" class="accred-logo" loading="lazy" width="140" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/chalmers-university-of-technology.jpg" alt="Chalmers University of Technology" class="accred-logo" loading="lazy" width="160" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/nature-research-centre.svg" alt="Nature Research Centre, Lithuania" class="accred-logo" loading="lazy"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/eu-flag.jpg" alt="European Union, European Regional Development Fund" class="accred-logo" loading="lazy" width="239" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/eu-strategy-baltic-sea-region.png" alt="EU Strategy for the Baltic Sea Region" class="accred-logo" loading="lazy" width="408" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/pentarius.jpg" alt="Pentarius Deep Sub Project" class="accred-logo" loading="lazy" width="390" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/alfred-wegener-institute.png" alt="Alfred Wegener Institute, Helmholtz Centre for Polar and Marine Research" class="accred-logo" loading="lazy" width="381" height="160"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/thunen-institute.png" alt="Thünen Institute of Fisheries Ecology" class="accred-logo" loading="lazy" width="355" height="142"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/technical-university-of-clausthal.jpg" alt="Clausthal University of Technology" class="accred-logo" loading="lazy" width="169" height="123"></div>
+          <div class="accred-logo-item"><img src="images/cooperating-orgs/gesellschaft-zur-rettung-der-delphine.svg" alt="Gesellschaft zur Rettung der Delphine (GRD)" class="accred-logo" loading="lazy"></div>
         </div>
+        <p class="accred-also">Also cooperating with Ikanawtiket, the Gesellschaft zum Schutz der Meeressäugetiere (GSM) and Poland's Inspection for Environmental Protection (Inspekcja Ochrony Środowiska).</p>
       </div>
     </div>
 
@@ -709,7 +697,7 @@
       <div class="honors-grid">
 
         <article class="honor-card">
-          <div class="honor-media" style="background: #297FBF;"><img src="images/honors/sdg-14.jpg" alt="UN Sustainable Development Goal 14: Life Below Water" style="object-fit: contain; width: 100%;"></div>
+          <div class="honor-media" style="background: #297FBF;"><img loading="lazy" src="images/honors/sdg-14.jpg" alt="UN Sustainable Development Goal 14: Life Below Water" style="object-fit: contain; width: 100%;" width="800" height="378"></div>
           <div class="honor-body">
             <span class="honor-label">United Nations · SDG 14</span>
             <h4 class="honor-name">United Nations SDG Goal 14: Life Below Water</h4>
@@ -718,7 +706,7 @@
         </article>
 
         <article class="honor-card">
-          <div class="honor-media honor-media-logo"><img src="images/honors/cdc-logo.png" alt="Centers for Disease Control and Prevention"></div>
+          <div class="honor-media honor-media-logo"><img loading="lazy" src="images/honors/cdc-logo.png" alt="Centers for Disease Control and Prevention" width="510" height="400"></div>
           <div class="honor-body">
             <span class="honor-label">Public Health · Atlanta, GA</span>
             <h4 class="honor-name">CDC Expert Panel on Sea-Dumped Chemical Weapons</h4>
@@ -727,7 +715,7 @@
         </article>
 
         <article class="honor-card">
-          <div class="honor-media"><img src="images/honors/hawaii-auv.jpg" alt="Deep Ocean Survey — Hawaiian Islands & Pacific"></div>
+          <div class="honor-media"><img loading="lazy" src="images/honors/hawaii-auv.jpg" alt="Deep Ocean Survey — Hawaiian Islands & Pacific" width="400" height="300"></div>
           <div class="honor-body">
             <span class="honor-label">Field Operations · 2016–2020</span>
             <h4 class="honor-name">Deep Ocean Survey — Hawaiian Islands & Pacific</h4>
@@ -736,7 +724,7 @@
         </article>
 
         <article class="honor-card">
-          <div class="honor-media"><img src="images/honors/eu-parliament.jpg" alt="Special Remarks — European Parliament, Brussels"></div>
+          <div class="honor-media"><img loading="lazy" src="images/honors/eu-parliament.jpg" alt="Special Remarks — European Parliament, Brussels" width="400" height="225"></div>
           <div class="honor-body">
             <span class="honor-label">Diplomacy · 2021</span>
             <h4 class="honor-name">Special Remarks — European Parliament, Brussels</h4>
@@ -745,7 +733,7 @@
         </article>
 
         <article class="honor-card">
-          <div class="honor-media"><img src="images/honors/opcw-conference.jpg" alt="OPCW Conference of State Parties"></div>
+          <div class="honor-media"><img loading="lazy" src="images/honors/opcw-conference.jpg" alt="OPCW Conference of State Parties" width="596" height="341"></div>
           <div class="honor-body">
             <span class="honor-label">Chemical Weapons Convention · 2011–2025</span>
             <h4 class="honor-name">OPCW Conferences of State Parties — Accredited Delegate & Chair</h4>
@@ -754,7 +742,7 @@
         </article>
 
         <article class="honor-card">
-          <div class="honor-media"><img src="images/honors/hague-global-leader.jpg" alt="Global Leader on the Elimination of Chemical Weapons"></div>
+          <div class="honor-media"><img loading="lazy" src="images/honors/hague-global-leader.jpg" alt="Global Leader on the Elimination of Chemical Weapons" width="400" height="294"></div>
           <div class="honor-body">
             <span class="honor-label">Award · The Hague, 2015</span>
             <h4 class="honor-name">“Global Leader on the Elimination of Chemical Weapons”</h4>
@@ -763,7 +751,7 @@
         </article>
 
         <article class="honor-card">
-          <div class="honor-media honor-media-logo"><img src="images/partners/isa-color.png" alt="International Seabed Authority (ISA) crest"></div>
+          <div class="honor-media honor-media-logo"><img loading="lazy" src="images/partners/isa-color.png" alt="International Seabed Authority (ISA) crest" width="200" height="200"></div>
           <div class="honor-body">
             <span class="honor-label">Ocean Governance · Kingston, Jamaica</span>
             <h4 class="honor-name">International Seabed Authority (ISA) — IWG-ENV Contributor</h4>
@@ -772,7 +760,7 @@
         </article>
 
         <article class="honor-card">
-          <div class="honor-media honor-media-logo"><img src="images/honors/polish-naval-academy.png" alt="Polish Naval Academy crest"></div>
+          <div class="honor-media honor-media-logo"><img loading="lazy" src="images/honors/polish-naval-academy.png" alt="Polish Naval Academy crest" width="376" height="400"></div>
           <div class="honor-body">
             <span class="honor-label">Academic · Gdynia, Poland</span>
             <h4 class="honor-name">Scientific Committee — Maritime Security Yearbook, Polish Naval Academy</h4>
@@ -781,7 +769,7 @@
         </article>
 
         <article class="honor-card">
-          <div class="honor-media honor-media-logo"><img src="images/honors/royal-canadian-mint.svg" alt="Royal Canadian Mint"></div>
+          <div class="honor-media honor-media-logo"><img loading="lazy" src="images/honors/royal-canadian-mint.svg" alt="Royal Canadian Mint"></div>
           <div class="honor-body">
             <span class="honor-label">Award · Government of Canada, 2020</span>
             <h4 class="honor-name">Royal Canadian Mint — Ocean Legacy Coin</h4>
@@ -790,7 +778,7 @@
         </article>
 
         <article class="honor-card">
-          <div class="honor-media"><img src="images/honors/us-army-coin.jpg" alt="Coin of the Assistant Secretary of the U.S. Army"></div>
+          <div class="honor-media"><img loading="lazy" src="images/honors/us-army-coin.jpg" alt="Coin of the Assistant Secretary of the U.S. Army" width="400" height="306"></div>
           <div class="honor-body">
             <span class="honor-label">Award · U.S. Army</span>
             <h4 class="honor-name">Coin of the Assistant Secretary of the U.S. Army</h4>
@@ -799,7 +787,7 @@
         </article>
 
         <article class="honor-card">
-          <div class="honor-media honor-media-logo"><img src="images/honors/princes-trust.png" alt="Prince's Trust Canada logo"></div>
+          <div class="honor-media honor-media-logo"><img loading="lazy" src="images/honors/princes-trust.png" alt="Prince's Trust Canada logo" width="600" height="600"></div>
           <div class="honor-body">
             <span class="honor-label">Nomination · 2023</span>
             <h4 class="honor-name">Prince's Trust Canada — Veteran Entrepreneur Award Nominee</h4>
@@ -808,7 +796,7 @@
         </article>
 
         <article class="honor-card">
-          <div class="honor-media"><img src="images/honors/mts-journal.jpg" alt="Special Editor's Award — Marine Technology Society Journal"></div>
+          <div class="honor-media"><img loading="lazy" src="images/honors/mts-journal.jpg" alt="Special Editor's Award — Marine Technology Society Journal" width="400" height="299"></div>
           <div class="honor-body">
             <span class="honor-label">Publication Award · MTS Journal</span>
             <h4 class="honor-name">Special Editor's Award — Marine Technology Society Journal</h4>
@@ -822,67 +810,100 @@
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════════
-     EXPERT NETWORK
-     3-column grid of 6 expert cards (2x2 on tablet, 1-col on mobile).
-     Each card: avatar (72px circle), name, title, relevance description.
-     Photos in images/experts/.
+     ADVISORY BOARD (ISTAB)
+     Text from "ISTAB section materials - Advisory Board.docx" (Craig, Sep 30).
+     Members: one .istab-member block per person. To add someone, copy a
+     block; to remove someone, delete their block. Leave .istab-affil out
+     if there is no affiliation. (WIL-9)
+     Replaces the archived "World-Renowned Collaborators" section
+     (archive/experts-section.html, WIL-7).
      ════════════════════════════════════════════════════════════════════ -->
-<section class="content-section alt" id="experts">
+<section class="content-section alt" id="istab">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">World-Renowned <em>Collaborators</em></h2>
+      <h2 class="section-title">International Scientific and Technology <em>Advisory Board</em></h2>
     </div>
-    <p class="threat-text" style="max-width: 720px; margin-bottom: 32px;">
-      Scientists, explorers, and innovators working together to address the global underwater munitions crisis and restore ocean health.
+    <p class="threat-text istab-intro">
+      Chaired by Terry, the International Scientific and Technology Advisory Board (ISTAB) on Underwater Munitions consists of diplomats, scientists, academics, and munitions experts representing more than 10 nationalities. It provides independent advice on scientific, technical, and organizational aspects in response to sea-dumped munitions, and promotes dialogue and multilateral contacts among interested governments, international organizations, academic institutions, and the global community.
     </p>
-    <div class="experts-grid">
-      <div class="expert-card">
-        <div class="expert-avatar">
-          <img src="images/experts/dr-sylvia.png" alt="Dr. Sylvia Earle">
-        </div>
-        <div class="expert-name">Dr. Sylvia Earle</div>
-        <div class="expert-title">Marine Biologist, Ocean Explorer</div>
-        <div class="expert-relevance">Legendary ocean explorer and conservationist, founder of Mission Blue. Advocate for ocean protection and marine ecosystem restoration post-munitions remediation.</div>
+    <p class="threat-text istab-intro">
+      The ISTAB was originally appointed to IDUM at the request of the Foreign Minister of Lithuania during the 2010 Conference of States Parties of the Organisation for the Prohibition of Chemical Weapons (OPCW). Members work in their personal capacity and meet twice annually in The Hague, The Netherlands.
+    </p>
+    <div class="istab-grid">
+      <div class="istab-member">
+        <div class="istab-name">Dr. Thomas Stock</div>
+        <div class="istab-affil">DYNSAFE, Germany (Co-Chairman)</div>
       </div>
-      <div class="expert-card">
-        <div class="expert-avatar">
-          <img src="images/experts/jacques.png" alt="Jacques Cousteau">
-        </div>
-        <div class="expert-name">Jacques Cousteau</div>
-        <div class="expert-title">Naval Officer, Ocean Explorer (1910–1997)</div>
-        <div class="expert-relevance">Co-inventor of the Aqua-Lung and pioneering ocean filmmaker. Documented early underwater munitions sites and raised global awareness of ocean contamination.</div>
+      <div class="istab-member">
+        <div class="istab-name">Dr. Andrzej Jagusiewicz</div>
+        <div class="istab-affil">Former Chief Inspector of Environmental Protection, Poland; Co-Chairman of IDUM</div>
       </div>
-      <div class="expert-card">
-        <div class="expert-avatar">
-          <img src="images/experts/dr-craig.png" alt="Dr. Craig Venter">
-        </div>
-        <div class="expert-name">Dr. Craig Venter</div>
-        <div class="expert-title">Geneticist, Biotechnologist</div>
-        <div class="expert-relevance">Global Ocean Sampling Expedition leader. Marine genomics research reveals the impact of munitions toxins on ocean biodiversity.</div>
+      <div class="istab-member">
+        <div class="istab-name">Albert Marshall</div>
+        <div class="istab-affil">Friends and Elders Advisor, Eskasoni First Nations</div>
       </div>
-      <div class="expert-card">
-        <div class="expert-avatar">
-          <img src="images/experts/james.png" alt="James Cameron">
-        </div>
-        <div class="expert-name">James Cameron</div>
-        <div class="expert-title">Filmmaker, Deep-Sea Explorer</div>
-        <div class="expert-relevance">Solo diver to the Mariana Trench, pioneer in deep-sea filming. Deep-ocean exploration technologies applicable to munitions site mapping and documentation.</div>
+      <div class="istab-member">
+        <div class="istab-name">Chelbylynn Milton</div>
       </div>
-      <div class="expert-card">
-        <div class="expert-avatar">
-          <img src="images/experts/dr-brian.png" alt="Dr. Brian Von Herzen">
-        </div>
-        <div class="expert-name">Dr. Brian Von Herzen</div>
-        <div class="expert-title">Executive Director, Climate Foundation</div>
-        <div class="expert-relevance">Pioneer in marine permaculture and ocean upwelling for ecosystem restoration. Post-remediation ecosystem regeneration using marine permaculture arrays.</div>
+      <div class="istab-member">
+        <div class="istab-name">Retired Col. Peter Courtney-Green</div>
       </div>
-      <div class="expert-card">
-        <div class="expert-avatar">
-          <img src="images/experts/tom.png" alt="Tom Chi">
-        </div>
-        <div class="expert-name">Tom Chi</div>
-        <div class="expert-title">Founding Partner, At One Ventures</div>
-        <div class="expert-relevance">Inventor, entrepreneur, and regenerative economy investor. Funding ocean restoration and munitions remediation as planetary-scale impact investing.</div>
+      <div class="istab-member">
+        <div class="istab-name">Dr. Jacek Beldowski</div>
+        <div class="istab-affil">Institute of Oceanology, Polish Academy of Sciences, Marine Chemistry &amp; Ecology</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Dr. Kela Weber</div>
+        <div class="istab-affil">Associate Professor, Royal Military College of Canada</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Ms. Elisa Perpignan MSc.</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Ms. Cherylynn Hunt BSc., MES.</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Dr. James W. Porter</div>
+        <div class="istab-affil">Josiah Meigs Professor of Ecology, Emeritus, Odum School of Ecology, University of Georgia</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Prof. Dr. Janina Baršienė</div>
+        <div class="istab-affil">Lead Scientist, Head of Genotoxicology Laboratory, Institute of Ecology of Nature Research Center, Vilnius, Lithuania</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Dr. Valentine Nzengung</div>
+        <div class="istab-affil">Founder, CEO &amp; CTO, MuniRem Environmental</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Mr. Dominique Anelli</div>
+        <div class="istab-affil">Former military officer</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Dr. Alex Souchen</div>
+        <div class="istab-affil">Social Sciences and Humanities Research Council (SSHRC) Postdoctoral Fellow, Wilfrid Laurier University</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Mr. James Barton</div>
+        <div class="istab-affil">President, Underwater Ordnance Recovery</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Mr. Noah Ameer Al-Malt</div>
+        <div class="istab-affil">Legal Consultant</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">George Orbelian</div>
+        <div class="istab-affil">Board member, Buckminster Fuller Institute and Walter Munk Foundation for the Oceans</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Christine Ward-Paige, PhD</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Mr. Jared Baribeau</div>
+        <div class="istab-affil">Founder &amp; CTO, Demine Robotics</div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-name">Thomas J. F. Goreau, PhD</div>
+        <div class="istab-affil">President, Global Coral Reef Alliance</div>
       </div>
     </div>
   </div>
@@ -981,15 +1002,9 @@
      #form-success shows for 6 seconds, then the form resets.
      Right sidebar: contact info card (sticky on desktop) + affiliations chips.
      ════════════════════════════════════════════════════════════════════ -->
-  <!-- TODO(Terry, Sep 14 2026 feedback): the "IDUM Website Changes 02-09-2026.docx"
-       attachment also asks for a new testimonials block under this same "Connect
-       with Terrance P. Long CD." heading — 6 photos + bios (Dr. Sylvia Earle,
-       Jacques Cousteau, Dr. Craig Venter, James Cameron, Dr. Brian Von Herzen,
-       Tom Chi) with Terry's note "I need QUOTES from each or I can't include them
-       on the website!!!!" Deliberately NOT implemented here: those are quotes
-       attributed to named public figures that IDUM does not yet have permission
-       or actual quotes for, so nothing should be published under their names
-       until Terry/IDUM secures the real quotes. -->
+  <!-- Testimonials deferred until after launch: each person's permission and a
+       real quote are required before anything is published under their name.
+       See Linear WIL-7. -->
 <section class="content-section alt" id="contact-form-section">
   <div class="container">
     <div class="section-header">
@@ -1145,11 +1160,11 @@
       <a href="#threat">The Threat</a>
       <a href="#founder">Our Founder</a>
       <a href="#projects">Projects</a>
-      <a href="#experts">Experts</a>
+      <a href="#istab">Advisory Board</a>
       <a href="#action">Ocean Action #21356</a>
       <a href="#contact-form-section">Contact</a>
     </div>
-    <div class="footer-copy">© 2026 International Dialogues on Underwater Munitions (IDUM). All rights reserved. Chair: Terrance P. Long CD.</div>
+    <div class="footer-copy">© 2026 International Dialogue on Underwater Munitions (IDUM). All rights reserved. Chair: Terrance P. Long CD.</div>
   </div>
 </footer>
 
