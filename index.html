@@ -19,7 +19,6 @@
     #documentaries        — centered grid of 7 documentary/broadcast thumbnails (4+3)
     #operations           — 2 field operation case studies
     #accreditations       — 2-column logo table (accreditations vs. cooperators)
-    #experts              — 6 expert collaborator cards
     #services             — 4 service offering cards with CTAs
     #contact-form-section — Dynamic 5-tab contact form + info sidebar
     (no id)               — CTA section (dark urgency close)
@@ -63,7 +62,6 @@
     <li><a href="#documentaries">Documentaries</a></li>
     <li><a href="#operations">Operations</a></li>
     <li><a href="#accreditations">Accreditations</a></li>
-    <li><a href="#experts">Experts</a></li>
     <li><a href="#services">Services</a></li>
     <li><button class="btn-nav" onclick="scrollToContact()">Contact</button></li>
   </ul>
@@ -821,72 +819,9 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════════════════════
-     EXPERT NETWORK
-     3-column grid of 6 expert cards (2x2 on tablet, 1-col on mobile).
-     Each card: avatar (72px circle), name, title, relevance description.
-     Photos in images/experts/.
-     ════════════════════════════════════════════════════════════════════ -->
-<section class="content-section alt" id="experts">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">World-Renowned <em>Collaborators</em></h2>
-    </div>
-    <p class="threat-text" style="max-width: 720px; margin-bottom: 32px;">
-      Scientists, explorers, and innovators working together to address the global underwater munitions crisis and restore ocean health.
-    </p>
-    <div class="experts-grid">
-      <div class="expert-card">
-        <div class="expert-avatar">
-          <img src="images/experts/dr-sylvia.png" alt="Dr. Sylvia Earle">
-        </div>
-        <div class="expert-name">Dr. Sylvia Earle</div>
-        <div class="expert-title">Marine Biologist, Ocean Explorer</div>
-        <div class="expert-relevance">Legendary ocean explorer and conservationist, founder of Mission Blue. Advocate for ocean protection and marine ecosystem restoration post-munitions remediation.</div>
-      </div>
-      <div class="expert-card">
-        <div class="expert-avatar">
-          <img src="images/experts/jacques.png" alt="Jacques Cousteau">
-        </div>
-        <div class="expert-name">Jacques Cousteau</div>
-        <div class="expert-title">Naval Officer, Ocean Explorer (1910–1997)</div>
-        <div class="expert-relevance">Co-inventor of the Aqua-Lung and pioneering ocean filmmaker. Documented early underwater munitions sites and raised global awareness of ocean contamination.</div>
-      </div>
-      <div class="expert-card">
-        <div class="expert-avatar">
-          <img src="images/experts/dr-craig.png" alt="Dr. Craig Venter">
-        </div>
-        <div class="expert-name">Dr. Craig Venter</div>
-        <div class="expert-title">Geneticist, Biotechnologist</div>
-        <div class="expert-relevance">Global Ocean Sampling Expedition leader. Marine genomics research reveals the impact of munitions toxins on ocean biodiversity.</div>
-      </div>
-      <div class="expert-card">
-        <div class="expert-avatar">
-          <img src="images/experts/james.png" alt="James Cameron">
-        </div>
-        <div class="expert-name">James Cameron</div>
-        <div class="expert-title">Filmmaker, Deep-Sea Explorer</div>
-        <div class="expert-relevance">Solo diver to the Mariana Trench, pioneer in deep-sea filming. Deep-ocean exploration technologies applicable to munitions site mapping and documentation.</div>
-      </div>
-      <div class="expert-card">
-        <div class="expert-avatar">
-          <img src="images/experts/dr-brian.png" alt="Dr. Brian Von Herzen">
-        </div>
-        <div class="expert-name">Dr. Brian Von Herzen</div>
-        <div class="expert-title">Executive Director, Climate Foundation</div>
-        <div class="expert-relevance">Pioneer in marine permaculture and ocean upwelling for ecosystem restoration. Post-remediation ecosystem regeneration using marine permaculture arrays.</div>
-      </div>
-      <div class="expert-card">
-        <div class="expert-avatar">
-          <img src="images/experts/tom.png" alt="Tom Chi">
-        </div>
-        <div class="expert-name">Tom Chi</div>
-        <div class="expert-title">Founding Partner, At One Ventures</div>
-        <div class="expert-relevance">Inventor, entrepreneur, and regenerative economy investor. Funding ocean restoration and munitions remediation as planetary-scale impact investing.</div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- "World-Renowned Collaborators" (#experts) section removed 2026-10-04:
+     no permission from the people named. Full markup + restore steps in
+     archive/experts-section.html. See Linear WIL-7. -->
 
 <!-- ════════════════════════════════════════════════════════════════════
      PROFESSIONAL SERVICES
@@ -895,7 +830,7 @@
      list, and CTA button. Buttons call openContact(tabName) in script.js
      to scroll to the contact form and auto-select the matching tab.
      ════════════════════════════════════════════════════════════════════ -->
-<section class="content-section" id="services">
+<section class="content-section alt" id="services">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">How Terrance Can <em>Help You</em></h2>
@@ -981,16 +916,10 @@
      #form-success shows for 6 seconds, then the form resets.
      Right sidebar: contact info card (sticky on desktop) + affiliations chips.
      ════════════════════════════════════════════════════════════════════ -->
-  <!-- TODO(Terry, Sep 14 2026 feedback): the "IDUM Website Changes 02-09-2026.docx"
-       attachment also asks for a new testimonials block under this same "Connect
-       with Terrance P. Long CD." heading — 6 photos + bios (Dr. Sylvia Earle,
-       Jacques Cousteau, Dr. Craig Venter, James Cameron, Dr. Brian Von Herzen,
-       Tom Chi) with Terry's note "I need QUOTES from each or I can't include them
-       on the website!!!!" Deliberately NOT implemented here: those are quotes
-       attributed to named public figures that IDUM does not yet have permission
-       or actual quotes for, so nothing should be published under their names
-       until Terry/IDUM secures the real quotes. -->
-<section class="content-section alt" id="contact-form-section">
+  <!-- Testimonials deferred until after launch: each person's permission and a
+       real quote are required before anything is published under their name.
+       See Linear WIL-7. -->
+<section class="content-section" id="contact-form-section">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">Connect with <em>Terrance P. Long CD.</em></h2>
@@ -1145,7 +1074,6 @@
       <a href="#threat">The Threat</a>
       <a href="#founder">Our Founder</a>
       <a href="#projects">Projects</a>
-      <a href="#experts">Experts</a>
       <a href="#action">Ocean Action #21356</a>
       <a href="#contact-form-section">Contact</a>
     </div>
