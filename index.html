@@ -26,7 +26,7 @@
     (no id)               — Footer with nav links
 
   CONVENTIONS:
-  - <em> tags in section titles render as accent-colored (sea-green), not italic
+  - <em> tags in headings inherit the heading colour (no two-colour headings), not italic
   - onclick handlers call functions defined in script.js
   - .content-section.alt toggles off-white background for visual rhythm
   - .project-row.reverse uses CSS direction:rtl trick to flip image/text order
@@ -80,10 +80,10 @@
     <li><a href="#founder">Founder</a></li>
     <li><a href="#action">Ocean Action</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#documentaries">Documentaries</a></li>
-    <li><a href="#operations">Operations</a></li>
-    <li><a href="#accreditations">Accreditations</a></li>
     <li><a href="#istab">Advisory Board</a></li>
+    <li><a href="#documentaries">Documentaries</a></li>
+    <li><a href="#operations">Training</a></li>
+    <li><a href="#accreditations">Accreditations</a></li>
     <li><a href="#services">Services</a></li>
     <li><button class="btn-nav" onclick="scrollToContact()">Contact</button></li>
   </ul>
@@ -114,11 +114,19 @@
         Safeguarding the world's oceans, ecosystems, and communities by addressing the hidden threats posed by decades of dumping millions of tons of chemical, conventional, and radiological weapons in the marine environment.
       </p>
       <blockquote class="hero-quote">
-        "Underwater munitions will make ocean plastic look like a lollipop." — George Orbelian, Project Kaisei
+        <p>“The weapons of past wars should not threaten future generations. It is time to safely eradicate munitions and their harmful constituents from our seas.”</p>
+        <cite>— Terrance P. Long, CD</cite>
       </blockquote>
       <div class="hero-actions">
         <button class="btn-primary" onclick="openContact('support')">Support Ocean Action <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></button>
         <button class="btn-outline" onclick="openContact('speaking')">Book As Speaker</button>
+        <!-- Ocean Action endorsement marks in their own colours (Oct 4 call):
+             Communities of Ocean Action, SDG 14, United Nations. -->
+        <div class="hero-endorse">
+          <img src="images/partners/ocean-action-white.png" alt="Communities of Ocean Action" class="endorse-coa" width="331" height="79">
+          <img src="images/partners/sdg14.png" alt="UN Sustainable Development Goal 14: Life Below Water" class="endorse-square" width="200" height="200">
+          <img src="images/partners/un.png" alt="United Nations" class="endorse-square" width="220" height="200">
+        </div>
       </div>
     </div>
     <div class="hero-visual">
@@ -155,13 +163,17 @@
           <img src="images/partners/Nato_logo.svg" alt="NATO" class="partner-nato">
           <!-- All marks share the white/70% treatment. HELCOM and SDG 13/14 use
                white knockouts of their square icons (*-white.png) so they match
-               the wordmarks; full-colour versions stay in #accreditations. WIL-13 -->
-          <img src="images/partners/ocean-action-white.png" alt="Communities of Ocean Action, Sustainable Development Goal 14" class="partner-ocean-action" width="331" height="79">
+               the wordmarks; full-colour versions stay in #accreditations. The
+               Communities of Ocean Action mark sits beside the CTA in colour. -->
           <img src="images/partners/helcom-white.png" alt="Helsinki Commission (HELCOM)" class="partner-knockout" width="200" height="200">
           <img src="images/partners/sdg13-white.png" alt="UN Sustainable Development Goal 13: Climate Action" class="partner-knockout" width="219" height="200">
           <img src="images/partners/sdg14-white.png" alt="UN Sustainable Development Goal 14: Life Below Water" class="partner-knockout" width="187" height="200">
         </div>
       </div>
+      <figure class="hero-photo">
+        <img src="images/terry-sylvia-earle.jpg" alt="Terrance P. Long with Dr. Sylvia Earle at United Nations World Ocean Day" width="800" height="1066">
+        <figcaption>Terry and Sylvia at the United Nations World Ocean Day</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -325,9 +337,9 @@
       </figure>
       <figure class="founder-photo">
         <div class="founder-photo-frame">
-          <img loading="lazy" src="images/terry-sylvia-earle.jpg" alt="Terrance with Dr. Sylvia Earle at United Nations World Ocean Day" style="object-position: center 30%;" width="800" height="1066">
+          <img loading="lazy" src="images/idum-nato-polish-deck.webp" alt="Team lowering survey equipment by crane from the deck of the Polish research vessel" width="1086" height="724">
         </div>
-        <figcaption>Terrance with Dr. Sylvia Earle, TIME Magazine Hero of the Planet at United Nations World Ocean Day</figcaption>
+        <figcaption>NATO SPS MODUM Program — lowering survey equipment from the deck of the Polish research vessel</figcaption>
       </figure>
     </div>
   </div>
@@ -347,7 +359,7 @@
           <h2 class="section-title">United Nations <em>Ocean Action #21356</em></h2>
         </div>
         <p class="threat-text" style="margin-bottom: 24px;">
-          UN Ocean Action #21356 represents the formal international commitment to address underwater munitions on a global scale. Led by Terrance P. Long CD., this initiative provides the framework for cooperation across national boundaries, bringing public and private sectors together to implement sustainable solutions.
+          <strong>UN Ocean Action #21356</strong> represents the formal international commitment to address underwater munitions on a global scale. Led by Terrance P. Long CD., this initiative provides the framework for cooperation across national boundaries, bringing public and private sectors together to implement sustainable solutions.
         </p>
         <div class="action-cta-row">
           <button class="btn-primary" onclick="openContact('support')">Support This Initiative <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></button>
@@ -410,7 +422,7 @@
         <div class="journey-step">
           <div class="journey-marker">1</div>
           <div class="journey-label">Support</div>
-          <div class="journey-desc">Back Ocean Action #21356 — come together to cooperate globally</div>
+          <div class="journey-desc">Back <strong>Ocean Action #21356</strong> — come together to cooperate globally</div>
         </div>
         <div class="journey-step">
           <div class="journey-marker">2</div>
@@ -520,12 +532,196 @@
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════════
+     ADVISORY BOARD (ISTAB)
+     Text from "ISTAB section materials - Advisory Board.docx" (Craig, Sep 30).
+     Members: one .istab-member block per person. To add someone, copy a
+     block; to remove someone, delete their block. Leave .istab-affil out
+     if there is no affiliation. (WIL-9)
+     Replaces the archived "World-Renowned Collaborators" section
+     (archive/experts-section.html, WIL-7).
+     ════════════════════════════════════════════════════════════════════ -->
+<section class="content-section" id="istab">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">International Scientific and Technology <em>Advisory Board</em></h2>
+    </div>
+    <p class="threat-text istab-intro">
+      Chaired by Terry, the International Scientific and Technology Advisory Board (ISTAB) on Underwater Munitions consists of diplomats, scientists, academics, and munitions experts representing more than 10 nationalities. It provides independent advice on scientific, technical, and organizational aspects in response to sea-dumped munitions, and promotes dialogue and multilateral contacts among interested governments, international organizations, academic institutions, and the global community.
+    </p>
+    <p class="threat-text istab-intro">
+      The ISTAB was originally appointed to IDUM at the request of the Foreign Minister of Lithuania during the 2010 Conference of States Parties of the Organisation for the Prohibition of Chemical Weapons (OPCW). Members work in their personal capacity and meet twice annually in The Hague, The Netherlands.
+    </p>
+    <div class="istab-grid">
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/terrance-long.jpg" alt="" width="160" height="160">
+        <div>
+          <div class="istab-name">Mr. Terrance P. Long, CD</div>
+          <div class="istab-affil">Chairman</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/thomas-stock.jpg" alt="" width="240" height="240">
+        <div>
+          <div class="istab-name">Dr. Thomas Stock</div>
+        <div class="istab-affil">DYNSAFE, Germany (Co-Chairman)</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/andrzej-jagusiewicz.jpg" alt="" width="160" height="160">
+        <div>
+          <div class="istab-name">Dr. Andrzej Jagusiewicz</div>
+        <div class="istab-affil">Former Chief Inspector of Environmental Protection, Poland; Co-Chairman of IDUM</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/albert-marshall.jpg" alt="" width="168" height="168">
+        <div>
+          <div class="istab-name">Albert Marshall</div>
+        <div class="istab-affil">Friends and Elders Advisor, Eskasoni First Nations</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/chelbylynn-milton.jpg" alt="" width="240" height="240">
+        <div>
+          <div class="istab-name">Chelbylynn Milton</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/peter-courtney-green.jpg" alt="" width="240" height="240">
+        <div>
+          <div class="istab-name">Retired Col. Peter Courtney-Green</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/jacek-beldowski.jpg" alt="" width="160" height="160">
+        <div>
+          <div class="istab-name">Dr. Jacek Beldowski</div>
+        <div class="istab-affil">Institute of Oceanology, Polish Academy of Sciences, Marine Chemistry &amp; Ecology</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/kela-weber.jpg" alt="" width="137" height="137">
+        <div>
+          <div class="istab-name">Dr. Kela Weber</div>
+        <div class="istab-affil">Associate Professor, Royal Military College of Canada</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/elisa-perpignan.jpg" alt="" width="160" height="160">
+        <div>
+          <div class="istab-name">Ms. Elisa Perpignan MSc.</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <div class="istab-avatar istab-avatar--initials" aria-hidden="true">CH</div>
+        <div>
+          <div class="istab-name">Ms. Cherylynn Hunt BSc., MES.</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/james-porter.jpg" alt="" width="240" height="240">
+        <div>
+          <div class="istab-name">Dr. James W. Porter</div>
+        <div class="istab-affil">Josiah Meigs Professor of Ecology, Emeritus, Odum School of Ecology, University of Georgia</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/janina-barsiene.jpg" alt="" width="240" height="240">
+        <div>
+          <div class="istab-name">Prof. Dr. Janina Baršienė</div>
+        <div class="istab-affil">Lead Scientist, Head of Genotoxicology Laboratory, Institute of Ecology of Nature Research Center, Vilnius, Lithuania</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/valentine-nzengung.jpg" alt="" width="240" height="240">
+        <div>
+          <div class="istab-name">Dr. Valentine Nzengung</div>
+        <div class="istab-affil">Founder, CEO &amp; CTO, MuniRem Environmental</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/dominique-anelli.jpg" alt="" width="137" height="137">
+        <div>
+          <div class="istab-name">Mr. Dominique Anelli</div>
+        <div class="istab-affil">Former military officer</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/alex-souchen.jpg" alt="" width="240" height="240">
+        <div>
+          <div class="istab-name">Dr. Alex Souchen</div>
+        <div class="istab-affil">Social Sciences and Humanities Research Council (SSHRC) Postdoctoral Fellow, Wilfrid Laurier University</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/james-barton.jpg" alt="" width="160" height="160">
+        <div>
+          <div class="istab-name">Mr. James Barton</div>
+        <div class="istab-affil">President, Underwater Ordnance Recovery</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/noah-al-malt.jpg" alt="" width="240" height="240">
+        <div>
+          <div class="istab-name">Mr. Noah Ameer Al-Malt</div>
+        <div class="istab-affil">Legal Consultant</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/george-orbelian.jpg" alt="" width="210" height="210">
+        <div>
+          <div class="istab-name">George Orbelian</div>
+        <div class="istab-affil">Board member, Buckminster Fuller Institute and Walter Munk Foundation for the Oceans</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/christine-ward-paige.jpg" alt="" width="240" height="240">
+        <div>
+          <div class="istab-name">Christine Ward-Paige, PhD</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/jared-baribeau.jpg" alt="" width="240" height="240">
+        <div>
+          <div class="istab-name">Mr. Jared Baribeau</div>
+        <div class="istab-affil">Founder &amp; CTO, Demine Robotics</div>
+        </div>
+      </div>
+      <div class="istab-member">
+        <img class="istab-avatar" loading="lazy" src="images/istab/thomas-goreau.jpg" alt="" width="240" height="240">
+        <div>
+          <div class="istab-name">Thomas J. F. Goreau, PhD</div>
+        <div class="istab-affil">President, Global Coral Reef Alliance</div>
+        </div>
+      </div>
+    </div>
+    <!-- Field photos from underwatermunitions.org/advisory-board/ (300px
+         originals, so shown as small thumbnails). -->
+    <div class="istab-field-label">In the field</div>
+    <div class="istab-field">
+      <img loading="lazy" src="images/istab/field/ship.webp" alt="Survey vehicles on a research vessel deck" width="300" height="141">
+      <img loading="lazy" src="images/istab/field/on-deck.webp" alt="Team at work on deck" width="300" height="165">
+      <img loading="lazy" src="images/istab/field/rov-deploy.webp" alt="Deploying a remotely operated vehicle" width="300" height="196">
+      <img loading="lazy" src="images/istab/field/rov-deploy2.webp" alt="Team preparing a survey vehicle in a small boat" width="300" height="164">
+      <img loading="lazy" src="images/istab/field/rov-live.webp" alt="Live ROV camera view of a munitions site" width="300" height="197">
+      <img loading="lazy" src="images/istab/field/rov-live3.webp" alt="Monitoring a live ROV feed" width="300" height="210">
+      <img loading="lazy" src="images/istab/field/sample1.webp" alt="Holding a sediment core sample" width="300" height="218">
+      <img loading="lazy" src="images/istab/field/sample2.webp" alt="Labelled sediment sample" width="300" height="165">
+      <img loading="lazy" src="images/istab/field/sample3.webp" alt="Instrument frame lowered into the sea" width="300" height="220">
+      <img loading="lazy" src="images/istab/field/sample4.webp" alt="Sampling team in protective suits" width="300" height="163">
+      <img loading="lazy" src="images/istab/field/nato-scool.webp" alt="NATO Summer School classroom" width="300" height="213">
+      <img loading="lazy" src="images/istab/field/cat-amrs.webp" alt="Tracked survey vehicle on deck" width="300" height="231">
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════
      DOCUMENTARIES
      Centered flex grid of 7 film thumbnails (4 on top, 3 centered below).
      Some cells link to external sites (underwatermunitions.org, NFB, TV5).
      Films 4-5 have no links yet. Images stored in images/films/.
      ════════════════════════════════════════════════════════════════════ -->
-<section class="content-section" id="documentaries">
+<section class="content-section alt" id="documentaries">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">Award-Winning Documentaries and <em>International Broadcasts</em></h2>
@@ -571,31 +767,48 @@
      Reuses .project-row / .project-row.reverse layout from Projects section.
      2 operation entries (simpler than projects — no achievements block).
      ════════════════════════════════════════════════════════════════════ -->
-<section class="content-section alt" id="operations">
+<section class="content-section" id="operations">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Field Operations and <em>Training</em></h2>
+      <h2 class="section-title">IDUM Training</h2>
     </div>
-    <!-- Operations photo: Terry's Sep 14 replacement, taken directly from
-         "IDUM Website Changes 02-09-2026.docx" (446x300, the only copy; swap
-         in the original if Terry sends it). Training & Education keeps the
-         original summer-school photo. WIL-11 -->
+    <!-- Oct 4 call with Terry: three training photos with his captions.
+         IDUM hosted the 2016 NATO Summer School at NSCC; don't imply NATO
+         is the sole accreditor. Photos 1-2 are low-resolution copies from
+         Terry's Sep 14 doc; swap in originals when he sends them. -->
     <div class="projects-list">
 
-      <!-- Operation 1 -->
+      <!-- Training 1: Bedford Basin sampling -->
       <div class="project-row">
         <div class="project-img-wrap">
-          <img loading="lazy" src="images/operations/field-ops-water-sample.jpg" alt="Team member in gloves testing a water sample on a small boat" width="446" height="300">
+          <img loading="lazy" src="images/operations/field-ops-water-sample.jpg" alt="Student in gloves taking a water sample on a small boat in the Bedford Basin" width="446" height="300">
           <div class="project-img-overlay"></div>
         </div>
         <div class="project-content">
           <div class="project-title">Operations</div>
-          <p class="project-desc">Team member tests a water sample.</p>
+          <p class="project-desc">Student taking samples at the Bedford Basin.</p>
         </div>
       </div>
 
-      <!-- Operation 2 -->
+      <!-- Training 2: NSCC NATO Summer School, 2016 -->
       <div class="project-row reverse">
+        <div class="project-img-wrap">
+          <img loading="lazy" src="images/operations/nscc-summer-school-2016.webp" alt="Two people shaking hands over a certificate in front of a display of munitions training aids" width="672" height="672" style="object-position: center top;">
+          <div class="project-img-overlay"></div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-meta-year">2016</span>
+            <span class="project-meta-sep">|</span>
+            <span class="project-meta-loc">NSCC Dartmouth Waterfront Campus</span>
+          </div>
+          <div class="project-title">NATO Summer School on Sea-Dumped Chemical Weapons</div>
+          <p class="project-desc">Nova Scotia Community College (NSCC) Dartmouth Waterfront Campus: NATO Summer School on Sea-Dumped Chemical Weapons, hosted by the International Dialogue on Underwater Munitions (IDUM) in 2016. Terrance, as Partner and Co-Director of the NATO Science for Peace and Security MODUM Program, provided the training aids.</p>
+        </div>
+      </div>
+
+      <!-- Training 3: classroom -->
+      <div class="project-row">
         <div class="project-img-wrap">
           <img loading="lazy" src="images/student-nato-summer-school.jpg" alt="Student at NATO SPS Summer School on sea-dumped chemical weapons" width="1024" height="768">
           <div class="project-img-overlay"></div>
@@ -606,7 +819,7 @@
             <span class="project-meta-sep">|</span>
             <span class="project-meta-loc">NATO SPS Summer School</span>
           </div>
-          <div class="project-title">Training & Education</div>
+          <div class="project-title">Training &amp; Education</div>
           <p class="project-desc">NATO SPS Summer School students complete 40 hours of intensive training spanning toxicology, risk analysis, underwater vehicle survey techniques, and chemical release monitoring at munitions sites.</p>
         </div>
       </div>
@@ -621,7 +834,7 @@
      rows of partner logos. Logos stored in images/partners/. On mobile
      (<900px) columns stack vertically.
      ════════════════════════════════════════════════════════════════════ -->
-<section class="content-section" id="accreditations">
+<section class="content-section alt" id="accreditations">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">Global <em>Recognition</em> & Collaboration</h2>
@@ -632,7 +845,7 @@
     <div class="accred-table">
       <!-- Section 1: International Accreditations -->
       <div class="accred-section">
-        <div class="accred-col-header">International accreditations</div>
+        <div class="accred-col-header">International accreditations and affiliations</div>
         <div class="accred-logos">
           <div class="accred-logo-item"><img loading="lazy" src="images/partners/un.png" alt="United Nations" class="accred-logo" width="220" height="200"></div>
           <div class="accred-logo-item"><img loading="lazy" src="images/partners/nato.png" alt="NATO" class="accred-logo" width="400" height="200"></div>
@@ -688,7 +901,7 @@
          11-card grid of Terrance P. Long's distinguished honors, awards,
          and leadership roles. Cards with photos use images/honors/*.jpg
          (400×~300px); cards without photos use a Lucide icon placeholder
-         in sea-green. Grid: 3-col desktop / 2-col tablet / 1-col mobile.
+         in the accent blue. Grid: 3-col desktop / 2-col tablet / 1-col mobile.
          ──────────────────────────────────────────────────────────────── -->
     <div class="honors-subsection">
       <div class="honors-header">
@@ -754,8 +967,8 @@
           <div class="honor-media honor-media-logo"><img loading="lazy" src="images/partners/isa-color.png" alt="International Seabed Authority (ISA) crest" width="200" height="200"></div>
           <div class="honor-body">
             <span class="honor-label">Ocean Governance · Kingston, Jamaica</span>
-            <h4 class="honor-name">International Seabed Authority (ISA) — IWG-ENV Contributor</h4>
-            <p class="honor-desc">Terrance advises the ISA's Marine Environment Working Group on the overlooked threat of chemical weapons encountered during deep-sea mining operations, helping shape the world's first regulatory framework for the deep seabed.</p>
+            <h4 class="honor-name">International Seabed Authority (ISA) — Observer</h4>
+            <p class="honor-desc">Terrance is an observer to the ISA Marine Environmental Working Group, raising the overlooked threat of chemical weapons encountered during deep-sea mining operations.</p>
           </div>
         </article>
 
@@ -764,7 +977,7 @@
           <div class="honor-body">
             <span class="honor-label">Academic · Gdynia, Poland</span>
             <h4 class="honor-name">Scientific Committee — Maritime Security Yearbook, Polish Naval Academy</h4>
-            <p class="honor-desc">Appointed to the Polish Naval Academy's Maritime Security Yearbook Scientific Committee, Terrance peer-reviews international research on chemical weapons and co-organises naval dialogues on eliminating underwater ordnance.</p>
+            <p class="honor-desc">Appointed to the Scientific Committee of the Polish Naval Academy's Maritime Security Yearbook, Terrance peer-reviews international research on chemical weapons and co-organises naval dialogues on eliminating underwater ordnance.</p>
           </div>
         </article>
 
@@ -773,7 +986,7 @@
           <div class="honor-body">
             <span class="honor-label">Award · Government of Canada, 2020</span>
             <h4 class="honor-name">Royal Canadian Mint — Ocean Legacy Coin</h4>
-            <p class="honor-desc">One of only 98 ever minted and never sold, the Government of Canada's Ocean Legacy Coin was presented to Terrance on World Oceans Day 2020, recognising him as a true ocean champion.</p>
+            <p class="honor-desc">One of only 99 ever minted and never circulated, the Government of Canada's Ocean Legacy Coin was presented to Terrance on World Oceans Day 2020, recognising him as a true ocean champion.</p>
           </div>
         </article>
 
@@ -809,105 +1022,6 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════════════════════
-     ADVISORY BOARD (ISTAB)
-     Text from "ISTAB section materials - Advisory Board.docx" (Craig, Sep 30).
-     Members: one .istab-member block per person. To add someone, copy a
-     block; to remove someone, delete their block. Leave .istab-affil out
-     if there is no affiliation. (WIL-9)
-     Replaces the archived "World-Renowned Collaborators" section
-     (archive/experts-section.html, WIL-7).
-     ════════════════════════════════════════════════════════════════════ -->
-<section class="content-section alt" id="istab">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">International Scientific and Technology <em>Advisory Board</em></h2>
-    </div>
-    <p class="threat-text istab-intro">
-      Chaired by Terry, the International Scientific and Technology Advisory Board (ISTAB) on Underwater Munitions consists of diplomats, scientists, academics, and munitions experts representing more than 10 nationalities. It provides independent advice on scientific, technical, and organizational aspects in response to sea-dumped munitions, and promotes dialogue and multilateral contacts among interested governments, international organizations, academic institutions, and the global community.
-    </p>
-    <p class="threat-text istab-intro">
-      The ISTAB was originally appointed to IDUM at the request of the Foreign Minister of Lithuania during the 2010 Conference of States Parties of the Organisation for the Prohibition of Chemical Weapons (OPCW). Members work in their personal capacity and meet twice annually in The Hague, The Netherlands.
-    </p>
-    <div class="istab-grid">
-      <div class="istab-member">
-        <div class="istab-name">Dr. Thomas Stock</div>
-        <div class="istab-affil">DYNSAFE, Germany (Co-Chairman)</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Dr. Andrzej Jagusiewicz</div>
-        <div class="istab-affil">Former Chief Inspector of Environmental Protection, Poland; Co-Chairman of IDUM</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Albert Marshall</div>
-        <div class="istab-affil">Friends and Elders Advisor, Eskasoni First Nations</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Chelbylynn Milton</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Retired Col. Peter Courtney-Green</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Dr. Jacek Beldowski</div>
-        <div class="istab-affil">Institute of Oceanology, Polish Academy of Sciences, Marine Chemistry &amp; Ecology</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Dr. Kela Weber</div>
-        <div class="istab-affil">Associate Professor, Royal Military College of Canada</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Ms. Elisa Perpignan MSc.</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Ms. Cherylynn Hunt BSc., MES.</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Dr. James W. Porter</div>
-        <div class="istab-affil">Josiah Meigs Professor of Ecology, Emeritus, Odum School of Ecology, University of Georgia</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Prof. Dr. Janina Baršienė</div>
-        <div class="istab-affil">Lead Scientist, Head of Genotoxicology Laboratory, Institute of Ecology of Nature Research Center, Vilnius, Lithuania</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Dr. Valentine Nzengung</div>
-        <div class="istab-affil">Founder, CEO &amp; CTO, MuniRem Environmental</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Mr. Dominique Anelli</div>
-        <div class="istab-affil">Former military officer</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Dr. Alex Souchen</div>
-        <div class="istab-affil">Social Sciences and Humanities Research Council (SSHRC) Postdoctoral Fellow, Wilfrid Laurier University</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Mr. James Barton</div>
-        <div class="istab-affil">President, Underwater Ordnance Recovery</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Mr. Noah Ameer Al-Malt</div>
-        <div class="istab-affil">Legal Consultant</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">George Orbelian</div>
-        <div class="istab-affil">Board member, Buckminster Fuller Institute and Walter Munk Foundation for the Oceans</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Christine Ward-Paige, PhD</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Mr. Jared Baribeau</div>
-        <div class="istab-affil">Founder &amp; CTO, Demine Robotics</div>
-      </div>
-      <div class="istab-member">
-        <div class="istab-name">Thomas J. F. Goreau, PhD</div>
-        <div class="istab-affil">President, Global Coral Reef Alliance</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ════════════════════════════════════════════════════════════════════
      PROFESSIONAL SERVICES

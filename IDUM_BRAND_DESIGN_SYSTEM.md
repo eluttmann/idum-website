@@ -24,7 +24,7 @@ IDUM positions itself as the authoritative global voice on underwater munitions 
 
 ## Color System
 
-The site uses a deliberate **two-color brand: Deep Ocean (blue) + Sea Green** — on light backgrounds with dark hero/CTA/footer anchors. **There is no gold and no red/danger color.** Saturated/neon colors are avoided entirely.
+The site uses **navy + one ocean-blue accent + slate gray** — on light backgrounds with dark hero/CTA/footer anchors. Sea green was retired on Oct 4, 2026 (Terry: it didn't read as Ocean Action). **There is no green, gold or red/danger color.** Saturated/neon colors are avoided entirely. Partner and SDG logos keep their own official colours.
 
 ### Palette (from `:root` in `styles.css`)
 
@@ -32,8 +32,9 @@ The site uses a deliberate **two-color brand: Deep Ocean (blue) + Sea Green** �
 |-------|-----|-------|
 | `--deep-ocean` | `#0B2A3C` | Primary dark — hero, mission strip, CTA, footer, headings |
 | `--ocean-blue` | `#1F5E7A` | Secondary blue accent |
-| `--sea-green` | `#2C8C6B` | **Primary accent** — CTAs, links, eyebrows, `<em>` title words |
-| `--sea-green-soft` | `#34A07A` | Hover states, accent on dark backgrounds |
+| `--accent` | `#1F5E7A` | **Primary accent** — buttons, links, icons, bullets (7:1 on white) |
+| `--accent-hover` | `#174A61` | Hover/pressed state for accent fills and links |
+| `--accent-light` | `#7FB8D4` | Accent on dark backgrounds (hero, CTA, footer) |
 | `--light-ocean` | `#E8F3F8` | Tint / hover wash |
 | `--charcoal` | `#1E1E1E` | Body text |
 | `--slate` | `#5F6B73` | Secondary text, metadata |
@@ -46,7 +47,7 @@ Additional anchors: footer background `#030B12`; CTA gradient `--deep-ocean → 
 ### Color ratios (approximate, as built)
 - Light backgrounds (white / off-white) dominate the content body.
 - `--deep-ocean` anchors the hero, mission strip, CTA, and footer.
-- `--sea-green` / `--sea-green-soft` carry all interactive emphasis and accent words.
+- `--accent` carries all interactive emphasis; `--slate` carries secondary labels (eyebrows, role lines, metadata).
 
 ### Gradients in use
 ```css
@@ -81,7 +82,7 @@ font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 | Body large | 17–18px | 400 | line-height 1.6–1.75 |
 | Body | 16px | 400 | `--slate` for prose, line-height ~1.85 |
 | Micro-header | 14px | 600 | **sentence case**, letter-spacing 0, `--deep-ocean`. Labels a group/section or form field that is *read* |
-| Overline tag | 12px | 700 | uppercase, letter-spacing 1.4px, `--sea-green-ink`. Dates, pills, eyebrows that are *scanned* |
+| Overline tag | 12px | 700 | uppercase, letter-spacing 1.4px, `--slate`. Dates, pills, eyebrows that are *scanned* |
 | Nav | 13px | 500–600 | uppercase for logo/nav |
 
 ### Label system (two roles, don't blur them)
@@ -90,10 +91,10 @@ Small text serves one of two jobs — choose by intent, not by size:
 - **Micro-header** (`--label-micro-*` tokens) — sentence case, readable. Used when the label *explains* a group/section or names a form field: `.accred-col-header`, `.project-achievements-title`, `.contact-affil-title`, `.action-box-title`, `.form-label`.
 - **Overline tag** (`--label-overline-*` tokens) — refined small-caps, orienting. Used for metadata that is glanced at: `.project-meta` (dates/region), `.honor-label` (pills), `.founder-tag`, `.service-eyebrow`.
 
-Buttons, tabs, and dark-surface labels keep intentional all-caps and are outside this system. `--sea-green-ink` (`#1F6E54`) is the AA-safe green for small text on light surfaces — plain `--sea-green` fails contrast below ~16px.
+Buttons, tabs, and dark-surface labels keep intentional all-caps and are outside this system. Small labels use `--slate` (`#5F6B73`, AA on white).
 
 ### The `<em>` accent convention
-Inside `.hero-title` and `.section-title`, `<em>` is **not italic** — it renders as `font-style: normal` in `--sea-green` (or `--sea-green-soft` on dark). This is the standard mechanism for the accent word in every section heading.
+**Headings are one colour** (Oct 4, 2026): no two-colour headings. `<em>` inside `.hero-title` / `.section-title` renders `font-style: normal` and inherits the heading colour.
 
 ```html
 <h2 class="section-title">The <em>Silent Threat</em> Beneath Our Oceans</h2>
@@ -136,7 +137,7 @@ Inside `.hero-title` and `.section-title`, `<em>` is **not italic** — it rende
   - Nav (scrolled): `0 2px 16px rgba(0,0,0,0.06)`
   - Primary button: `0 4px 16px rgba(44,140,107,0.3)` → `0 6px 24px rgba(44,140,107,0.4)` on hover
 - Transitions: 0.2s–0.3s ease.
-- Interactive lift: buttons `translateY(-1px)`, cards `translateY(-3px to -4px)` on hover, with the border shifting to `--sea-green`.
+- Interactive lift: buttons `translateY(-1px)`, cards `translateY(-3px to -4px)` on hover, with the border shifting to `--accent`.
 - A subtle `pulse` keyframe animates the hero eyebrow dot.
 
 ---
@@ -181,7 +182,7 @@ Inside `.hero-title` and `.section-title`, `<em>` is **not italic** — it rende
 
 ## Accessibility
 
-- Maintain WCAG AA contrast across the two-color palette on white/off-white and on `--deep-ocean`.
+- Maintain WCAG AA contrast across the navy / blue / gray palette on white/off-white and on `--deep-ocean`.
 - Preserve visible focus states on all interactive elements.
 - Respect `@media (prefers-reduced-motion: reduce)`.
 - Provide `alt` text on imagery and labels on form fields.
@@ -200,12 +201,12 @@ Inside `.hero-title` and `.section-title`, `<em>` is **not italic** — it rende
 ## Brand Don'ts
 
 1. Don't add a second font family — Public Sans only.
-2. Don't introduce gold, red, neon, or saturated colors — the brand is Deep Ocean + Sea Green.
+2. Don't introduce gold, red, neon, or saturated colors — the brand is navy + ocean blue + slate gray.
 3. Don't use pill-shaped buttons (6px radius); pills are for chips/tags only.
 4. Don't use playful illustration or stock-photo clichés — documentary imagery and data only.
 5. Don't overcrowd — whitespace is part of the brand.
 6. Don't animate gratuitously — motion should inform.
-7. Avoid left-edge colored border accents on cards/highlights (use a low-opacity background wash instead). *Legacy exception to revisit: `.hero-quote` currently uses a `border-left` accent.*
+7. Avoid left-edge colored border accents on cards/highlights (use a low-opacity background wash instead).
 
 ---
 
@@ -215,8 +216,9 @@ Inside `.hero-title` and `.section-title`, `<em>` is **not italic** — it rende
 :root {
   --deep-ocean:     #0B2A3C;
   --ocean-blue:     #1F5E7A;
-  --sea-green:      #2C8C6B;
-  --sea-green-soft: #34A07A;
+  --accent:         #1F5E7A;
+  --accent-hover:   #174A61;
+  --accent-light:   #7FB8D4;
   --light-ocean:    #E8F3F8;
   --charcoal:       #1E1E1E;
   --slate:          #5F6B73;
