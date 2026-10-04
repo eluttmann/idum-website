@@ -385,20 +385,10 @@ nav.menu-open .nav-toggle .icon-close { display: block; }
   height: 50px;
   filter: none;
 }
-/* Full-colour square marks (HELCOM, SDG 13/14): no white-out filter,
-   slightly smaller than wordmarks so they sit at the same optical size. */
-.hero-partners-logos img.partner-color {
-  height: 44px;
-  filter: none;
-  border-radius: 4px;
-  opacity: 0.9;
-}
-/* Already white (transparent copy), so no filter needed */
-.hero-partners-logos img.partner-ocean-action {
-  height: 46px;
-  filter: none;
-  opacity: 0.85;
-}
+/* White knockouts of the HELCOM and SDG 13/14 icons, and the transparent
+   Ocean Action wordmark: same white filter + opacity as the other marks. */
+.hero-partners-logos img.partner-knockout { height: 48px; }
+.hero-partners-logos img.partner-ocean-action { height: 36px; }
 
 /* ── STATS CARD — visionOS-style Glassmorphism ──
    Frosted glass effect via backdrop-filter: blur(40px) saturate(1.8).
@@ -1355,8 +1345,8 @@ footer {
   .hero-partners-logos img.partner-opcw { height: 34px; }
   .hero-partners-logos img.partner-isa { height: 36px; }
   .hero-partners-logos img.partner-nato { height: 36px; }
-  .hero-partners-logos img.partner-color { height: 34px; }
-  .hero-partners-logos img.partner-ocean-action { height: 36px; }
+  .hero-partners-logos img.partner-knockout { height: 36px; }
+  .hero-partners-logos img.partner-ocean-action { height: 28px; }
   .stats-card { padding: 24px; }
   .stat-num { font-size: 32px; }
   .stats-grid--text .stat-num { font-size: 22px; }
