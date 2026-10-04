@@ -442,21 +442,23 @@ nav.menu-open .nav-toggle .icon-close { display: block; }
   text-transform: uppercase; color: rgba(255, 255, 255, 0.7);
   margin-top: 8px;
 }
-/* Text headlines ("Thousands", "Undisclosed") instead of short figures:
-   smaller headline, readable sentence-case caption, equal-height tiles. */
+/* Text-headline tiles (WIL-23): a short phrase as the headline and a
+   caption beneath it, left-aligned on a shared top edge so the four
+   headlines line up across each row. Equal-height tiles. */
 .stats-grid--text { grid-auto-rows: 1fr; }
 .stats-grid--text .stat-item {
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 22px 12px; min-width: 0;
+  display: flex; flex-direction: column; justify-content: flex-start;
+  text-align: left; padding: 22px 20px 24px; min-width: 0;
 }
 .stats-grid--text .stat-num {
-  font-size: clamp(19px, 1.95vw, 26px); line-height: 1.1; letter-spacing: -0.5px;
+  font-size: clamp(18px, 1.55vw, 22px); line-height: 1.2;
+  letter-spacing: -0.3px; text-wrap: balance;
 }
 .stats-grid--text .stat-label {
-  font-size: 12.5px; font-weight: 500; line-height: 1.45;
+  font-size: 13px; font-weight: 400; line-height: 1.5;
   letter-spacing: 0; text-transform: none;
-  color: rgba(255, 255, 255, 0.8);
-  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 8px;
 }
 
 /* ══════════════════════════════════════════════════════════════════
@@ -1323,6 +1325,13 @@ footer {
   font-size: 12px; color: rgba(255, 255, 255, 0.35);
 }
 
+/* Hero: stack text above the stats card below 1180px, so the four
+   headline tiles keep enough width (they were ~150px wide at 1024px). */
+@media (max-width: 1180px) {
+  .hero-content { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { max-width: 760px; }
+}
+
 /* ══════════════════════════════════════════════════════════════════
    RESPONSIVE — LAYOUT, NAV, HERO, SPACING (900px)
    Handles nav, hero, section padding, mission strip, footer.
@@ -1349,7 +1358,8 @@ footer {
   .hero-partners-logos img.partner-ocean-action { height: 28px; }
   .stats-card { padding: 24px; }
   .stat-num { font-size: 32px; }
-  .stats-grid--text .stat-num { font-size: 22px; }
+  .stats-grid--text .stat-num { font-size: 18px; }
+  .stats-grid--text .stat-item { padding: 18px 16px 20px; }
   .content-section { padding: 72px 24px; }
   .threat-grid { grid-template-columns: 1fr; gap: 48px; }
   .threat-stats { grid-template-columns: 1fr; }
