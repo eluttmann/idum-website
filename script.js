@@ -201,3 +201,39 @@ function handleSubmit(e) {
       errorEl.classList.add('visible');
     });
 }
+
+// ── In-the-field carousel (Advisory Board) ─────────────────────────────
+// Native scroll-snap track; arrows move one slide and wrap at the ends.
+// Auto-advances every 5s, pausing while hovered, focused or touched, while
+// off-screen, or when the tab is hidden. No auto-advance for
+// prefers-reduced-motion.
+(function initFieldCarousel() {
+  const track = document.querySelector('.field-track');
+  if (!track) return;
+  const step = () => {
+    const slide = track.querySelector('.field-slide');
+    return slide ? slide.getBoundingClientRect().width + 14 : track.clientWidth;
+  };
+  const atEnd = () => track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+  const move = (dir) => {
+    if (dir > 0 && atEnd()) track.scrollTo({ left: 0 });
+    else if (dir < 0 && track.scrollLeft <= 4) track.scrollTo({ left: track.scrollWidth });
+    else track.scrollBy({ left: dir * step() });
+  };
+  document.querySelector('.field-nav--prev').addEventListener('click', () => move(-1));
+  document.querySelector('.field-nav--next').addEventListener('click', () => move(1));
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const carousel = track.closest('.field-carousel');
+  let paused = false, visible = false;
+  carousel.addEventListener('mouseenter', () => { paused = true; });
+  carousel.addEventListener('mouseleave', () => { paused = false; });
+  carousel.addEventListener('focusin', () => { paused = true; });
+  carousel.addEventListener('focusout', () => { paused = false; });
+  track.addEventListener('touchstart', () => { paused = true; }, { passive: true });
+  track.addEventListener('touchend', () => { setTimeout(() => { paused = false; }, 4000); });
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(carousel);
+  setInterval(() => {
+    if (!paused && visible && !document.hidden) move(1);
+  }, 5000);
+})();
