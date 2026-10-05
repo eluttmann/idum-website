@@ -318,17 +318,21 @@ nav.menu-open .nav-toggle .icon-close { display: block; }
 /* Hero partner row: three UN Ocean Action marks in official colour, one row,
    aligned to the stats card's left edge, equal optical height. */
 .hero-partners-logos.hero-partners-logos--color {
-  flex-direction: column; align-items: flex-start; gap: 20px; flex-wrap: nowrap;
+  /* Align to the stats card's content: same 36px inset as its label/tiles */
+  flex-direction: column; align-items: stretch; gap: 14px; flex-wrap: nowrap;
+  padding: 0 36px;
 }
 .hero-partners-logos.hero-partners-logos--color img { filter: none; opacity: 1; }
-/* Line 1: Communities of Ocean Action leads; capped at 380px so the 331px
-   source stays sharp and it doesn't outweigh the headline. */
-.hero-partners-logos--color .partner-coa { width: 100%; max-width: 380px; height: auto; }
-/* Line 2: SDG 14 square sized to the UN emblem, both on one baseline */
-.partner-row-2 { display: flex; align-items: center; gap: 28px; }
+/* Line 1: full content width of the card */
+.hero-partners-logos--color .partner-coa { width: 100%; max-width: none; height: auto; }
+/* Line 2: follows the card's 2-column tile grid (same 14px gap) */
+.partner-row-2 {
+  display: grid; grid-template-columns: 1fr 1fr; column-gap: 14px; align-items: center;
+}
 .hero-partners-logos--color .partner-square { height: 64px; width: auto; border-radius: 6px; }
 .hero-partners-logos--color .partner-un-lockup { height: 64px; width: auto; }
 .hero-partners { margin-bottom: 16px; }
+.hero-visual .hero-partners { margin-top: 12px; } /* 24px gap + 12px = 36px, matching the card padding */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--accent);
@@ -1421,7 +1425,7 @@ footer {
   .hero-partners-logos img.partner-isa { height: 36px; }
   .hero-partners-logos img.partner-nato { height: 36px; }
   .hero-partners-logos img.partner-knockout { height: 36px; }
-  .hero-partners-logos--color .partner-coa { max-width: 300px; }
+  .hero-partners-logos.hero-partners-logos--color { padding: 0 24px; } /* matches mobile card padding */
   .hero-partners-logos--color .partner-square,
   .hero-partners-logos--color .partner-un-lockup { height: 52px; }
   .hero-partners-logos img.partner-ocean-action { height: 28px; }
