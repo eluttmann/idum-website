@@ -317,10 +317,17 @@ nav.menu-open .nav-toggle .icon-close { display: block; }
 .hero-quote cite { display: block; margin-top: 8px; font-style: normal; font-weight: 600; font-size: 14px; }
 /* Hero partner row: three UN Ocean Action marks in official colour, one row,
    aligned to the stats card's left edge, equal optical height. */
-.hero-partners-logos--color { gap: 24px; flex-wrap: nowrap; }
+.hero-partners-logos.hero-partners-logos--color {
+  flex-direction: column; align-items: flex-start; gap: 20px; flex-wrap: nowrap;
+}
 .hero-partners-logos.hero-partners-logos--color img { filter: none; opacity: 1; }
-.hero-partners-logos--color .partner-coa { height: 52px; }
-.hero-partners-logos--color .partner-square { height: 56px; border-radius: 6px; }
+/* Line 1: Communities of Ocean Action leads; capped at 380px so the 331px
+   source stays sharp and it doesn't outweigh the headline. */
+.hero-partners-logos--color .partner-coa { width: 100%; max-width: 380px; height: auto; }
+/* Line 2: SDG 14 square sized to the UN emblem, both on one baseline */
+.partner-row-2 { display: flex; align-items: center; gap: 28px; }
+.hero-partners-logos--color .partner-square { height: 64px; width: auto; border-radius: 6px; }
+.hero-partners-logos--color .partner-un-lockup { height: 64px; width: auto; }
 .hero-partners { margin-bottom: 16px; }
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
@@ -1414,8 +1421,9 @@ footer {
   .hero-partners-logos img.partner-isa { height: 36px; }
   .hero-partners-logos img.partner-nato { height: 36px; }
   .hero-partners-logos img.partner-knockout { height: 36px; }
-  .hero-partners-logos--color .partner-coa { height: 42px; }
-  .hero-partners-logos--color .partner-square { height: 46px; }
+  .hero-partners-logos--color .partner-coa { max-width: 300px; }
+  .hero-partners-logos--color .partner-square,
+  .hero-partners-logos--color .partner-un-lockup { height: 52px; }
   .hero-partners-logos img.partner-ocean-action { height: 28px; }
   .stats-card { padding: 24px; }
   .stat-num { font-size: 32px; }
