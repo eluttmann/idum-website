@@ -1108,16 +1108,44 @@ nav.menu-open .nav-toggle .icon-close { display: block; }
   margin: 48px 0 14px;
   font-size: var(--label-micro-size); font-weight: var(--label-micro-weight); color: var(--deep-ocean);
 }
-.istab-field {
-  display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px;
+/* In-the-field carousel: 3 x 300px slides max (sources are 300px wide) */
+.field-carousel {
+  position: relative; max-width: calc(3 * 300px + 2 * 14px);
 }
-.istab-field img {
-  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px;
+.field-track {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; gap: 14px;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  scrollbar-width: none; border-radius: 10px;
 }
+.field-track::-webkit-scrollbar { display: none; }
+.field-track:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.field-slide {
+  flex: 0 0 calc((100% - 28px) / 3); max-width: 300px;
+  scroll-snap-align: start;
+}
+.field-slide img {
+  display: block; width: 100%; height: auto; aspect-ratio: 4 / 3;
+  object-fit: cover; border-radius: 10px;
+}
+.field-nav {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 1;
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--white); color: var(--deep-ocean);
+  border: 1px solid var(--light-gray); box-shadow: 0 4px 14px rgba(11, 42, 60, 0.15);
+  cursor: pointer; transition: background 0.2s;
+}
+.field-nav:hover { background: var(--light-ocean); }
+.field-nav:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.field-nav svg { width: 20px; height: 20px; }
+.field-nav--prev { left: -22px; }
+.field-nav--next { right: -22px; }
+@media (prefers-reduced-motion: reduce) { .field-track { scroll-behavior: auto; } }
 .istab-name { font-size: 15px; font-weight: 600; color: var(--deep-ocean); }
 .istab-affil { font-size: 13px; line-height: 1.55; color: var(--slate); margin-top: 4px; }
-@media (max-width: 900px) { .istab-grid { grid-template-columns: repeat(2, 1fr); } .istab-field { grid-template-columns: repeat(4, 1fr); } }
-@media (max-width: 600px) { .istab-grid { grid-template-columns: 1fr; } .istab-field { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 900px) { .istab-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .istab-grid { grid-template-columns: 1fr; } .field-slide { flex-basis: 78%; } .field-nav--prev { left: 6px; } .field-nav--next { right: 6px; } }
 
 /* ══════════════════════════════════════════════════════════════════
    PROFESSIONAL SERVICES

@@ -688,22 +688,30 @@
         </div>
       </div>
     </div>
-    <!-- Field photos from underwatermunitions.org/advisory-board/ (300px
-         originals, so shown as small thumbnails). -->
-    <div class="istab-field-label">In the field</div>
-    <div class="istab-field">
-      <img loading="lazy" src="images/istab/field/ship.webp" alt="Survey vehicles on a research vessel deck" width="300" height="141">
-      <img loading="lazy" src="images/istab/field/on-deck.webp" alt="Team at work on deck" width="300" height="165">
-      <img loading="lazy" src="images/istab/field/rov-deploy.webp" alt="Deploying a remotely operated vehicle" width="300" height="196">
-      <img loading="lazy" src="images/istab/field/rov-deploy2.webp" alt="Team preparing a survey vehicle in a small boat" width="300" height="164">
-      <img loading="lazy" src="images/istab/field/rov-live.webp" alt="Live ROV camera view of a munitions site" width="300" height="197">
-      <img loading="lazy" src="images/istab/field/rov-live3.webp" alt="Monitoring a live ROV feed" width="300" height="210">
-      <img loading="lazy" src="images/istab/field/sample1.webp" alt="Holding a sediment core sample" width="300" height="218">
-      <img loading="lazy" src="images/istab/field/sample2.webp" alt="Labelled sediment sample" width="300" height="165">
-      <img loading="lazy" src="images/istab/field/sample3.webp" alt="Instrument frame lowered into the sea" width="300" height="220">
-      <img loading="lazy" src="images/istab/field/sample4.webp" alt="Sampling team in protective suits" width="300" height="163">
-      <img loading="lazy" src="images/istab/field/nato-scool.webp" alt="NATO Summer School classroom" width="300" height="213">
-      <img loading="lazy" src="images/istab/field/cat-amrs.webp" alt="Tracked survey vehicle on deck" width="300" height="231">
+    <!-- In the field: 12 photos from underwatermunitions.org/advisory-board/.
+         Originals are 300px wide, so slides are capped at 300px (never
+         upscaled). Carousel: 3 per view (1 on phones), native scroll-snap,
+         arrows + swipe, slow auto-advance that pauses on hover/focus/touch
+         and is off for prefers-reduced-motion. JS in script.js. No captions:
+         the old site has none for these photos. -->
+    <div class="istab-field-label" id="field-carousel-label">In the field</div>
+    <div class="field-carousel" role="region" aria-roledescription="carousel" aria-labelledby="field-carousel-label">
+      <button class="field-nav field-nav--prev" type="button" aria-label="Previous photos"><i data-lucide="chevron-left"></i></button>
+      <ul class="field-track" tabindex="0">
+        <li class="field-slide"><img loading="lazy" src="images/istab/field/ship.webp" alt="Survey vehicles on a research vessel deck" width="300" height="225"></li>
+        <li class="field-slide"><img loading="lazy" src="images/istab/field/on-deck.webp" alt="Team at work on deck" width="300" height="225"></li>
+        <li class="field-slide"><img loading="lazy" src="images/istab/field/rov-deploy.webp" alt="Deploying a remotely operated vehicle" width="300" height="225"></li>
+        <li class="field-slide"><img loading="lazy" src="images/istab/field/rov-deploy2.webp" alt="Team preparing a survey vehicle in a small boat" width="300" height="225"></li>
+        <li class="field-slide"><img loading="lazy" src="images/istab/field/rov-live.webp" alt="Live ROV camera view of a munitions site" width="300" height="225"></li>
+        <li class="field-slide"><img loading="lazy" src="images/istab/field/rov-live3.webp" alt="Monitoring a live ROV feed" width="300" height="225"></li>
+        <li class="field-slide"><img loading="lazy" src="images/istab/field/sample1.webp" alt="Holding a sediment core sample" width="300" height="225"></li>
+        <li class="field-slide"><img loading="lazy" src="images/istab/field/sample2.webp" alt="Labelled sediment sample" width="300" height="225"></li>
+        <li class="field-slide"><img loading="lazy" src="images/istab/field/sample3.webp" alt="Instrument frame lowered into the sea" width="300" height="225"></li>
+        <li class="field-slide"><img loading="lazy" src="images/istab/field/sample4.webp" alt="Sampling team in protective suits" width="300" height="225"></li>
+        <li class="field-slide"><img loading="lazy" src="images/istab/field/nato-scool.webp" alt="NATO Summer School classroom" width="300" height="225"></li>
+        <li class="field-slide"><img loading="lazy" src="images/istab/field/cat-amrs.webp" alt="Tracked survey vehicle on deck" width="300" height="225"></li>
+      </ul>
+      <button class="field-nav field-nav--next" type="button" aria-label="Next photos"><i data-lucide="chevron-right"></i></button>
     </div>
   </div>
 </section>
