@@ -847,9 +847,24 @@ nav.menu-open .nav-toggle .icon-close { display: block; }
   border-radius: 10px; overflow: hidden;
   aspect-ratio: 3/4; transition: all 0.25s ease;
 }
+.docs-img-cell--linked { aspect-ratio: auto; }
 .docs-img-cell:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(11, 42, 60, 0.1); }
-.docs-img-cell a { display: block; width: 100%; height: 100%; }
+.docs-img-cell > a { display: block; width: 100%; height: 100%; }
+.docs-poster-wrap { position: relative; width: 100%; }
 .docs-thumb { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.2s; }
+.docs-img-cell--linked .docs-thumb { height: auto; aspect-ratio: 3/4; }
+.docs-poster-actions {
+  position: absolute; inset: auto 0 0; display: flex; justify-content: center; gap: 10px;
+  padding: 25px 12px 12px; background: linear-gradient(transparent, rgba(0, 0, 0, 0.58));
+}
+.docs-poster-actions a {
+  display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%;
+  color: var(--accent); background: rgba(255, 255, 255, 0.94); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.docs-poster-actions a:hover { transform: translateY(-2px); background: #fff; }
+.docs-poster-actions a:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.docs-poster-actions svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .docs-img-cell:hover .docs-thumb { opacity: 0.9; }
 
 /* ══════════════════════════════════════════════════════════════════
